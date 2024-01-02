@@ -37,6 +37,15 @@ class LoginController extends Controller
         }
     }
 
+    protected function credentials(\Illuminate\Http\Request $request)
+    {
+        return [
+            $this->username() => $request->{$this->username()},
+            'password' => $request->password,
+            'isActive' => 1, // Add the check for isActive
+        ];
+    }
+
     /**
      * Create a new controller instance.
      *

@@ -8,10 +8,10 @@
             <!--change to offline or busy as needed-->
           </div>
           <div class="nav-profile-text d-flex flex-column">
-            <span class="font-weight-bold mb-2">David Grey. H</span>
-            <span class="text-secondary text-small">Project Manager</span>
+            <span class="font-weight-bold mb-2">{{ Auth::user()->staffId }}</span>
+            <span class="text-secondary text-small text-wrap">{{ Auth::user()->email }}</span>
           </div>
-          <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+          {{-- <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i> --}}
         </a>
       </li>
       <li class="nav-item">
@@ -21,24 +21,47 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-          <span class="menu-title">Basic UI Elements</span>
-          <i class="menu-arrow"></i>
-          <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-        </a>
-        <div class="collapse" id="ui-basic">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/buttons.html">Buttons</a></li>
-            <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/typography.html">Typography</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="{{ url('admin/titles')}}">
           <span class="menu-title">Titles</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
+      {{-- <li class="nav-item">
+        <a class="nav-link" href="{{ url('admin/roles')}}">
+          <span class="menu-title">Roles</span>
+          <i class="mdi mdi-directions-fork menu-icon"></i>
+        </a>
+      </li> --}}
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#faculty-menu" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-title">Faculties</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-sitemap menu-icon"></i>
+        </a>
+        <div class="collapse" id="faculty-menu">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ url('admin/faculties')}}">Faculties</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('admin/departments')}}">Departments</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('admin/programmes')}}">Programmes</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#user-menu" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-title">Users</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-account-group menu-icon"></i>
+        </a>
+        <div class="collapse" id="user-menu">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ url('admin/academic_staff')}}">Academic Staff</a></li>
+            <li class="nav-item"> <a class="nav-link" href="">Non-Academic Staff</a></li>
+            <li class="nav-item"> <a class="nav-link" href="">Portal Admin</a></li>
+          </ul>
+        </div>
+      </li>
+
       <li class="nav-item">
         <a class="nav-link" href="../../pages/forms/basic_elements.html">
           <span class="menu-title">Forms</span>

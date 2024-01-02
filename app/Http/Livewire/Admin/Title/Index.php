@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Title;
 use App\Models\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class Index extends Component
 {
@@ -16,7 +17,7 @@ class Index extends Component
 
     public function mount()
     {
-
+        $this->admin = Auth::user();
     }
 
     public function rules(){
@@ -37,9 +38,9 @@ class Index extends Component
     }
 
     public function storeTitle(){
-        $validatedDate = $this->validate();
+        $validatedData = $this->validate();
         Title::create([
-            'name' => $this->name
+            'name' => $validatedData['name'],
         ]);
         session()->flash('message', 'Title Added Successfully.');
         $this->dispatchBrowserEvent('close-modal');
@@ -53,9 +54,9 @@ class Index extends Component
     }
 
     public function updateTitle(){
-        $validatedDate = $this->validate();
+        $validatedData = $this->validate();
         Title::findOrFail($this->title_id)->update([
-            'name' => $this->name
+            'name' => $validatedData['name'],
         ]);
         session()->flash('message', 'Title Updated Successfully.');
         $this->dispatchBrowserEvent('close-modal');

@@ -1,11 +1,11 @@
 <div>
-    @include('livewire.admin.title.modal-form')
+    @include('livewire.admin.faculty.modal-form')
 
     @section('pagename')
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
-                <i class="mdi mdi-contacts menu-icon"></i>
-            </span> Titles
+                <i class="mdi mdi-sitemap menu-icon"></i>
+            </span> Faculties
         </h3>
         @endsection
 
@@ -13,7 +13,7 @@
         <nav aria-label="breadcrumb">
         <ul class="breadcrumb">
             <li class="breadcrumb-item active" aria-current="page">
-            <span></span>Titles</i>
+            <span></span>Faculties</i>
             </li>
         </ul>
         </nav>
@@ -24,14 +24,20 @@
         <div class="col-md-5 grid-margin">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-4">Add New Title</h4>
+                <h4 class="card-title mb-4">Add New Faculty</h4>
 
-                <form wire:submit.prevent="storeTitle" class="">
+                <form wire:submit.prevent="storeFaculty" class="">
                     <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" wire:model.defer="name" class="form-control" placeholder="Title">
-                    @error('name') <small class="text-danger">{{ $message }}</small> @enderror
+                        <label for="faculty">Faculty</label>
+                        <input type="text" wire:model.defer="name" class="form-control" placeholder="Faculty">
+                        @error('name') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="faculty">Description</label>
+                        <textarea class="form-control" wire:model.defer="description"></textarea>
+                        @error('description') <small class="text-danger">{{ $message }}</small> @enderror
+                    </div>
+
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-lg btn-gradient-primary">Submit</button>
                     </div>
@@ -43,7 +49,7 @@
         <div class="col-md-7 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-3">All Titles</h4>
+                <h4 class="card-title mb-3">All Faculties</h4>
                 @if (session('message'))
                     <div class="alert alert-success" role="alert">
                         {{ session('message') }}
@@ -61,22 +67,24 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                            <th scope="col" class="ps-3">Title</th>
+                            <th scope="col" class="ps-3">Faculty</th>
+                            <th scope="col" class="ps-3">Description</th>
                             <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($titles as $title)
+                            @forelse ($faculties as $faculty)
                                 <tr>
-                                    <td class="ps-3"> {{$title->name}} </td>
+                                    <td class="ps-3"> {{$faculty->name}} </td>
+                                    <td class="ps-3"> {{$faculty->description}} </td>
                                     <td class="d-flex justify-content-end">
-                                        <a href="#" wire:click="editTitle({{ $title->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateTitleModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                        <a href="#" wire:click="deleteTitle({{ $title->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteTitleModal"><i class="fa-solid fa-trash-can"></i></a>
+                                        <a href="#" wire:click="editFaculty({{ $faculty->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateFacultyModal"><i class="fa-solid fa-pen-nib"></i></a>
+                                        <a href="#" wire:click="deleteFaculty({{ $faculty->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteFacultyModal"><i class="fa-solid fa-trash-can"></i></a>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3" class="text-danger text-center">No Titles Found</td>
+                                    <td colspan="3" class="text-danger text-center">No Faculties Found</td>
                                 </tr>
                             @endforelse
 
@@ -84,7 +92,7 @@
                     </table>
                 </div>
                 <div>
-                    {{ $titles->links() }}
+                    {{ $faculties->links() }}
                 </div>
 
             </div>
@@ -96,8 +104,8 @@
 @section('scripts')
     <script>
         window.addEventListener('close-modal', event => {
-            $('#updateTitleModal').modal('hide');
-            $('#deleteTitleModal').modal('hide');
+            $('#updateFacultyModal').modal('hide');
+            $('#deleteFacultyModal').modal('hide');
         });
     </script>
 @endsection

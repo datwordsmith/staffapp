@@ -1,3 +1,53 @@
 .purple-text {
     color: #9F59FF;
 }
+
+.no-color {
+    color: unset;
+}
+
+.social-icons {
+    a {
+        text-decoration: none;
+        padding: 2px;
+        margin-right: 10px;
+        border: none;
+        font-size: 0.9em;
+    }
+
+    img {
+
+   }
+
+   .fa-square-facebook {
+    color: #3B5998;
+   }
+
+   .fa-researchgate {
+    color: #04CDA7;
+   }
+
+   .fa-square-x-twitter {
+    color: #020202;
+   }
+
+   .fa-linkedin {
+    color: #0A63BC;
+   }
+
+   .fa-google-scholar {
+    color: #4081EC;
+   }
+
+   .fa-square-youtube {
+    color: #F60002;
+   }
+
+   .github, .medium {
+    color: #000000;
+   }
+
+   .medium {
+    color: #000000;
+   }
+}
