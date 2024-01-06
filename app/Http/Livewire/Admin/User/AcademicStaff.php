@@ -3,8 +3,11 @@
 namespace App\Http\Livewire\Admin\User;
 
 use App\Models\User;
+use App\Models\Faculty;
 use Livewire\Component;
+use App\Models\Department;
 use Livewire\WithPagination;
+use App\Models\staffDepartment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,24 +18,30 @@ class AcademicStaff extends Component
 
     public $user_id, $staffId, $email, $role_as;
     public $banStaffId, $deleteStaffId;
+    public $faculty_id, $department_id;
     public $search;
+    protected $listeners = ['faculty_id' => 'updatedFacultyId'];
 
     public function rules()
     {
         return [
             'staffId' => 'required|string|unique:users,staffId',
             'email' => 'required|string|unique:users,email',
+            'department_id' => 'required|numeric|min:1|exists:departments,id',
         ];
     }
 
     public function mount()
     {
         $this->admin = Auth::user();
+        $this->departments = [];
     }
 
     public function resetInput() {
         $this->staffId = NULL;
         $this->email = null;
+        $this->department_id = null;
+        $this->faculty_id = NULL;
     }
 
     public function closeModal() {
@@ -43,6 +52,10 @@ class AcademicStaff extends Component
         $this->resetInput();
     }
 
+    public function updatedFacultyId($value)
+    {
+        $this->departments = Department::where('faculty_id', $value)->orderBy('name')->get();
+    }
 
     public function storeAcademicStaff()
     {
@@ -52,13 +65,17 @@ class AcademicStaff extends Component
         $password = '12345678';
         $role_as = 2;
 
-        $user = new User([
+        $user = User::create([
             'staffId' => $validatedData['staffId'],
             'email' => $validatedData['email'],
             'password' => Hash::make($password),
             'role_as' => $role_as,
         ]);
-        $user->save();
+
+        staffDepartment::create([
+            'user_id' => $user->id,
+            'department_id' => $validatedData['department_id'],
+        ]);
 
         //$user->notify(new NewUserAlert($userPassword));
 
@@ -144,9 +161,12 @@ class AcademicStaff extends Component
         ->orderBy('profiles.lastname', 'ASC')
         ->paginate(5);
 
+        $this->faculties = Faculty::orderBy('name')->get();
+
         return view('livewire.admin.user.academic-staff', [
             'users' => $users,
             'deleteStaffId' => $this->deleteStaffId,
+            'faculties'=>$this->faculties,
             ])->extends('layouts.admin')->section('content');
     }
 }

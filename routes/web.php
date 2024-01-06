@@ -32,7 +32,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
     Route::get('/departments', App\Http\Livewire\Admin\Department\index::class);
     Route::get('/programmes', App\Http\Livewire\Admin\Programme\index::class);
 
-    Route::get('/academic_staff', App\Http\Livewire\Admin\User\AcademicStaff::class);
+    Route::get('/staff', App\Http\Livewire\Admin\User\AcademicStaff::class);
     Route::get('/profile/{staffId}', App\Http\Livewire\Admin\User\Profile::class);
 
 });
+

@@ -13,7 +13,7 @@
         <nav aria-label="breadcrumb">
         <ul class="breadcrumb">
             <li class="breadcrumb-item" aria-current="page">
-                Users
+                <a href="{{ url('admin/staff')}}">Staff</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
                 Profile
@@ -49,30 +49,35 @@
         <div class="col-md-12 mb-3">
             <div class="row ">
                 <div class="col-md-4">
-                    <img src="{{ asset('assets/photos/avatar.png') }}" class="img-fluid img-thumbnail p-3 shadow" alt="Profile Photo">
+                    <img src="{{ asset('assets/photos/'.$user->profile->photo) }}" class="img-fluid img-thumbnail p-3 shadow" alt="Profile Photo">
                 </div>
                 <div class="col-md-8 mt-md-0 mt-4">
-                    <h2>{{$user->profile->title->name}} {{$user->profile->firstname}} {{$user->profile->lastname}}</h2>
+                    <h2>{{$user->profile->title->name}} {{$user->profile->firstname}} {{$user->profile->lastname}} {{$user->profile->othername}}</h2>
                     <h4 class="text-muted mb-3">{{$user->profile->designation}}</h4>
 
                     <div class="row pt-3 border-top border-bottom mb-3">
                         <div class="col-md-6">
-                            <strong>Staff ID</strong>
+                            <strong class="purple-text">Staff ID</strong>
                             <p class="text-muted mt-1">{{$user->staffId}}</p>
                         </div>
                         <div class="col-md-6">
-                            <strong>Email</strong>
+                            <strong class="purple-text">Email</strong>
                             <p class="text-muted mt-1">{{$user->email}}</p>
                         </div>
 
                         <div class="col-md-6">
-                            <strong>Faculty</strong>
-                            <p class="text-muted mt-1">{{ optional(optional($user->department)->department)->faculty->name }}
+                            <strong class="purple-text">Faculty</strong>
+                            <p class="text-muted mt-1">
+                                @if ($user->department && $user->department->department && $user->department->department->faculty)
+                                    {{ $user->department->department->faculty->name }}
+                                @endif
                             </p>
                         </div>
                         <div class="col-md-6">
-                            <strong>Department</strong>
-                            <p class="text-muted mt-1">{{ optional($user->department)->department->name }}</p>
+                            <strong class="purple-text">Department</strong>
+                            @if ($user->department && $user->department->department)
+                                <p class="text-muted mt-1">{{ $user->department->department->name }}</p>
+                            @endif
                         </div>
                     </div>
 
