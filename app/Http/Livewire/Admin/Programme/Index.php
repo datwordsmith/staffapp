@@ -18,7 +18,6 @@ class Index extends Component
     public $faculty_id;
     public $departments;
     public $search;
-
     protected $listeners = ['faculty_id' => 'updatedFacultyId'];
 
     public function rules()

@@ -18,16 +18,39 @@
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label>Staff ID</label>
-                            <input type="text" wire:model.defer="staffId" class="form-control" placeholder="Staff ID">
+                            <input type="text" wire:model.defer="staffId" class="form-control" placeholder="Staff ID" required>
                             @error('staffId') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
                         <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" wire:model.defer="email" class="form-control" placeholder="Email Address">
+                            <input type="email" wire:model.defer="email" class="form-control" placeholder="Email Address" required>
                             @error('email') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
+
+                        <div class="form-group">
+                            <select class="form-select form-control form-control-lg" wire:model.defer="faculty_id" wire:change="$emit('faculty_id', $event.target.value)" required>
+                                <option value="">Select a Faculty</option>
+                                @foreach ($faculties as $faculty)
+                                    <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('faculty_id')
+                                <small class="error text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-select form-control form-control-lg" wire:model.defer="department_id" required>
+                                <option value="">Select a Department</option>
+                                @foreach ($departments as $department)
+                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('department_id')
+                                <small class="error text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
 
                     </div>
                     <div class="modal-footer">

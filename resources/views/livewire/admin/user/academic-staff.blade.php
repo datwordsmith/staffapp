@@ -16,7 +16,7 @@
                 Users
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                Academic Staff
+                Staff
             </li>
         </ul>
         </nav>
@@ -55,7 +55,7 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th scope="col" class="ps-3">Staff ID</th>
+                                <th scope="col" class="">Staff ID</th>
                                 <th scope="col" class="ps-3">email</th>
                                 <th scope="col" class="ps-3">Surname</th>
                                 <th scope="col" class="ps-3">Firstname</th>
@@ -67,7 +67,15 @@
                         <tbody>
                             @forelse ($users as $user)
                                 <tr>
-                                    <td class="ps-3"> {{$user->staffId}} </td>
+                                    <td class="">
+                                        @if ($this->hasProfile($user->id))
+                                            <a href="{{ url('admin/profile/'.$user->staffId) }}" class="btn btn-sm btn-primary me-2"><i class="fa-regular fa-folder-open"></i></a>
+                                        @else
+                                            <button class="btn btn-sm btn-secondary me-2 disabled"><i class="fa-regular fa-folder-open"></i></button>
+                                        @endif
+                                        {{$user->staffId}}
+
+                                    </td>
                                     <td class="ps-3"> {{$user->email}} </td>
                                     <td class="ps-3"> {{$user->lastname}} </td>
                                     <td class="ps-3"> {{$user->firstname}} </td>
@@ -80,7 +88,7 @@
                                         @endif
                                     </td>
                                     <td class="d-flex justify-content-end">
-                                        <a href="{{ url('admin/profile/'.$user->staffId) }}" class="btn btn-sm btn-primary me-2"><i class="fa-regular fa-folder-open"></i></a>
+
                                         @if ($user->isActive)
                                             <!-- Show ban button if the user is active -->
                                             <a href="#" wire:click="banAcademicStaff({{ $user->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#banStaffModal">
@@ -93,11 +101,13 @@
                                             </a>
                                         @endif
 
-                                        @if ($this->hasProfile($user->id))
-
-                                        @else
-                                        <a href="#" wire:click="deleteAcademicStaff({{ $user->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteStaffModal"><i class="fa-solid fa-trash-can"></i></a>
-                                        @endif
+                                        @can('superadmin')
+                                            @if ($this->hasProfile($user->id))
+                                                <button class="btn btn-sm btn-secondary disabled"><i class="fa-regular fa-trash-can"></i></button>
+                                            @else
+                                                <a href="#" wire:click="deleteAcademicStaff({{ $user->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteStaffModal"><i class="fa-solid fa-trash-can"></i></a>
+                                            @endif
+                                        @endcan
                                     </td>
                                 </tr>
                             @empty
