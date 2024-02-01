@@ -13,7 +13,7 @@
         <nav aria-label="breadcrumb">
         <ul class="breadcrumb">
             <li class="breadcrumb-item active" aria-current="page">
-            <span></span>My Publications</i>
+            <span></span></i>
             </li>
         </ul>
         </nav>
