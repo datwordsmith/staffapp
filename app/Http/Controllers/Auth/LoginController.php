@@ -33,7 +33,7 @@ class LoginController extends Controller
         if(Auth::user()->role_as < '2' ){
             return redirect('admin/staff');
         } else {
-            return redirect('/home');
+            return redirect('staff/profile');
         }
     }
 

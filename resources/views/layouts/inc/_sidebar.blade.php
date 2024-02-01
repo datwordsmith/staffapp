@@ -14,12 +14,7 @@
           {{-- <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i> --}}
         </a>
       </li>
-      {{-- <li class="nav-item">
-        <a class="nav-link" href="{{ url('admin/dashboard')}}">
-          <span class="menu-title">Dashboard</span>
-          <i class="mdi mdi-home menu-icon"></i>
-        </a>
-      </li> --}}
+
       <li class="nav-item">
         <a class="nav-link" href="{{ url('admin/staff')}}">
             <span class="menu-title">Staff</span>
@@ -33,12 +28,6 @@
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
-      {{-- <li class="nav-item">
-        <a class="nav-link" href="{{ url('admin/roles')}}">
-          <span class="menu-title">Roles</span>
-          <i class="mdi mdi-directions-fork menu-icon"></i>
-        </a>
-      </li> --}}
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#faculty-menu" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Faculties</span>
@@ -53,25 +42,21 @@
           </ul>
         </div>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('admin/social-media')}}">
+          <span class="menu-title">Social Media</span>
+          <i class="fa-solid fa-hashtag menu-icon"></i>
+        </a>
+      </li>
+
       <li class="nav-item">
         <a class="nav-link" href="">
           <span class="menu-title">Portal Admin</span>
           <i class="fa-solid fa-users-gear menu-icon"></i>
         </a>
       </li>
-      {{-- <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#user-menu" aria-expanded="false" aria-controls="ui-basic">
-          <span class="menu-title">Users</span>
-          <i class="menu-arrow"></i>
-          <i class="mdi mdi-account-group menu-icon"></i>
-        </a>
-        <div class="collapse" id="user-menu">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ url('admin/staff')}}">Staff</a></li>
-            <li class="nav-item"> <a class="nav-link" href="">Portal Admin</a></li>
-          </ul>
-        </div>
-      </li> --}}
+
 
     </ul>
   </nav>
