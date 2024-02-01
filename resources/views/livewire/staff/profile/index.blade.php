@@ -1,38 +1,36 @@
 <div>
+    @include('livewire.staff.profile.modal-form')
 
     @section('pagename')
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="fa-regular fa-address-card menu-icon"></i>
-            </span> Staff Profile
+            </span> My Profile
         </h3>
     @endsection
 
-    @section('breadcrumbs')
-        <nav aria-label="breadcrumb">
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item" aria-current="page">
-                <a href="{{ url('admin/staff')}}">Staff</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">
-                Profile
-            </li>
-        </ul>
-        </nav>
-    @endsection
-
     <div class="row">
-        <div class="col-md-12 my-4">
-        </div>
-
         <div class="col-md-12 mb-3">
             <div class="row ">
                 <div class="col-md-4">
-                    <img src="{{ asset('assets/photos/'.$user->profile->photo) }}" class="img-fluid img-thumbnail p-3 shadow" alt="Profile Photo">
+                    @if(!empty($staff->photo))
+                        <img src="{{ asset('storage/assets/photos/'.$staff->photo) }}" class="img-fluid p-3 shadow" alt="Profile Photo">
+
+                        <a href="#" wire:click="deletePhoto({{ $staff->id }})" class="btn btn-sm btn-danger mt-2 me-1" data-bs-toggle="modal" data-bs-target="#deletePhotoModal">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                    @else
+                        <img src="{{ asset('assets/photos/default.jpg') }}" class="img-fluid p-3 shadow" alt="Profile Photo">
+                    @endif
+                    <!-- Button to trigger file input -->
+                    <button type="button" class="btn btn-sm btn-success mt-2" data-bs-toggle="modal" data-bs-target="#uploadPhotoModal">
+                        <i class="fa-solid fa-camera"></i> Uplaod Photo
+                    </button>
+
                 </div>
                 <div class="col-md-8 mt-md-0 mt-4">
-                    <h2>{{$user->profile->title->name}} {{$user->profile->firstname}} {{$user->profile->lastname}} {{$user->profile->othername}}</h2>
-                    <h4 class="text-muted mb-3">{{$user->profile->designation}}</h4>
+                    <h2>{{$staff->title->name}} {{$staff->firstname}} {{$staff->lastname}} {{$staff->othername}}</h2>
+                    <h4 class="text-muted mb-3">{{$staff->designation}}</h4>
 
                     <div class="row pt-3 border-top border-bottom mb-3">
                         <div class="col-md-6">
@@ -60,10 +58,23 @@
                         </div>
                     </div>
 
-                    <p><strong class="purple-text">Biography:</strong></p>
+                    <p><strong class="purple-text">Biography:</strong> <i class="fa-regular fa-pen-to-square"></i></p>
                     <p class="text-secondary">
-                        {{$user->profile->biography}}
+                        {{ $staff->biography}}
                     </p>
+                    <div class="d-flex">
+                        <div class="ms-auto">
+                            <a href="#" wire:click="editBio({{ $staff->id }})" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#updateBioModal">
+                                Update Profile <i class="fa-solid fa-pen-nib"></i>
+                            </a>
+                            @if(!empty($staff->biography))
+                                <a href="#" wire:click="deleteBio({{ $staff->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBioModal">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </a>
+                            @endif
+
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -73,10 +84,10 @@
             <div class="card">
                 <div class="card-header text-white bg-gradient-primary pt-3"><h4>Interests</h4></div>
                 <div class="card-body">
-                    @if ($user->interests->isNotEmpty())
+                    @if ($interests->count() > 0)
                         <table class="table">
                             <tbody>
-                                @foreach($user->interests as $interest)
+                                @foreach($interests as $interest)
                                 <tr>
                                     <td><i class="fa-solid fa-star me-4"></i> {{ $interest->interest }}</td>
                                 </tr>
@@ -98,7 +109,7 @@
                         <div class="row">
                             @foreach($socials as $social)
                                 <div class="col-6 mb-4 pb-2 border-bottom">
-                                    <a href="{{ $social->url }}" target="_blank"><i class="fa-brands {{ $social->icon }} me-2"></i> {{ $social->sm }} <i class="fa-solid fa-arrow-up-right-from-square text-secondary ms-2 fa-xs"></i></a>
+                                    <a href="{{ $social->url }}" target="_blank"><i class="{{ $social->icon }} fa-xl me-2"></i> {{ $social->sm }} <i class="fa-solid fa-arrow-up-right-from-square text-secondary ms-2 fa-xs"></i></a>
                                 </div>
                             @endforeach
                         </div>
@@ -154,9 +165,10 @@
 @section('scripts')
     <script>
         window.addEventListener('close-modal', event => {
-            $('#addStaffModal').modal('hide');
-            $('#banStaffModal').modal('hide');
-            $('#deleteStaffModal').modal('hide');
+            $('#updateBioModal').modal('hide');
+            $('#deleteBioModal').modal('hide');
+            $('#uploadPhotoModal').modal('hide');
+            $('#deletePhotoModal').modal('hide');
         });
     </script>
 @endsection

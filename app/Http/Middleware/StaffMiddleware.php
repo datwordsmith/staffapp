@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class StaffMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,9 +17,12 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role_as > '1' ){
-            return redirect('staff/profile')->with('status', 'Access Denied! Authorisation Required.');
+         // Check if the user is authenticated and has the 'staff' role_as
+         if (Auth::check() && Auth::user()->role_as == 2) {
+            return $next($request);
         }
-        return $next($request);
+
+        // Redirect or respond with an error if the user is not staff
+        return redirect('/home')->with('status', 'Access Denied! Staff Authorization Required.');
     }
 }

@@ -13,7 +13,7 @@ class Publications extends Model
 
     protected $fillable = [
         'user_id',
-        'publicatiion',
+        'publication',
         'url',
     ];
 
