@@ -10,19 +10,16 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-lg-6">
+        <div class="col-md-6 col-lg-6 d-flex align-items-center justify-content-center">
 
-            <div class="row mt-5 pt-3">
-                <div class="col-12 mt-5 text-center">
-                    <img src="{{ asset('admin/assets/images/fulafia_logo_black.png') }}"  class= "img-fluid w-25" alt="Splash Image">
-                    <h5 class="mt-2">Staff Portal</h5>
-                </div>
-            </div>
             <div class="row my-3">
-                <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="col-12">
                     <div class="card shadow rounded-5 mt-3">
                         <div class="card-body">
-                            <h5 class="text-center mb-2">{{ __('Reset Password') }}</h5>
+                            <div class="text-center">
+                                <img src="{{ asset('admin/assets/images/fulafia_logo_black.png') }}"  class= "img-fluid mx-4" width="200" alt="Splash Image">
+                                <p><h5 class="mt-2">Staff Portal</h5></p>
+                            </div>
 
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert">
