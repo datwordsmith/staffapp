@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Livewire\Admin\User;
+namespace App\Http\Livewire\AllStaff;
 
-use App\Models\socialMedia;
 use App\Models\User;
 use Livewire\Component;
+use App\Models\socialMedia;
 use App\Models\Publications;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\Auth;
 
 class Profile extends Component
 {
+
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
@@ -21,7 +21,6 @@ class Profile extends Component
     {
         // Fetch user details based on $userId
         $this->user = User::where('staffId', $staffId)->first();
-        $this->admin = Auth::user();
 
         $this->user->load(['interests' => function ($query) {
             $query->orderBy('interest', 'asc');
@@ -31,6 +30,7 @@ class Profile extends Component
 
     public function render()
     {
+
         $publications = Publications::where('user_id', $this->user->id)
             ->where(function ($query) {
                 $query->where('publication', 'like', '%' . $this->search . '%')
@@ -45,9 +45,9 @@ class Profile extends Component
                     ->orderBy('social_platforms.name', 'ASC')
                     ->get();
 
-        return view('livewire.admin.user.profile', [
+        return view('livewire.all-staff.profile', [
             'publications' => $publications,
             'socials' => $socials,
-            ])->extends('layouts.admin')->section('content');
+            ])->extends('layouts.public_detail')->section('content');
     }
 }

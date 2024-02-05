@@ -15,12 +15,14 @@ use App\Http\Controllers\Admin\DashboardController;
 */
 
 Route::get('/', function () {
-    return view('auth/login');
+    return view('/home');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('', App\Http\Livewire\AllStaff\index::class);
+Route::get('/home', App\Http\Livewire\AllStaff\index::class)->name('home');
+Route::get('/profile/{staffId}', App\Http\Livewire\AllStaff\Profile::class);
 
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){

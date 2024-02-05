@@ -18,7 +18,9 @@
                     <div class="card shadow rounded-5">
                         <div class="card-body">
                             <div class="text-center">
-                                <img src="{{ asset('admin/assets/images/fulafia_logo_black.png') }}"  class= "img-fluid mx-4" width="200" alt="Splash Image">
+                                <a href="{{ route('home')}}">
+                                    <img src="{{ asset('admin/assets/images/fulafia_logo_black.png') }}"  class= "img-fluid mx-4" width="200" alt="Splash Image">
+                                </a>
                                 <p><h5 class="mt-2">Staff Portal</h5></p>
                             </div>
 
