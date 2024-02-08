@@ -25,7 +25,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="team-member text-center shadow">
                                 <div class="member-photo">
-                                    <img class="img-fluid" src="{{ asset('storage/assets/photos/'.($user->profile->photo ?: 'default.jpg')) }}" alt="{{$user->staffId}}">
+                                    <img class="img-fluid" src="{{ Storage::url('photos/' . ($user->profile->photo ?: 'default.jpg')) }}" alt="{{ $user->staffId }}">
 
 
                                     <div class="mask">

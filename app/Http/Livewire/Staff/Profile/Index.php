@@ -126,12 +126,12 @@ class Index extends Component
 
         // Delete existing photo
         $existingPhoto = auth()->user()->profile->photo;
-            if ($existingPhoto && Storage::disk('public')->exists('assets/photos/' . $existingPhoto)) {
-                Storage::disk('public')->delete('assets/photos/' . $existingPhoto);
+            if ($existingPhoto && Storage::exists('photos/' . $existingPhoto)) {
+                Storage::delete('photos/' . $existingPhoto);
         }
 
         // Store the uploaded file with the new filename
-        $this->photo->storeAs('assets/photos', $filename, 'public');
+        $this->photo->storeAs('photos', $filename);
 
         // Update the user's photo path in the database
         $user = auth()->user();
@@ -161,8 +161,8 @@ class Index extends Component
     {
         // Delete existing photo
         $existingPhoto = auth()->user()->profile->photo;
-        if ($existingPhoto && Storage::disk('public')->exists('assets/photos/' . $existingPhoto)) {
-            Storage::disk('public')->delete('assets/photos/' . $existingPhoto);
+        if ($existingPhoto && Storage::exists('photos/' . $existingPhoto)) {
+            Storage::delete('photos/' . $existingPhoto);
         }
 
         Profile::findOrFail($this->profile_id)->update([

@@ -3,7 +3,11 @@
       <li class="nav-item nav-profile">
         <a href="#" class="nav-link">
           <div class="nav-profile-image">
-            <img src="{{ asset('admin/assets/images/faces/face1.jpg') }}" alt="profile">
+            @if (Auth::user()->Profile && Auth::user()->Profile->photo)
+                <img src="{{ Storage::url('photos/' . Auth::user()->Profile->photo) }}" alt="profile">
+            @else
+                <img src="{{ Storage::url('photos/default.jpg') }}" alt="profile">
+            @endif
             <span class="login-status online"></span>
             <!--change to offline or busy as needed-->
           </div>
