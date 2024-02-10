@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Staff\Profile;
 
-use App\Models\Profile;
 use App\Models\Title;
+use App\Models\Profile;
 use Livewire\Component;
 use App\Models\Interests;
 use App\Models\socialMedia;
@@ -12,6 +12,7 @@ use App\Models\Publications;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class Index extends Component
@@ -115,7 +116,7 @@ class Index extends Component
     public function uploadPhoto()
     {
         $this->validate([
-            'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120'
+            'photo' => 'image|max:5120'
         ]);
 
         // Get the user's staffId
@@ -126,12 +127,12 @@ class Index extends Component
 
         // Delete existing photo
         $existingPhoto = auth()->user()->profile->photo;
-            if ($existingPhoto && Storage::exists('photos/' . $existingPhoto)) {
-                Storage::delete('photos/' . $existingPhoto);
+        if ($existingPhoto && file_exists('uploads/photos/' . $existingPhoto)) {
+            unlink('uploads/photos/' . $existingPhoto);
         }
 
         // Store the uploaded file with the new filename
-        $this->photo->storeAs('photos', $filename);
+        File::move($this->photo->getRealPath(), public_path('uploads/photos/' . $filename));
 
         // Update the user's photo path in the database
         $user = auth()->user();
@@ -150,27 +151,31 @@ class Index extends Component
     }
 
 
+
     public function deletePhoto(int $profile_id)
     {
         $this->profile_id = $profile_id;
-        $profile = Profile::findOrFail($profile_id);
-        $this->photo = $profile->photo;
     }
 
     public function destroyPhoto()
     {
-        // Delete existing photo
-        $existingPhoto = auth()->user()->profile->photo;
-        if ($existingPhoto && Storage::exists('photos/' . $existingPhoto)) {
-            Storage::delete('photos/' . $existingPhoto);
-        }
 
-        Profile::findOrFail($this->profile_id)->update([
-            'photo' => null,
-        ]);
-        session()->flash('message', 'Photo deleted Successfully.');
-        $this->dispatchBrowserEvent('close-modal');
-        $this->resetInput();
+        $profile = Profile::findOrFail($this->profile_id);
+        $photo = $profile->photo;
+        // Delete existing photo
+        $existingPhoto = $photo;
+        if ($existingPhoto && file_exists('uploads/photos/' . $existingPhoto)) {
+            unlink('uploads/photos/' . $existingPhoto);
+
+            Profile::findOrFail($this->profile_id)->update([
+                'photo' => null,
+            ]);
+            session()->flash('message', 'Photo deleted Successfully.');
+            $this->dispatchBrowserEvent('close-modal');
+            $this->resetInput();
+        } else {
+            session()->flash('message', 'Failed.');
+        }
     }
 
     public function render()

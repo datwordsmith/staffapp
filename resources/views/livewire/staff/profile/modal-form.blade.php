@@ -106,6 +106,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                @if ($photo)
+                    <div class="text-center mb-2">
+                        <p><small>Photo Preview:</small></p>
+                        <img class="img-thumbnail" src="{{ $photo->temporaryUrl() }}" width="100">
+                    </div>
+                @endif
                 <form wire:submit.prevent="uploadPhoto" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="photoInput" class="form-label">Choose File</label>

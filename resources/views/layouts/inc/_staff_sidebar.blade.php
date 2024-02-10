@@ -5,9 +5,9 @@
           <div class="nav-profile-image">
 
             @if (Auth::user()->Profile && Auth::user()->Profile->photo)
-                <img src="{{ Storage::url('photos/' . Auth::user()->Profile->photo) }}" alt="profile">
+                <img src="{{ asset('uploads/photos/' . Auth::user()->Profile->photo) }}" alt="profile">
             @else
-                <img src="{{ Storage::url('photos/default.jpg') }}" alt="profile">
+                <img src="{{ asset('uploads/photos/default.jpg') }}" alt="profile">
             @endif
 
             <span class="login-status online"></span>

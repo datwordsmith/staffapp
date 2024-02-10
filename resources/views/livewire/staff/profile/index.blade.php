@@ -14,13 +14,13 @@
             <div class="row ">
                 <div class="col-md-4">
                     @if(!empty($staff->photo))
-                        <img src="{{ Storage::url('photos/'.$staff->photo) }}" class="img-fluid p-3 shadow" alt="Profile Photo">
+                        <img src="{{ asset('uploads/photos/'.$staff->photo) }}" class="img-fluid p-3 shadow" alt="Profile Photo">
 
                         <a href="#" wire:click="deletePhoto({{ $staff->id }})" class="btn btn-sm btn-danger mt-2 me-1" data-bs-toggle="modal" data-bs-target="#deletePhotoModal">
                             <i class="fa-solid fa-trash-can"></i>
                         </a>
                     @else
-                        <img src="{{ Storage::url('photos/default.jpg') }}" class="img-fluid p-3 shadow" alt="Profile Photo">
+                        <img src="{{ asset('uploads/photos/default.jpg') }}" class="img-fluid p-3 shadow" alt="Profile Photo">
                     @endif
                     <!-- Button to trigger file input -->
                     <button type="button" class="btn btn-sm btn-success mt-2" data-bs-toggle="modal" data-bs-target="#uploadPhotoModal">

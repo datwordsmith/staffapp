@@ -28,7 +28,7 @@
         <div class="col-md-12 mb-3">
             <div class="row ">
                 <div class="col-md-4">
-                    <img src="{{ Storage::url('photos/'.($user->profile->photo ?: 'default.jpg')) }}" class="img-fluid img-thumbnail p-3 shadow" alt="Profile Photo">
+                    <img src="{{ asset('uploads/photos/' . ($user->profile->photo ?: 'default.jpg')) }}" class="img-fluid img-thumbnail p-3 shadow" alt="Profile Photo">
                 </div>
                 <div class="col-md-8 mt-md-0 mt-4">
                     <h2>{{$user->profile->title->name}} {{$user->profile->firstname}} {{$user->profile->lastname}} {{$user->profile->othername}}</h2>

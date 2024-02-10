@@ -28,6 +28,7 @@ Fixed Navigation
 ==================================== -->
 <header class="navigation fixed-top">
   <div class="container">
+
     <!-- main nav -->
     <nav class="navbar navbar-expand-lg navbar-light px-0">
       <!-- logo -->
@@ -35,23 +36,36 @@ Fixed Navigation
         <h2 class="my-primary">STAFF PORTAL</h2>
       </a>
       <!-- /logo -->
-      <button class="navbar-toggler btn-white" type="button" data-toggle="collapse" data-target="#navigation"
-        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon text-white"></span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse ms-auto" id="navigation">
-        <!--
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item active">
-            <a class="nav-link me-2" href="#">
-              Home
-            </a>
-          </li>
+            @auth
+                <li class="nav-item">
+                    @can('superadmin')
+                    <a class="btn btn-success" href="{{url('admin/staff')}}"><i class="bi bi-person"></i> Dashboard</a>
+                    @elsecan('admin')
+                    <a class="btn btn-success" href="{{url('admin/staff')}}"><i class="bi bi-person"></i> Dashboard</a>
+                    @elsecan('staff')
+                        <a class="btn btn-info" href="{{ url('staff/profile') }}"><i class="bi bi-person"></i> My Profile</a>
+                    @endcan
 
+                    <button type="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-danger">
+                        <i class="bi bi-power"></i>
+                    </button>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
+            @else
+                <li class="nav-item">
+                    <a class="btn btn-primary ms-auto" href="{{ url('/login') }}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+                </li>
+            @endauth
         </ul>
-        -->
-        <a class="btn btn-primary ms-auto" href="{{ url('/login')}}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
       </div>
     </nav>
     <!-- /main nav -->
@@ -70,9 +84,8 @@ Welcome Slider
             <div class="col-12 col-lg-6">
                <h1>Welcome to the Staff Portal</h1>
                <p class="pt-5">Lorem ipsum dolor sit amet. Est minima iusto qui quisquam suscipit aut doloremque eligendi sit velit reiciendis ab magni error et enim numquam qui voluptas beatae. Est autem iusto id Quis repellendus hic illo consequuntur nam consequatur consequatur.</p>
-               <div class="pt-5">
-                   <a class="btn btn-primary me-2" href="{{ url('/login')}}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
-                   <a class="btn btn-outline-primary" href="https://fulafia.edu.ng/" target="_blank"><i class="bi bi-browser-edge"></i> University Website</a>
+               <div class="pt-2">
+                   <a class="btn btn-primary" href="https://fulafia.edu.ng/" target="_blank"><i class="bi bi-browser-edge"></i> University Website</a>
                </div>
             </div>
         </div>

@@ -26,7 +26,7 @@ Route::get('/profile/{staffId}', App\Http\Livewire\AllStaff\Profile::class);
 
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
+    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
 
     Route::get('/titles', App\Http\Livewire\Admin\Title\Index::class);
     Route::get('/social-media', App\Http\Livewire\Admin\SocialMedia\Index::class);
