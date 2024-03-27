@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/assets/css/customstyle.css') }}">
         <!-- End layout styles -->
-        <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}" />
+        <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}" />
         <script src="https://kit.fontawesome.com/4c207f4e5f.js" crossorigin="anonymous"></script>
         @livewireStyles
       </head>
