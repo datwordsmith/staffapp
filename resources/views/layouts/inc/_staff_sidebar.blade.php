@@ -77,5 +77,12 @@
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('staff/conferences')}}">
+            <span class="menu-title">Conferences</span>
+            <i class="fa-regular fa-newspaper menu-icon"></i>
+        </a>
+      </li>
+
     </ul>
   </nav>
