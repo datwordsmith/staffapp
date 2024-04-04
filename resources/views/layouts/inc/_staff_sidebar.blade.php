@@ -69,5 +69,13 @@
           </ul>
         </div>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('staff/societymemberships')}}">
+            <span class="menu-title">Society Memberships</span>
+            <i class="fa-regular fa-newspaper menu-icon"></i>
+        </a>
+      </li>
+
     </ul>
   </nav>
