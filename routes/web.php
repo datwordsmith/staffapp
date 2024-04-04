@@ -48,5 +48,6 @@ Route::prefix('staff')->middleware(['isStaff'])->group(function (){
     Route::get('/teachingexperience', App\Http\Livewire\Staff\TeachingExperience\Index::class);
     Route::get('/scholarships_prizes', App\Http\Livewire\Staff\Awards\Index::class);
     Route::get('/honours_distinctions', App\Http\Livewire\Staff\Honours\Index::class);
+    Route::get('/societymemberships', App\Http\Livewire\Staff\Memberships\Index::class);
 });
 
