@@ -93,4 +93,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Membership::class);
     }
+
+    public function conferences()
+    {
+        return $this->hasMany(Conference::class);
+    }
 }

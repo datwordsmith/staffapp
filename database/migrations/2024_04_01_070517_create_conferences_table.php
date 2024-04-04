@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->text('conference');
             $table->string('location');
-            $table->text('paper_presented');
+            $table->text('paper_presented')->nullable();
             $table->date('date');
 
             $table->foreign('user_id')->references('id')->on('users')
