@@ -75,5 +75,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Publications::class);
     }
+    public function teachingExperiences()
+    {
+        return $this->hasMany(TeachingExperience::class);
+    }
 
+    public function awards()
+    {
+        return $this->hasMany(Awards::class);
+    }
+    public function honours()
+    {
+        return $this->hasMany(Honours::class);
+    }
 }

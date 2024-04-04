@@ -10,13 +10,12 @@ use Livewire\WithPagination;
 use App\Models\staffDepartment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Routing\Route;
 
-
-class AcademicStaff extends Component
+class NonAcademicStaff extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+
     public $user_id, $staffId, $email, $role_as;
     public $banStaffId, $deleteStaffId;
     public $faculty_id, $department_id;
@@ -58,13 +57,13 @@ class AcademicStaff extends Component
         $this->departments = Department::where('faculty_id', $value)->orderBy('name')->get();
     }
 
-    public function storeAcademicStaff()
+    public function storeNonAcademicStaff()
     {
         $validatedData = $this->validate();
 
         //$userPassword = preg_replace("/[^a-zA-Z0-9]/", '', Str::random(8));
         $password = '12345678';
-        $role_as = 2;
+        $role_as = 3;
 
         $user = User::create([
             'staffId' => $validatedData['staffId'],
@@ -86,14 +85,14 @@ class AcademicStaff extends Component
     }
 
 
-    public function banAcademicStaff($user_id)
+    public function banNonAcademicStaff($user_id)
     {
         $this->user_id = $user_id;
         $user = User::findOrFail($user_id);
         $this->banStaffId = $user->staffId;
     }
 
-    public function deactivateAcademicStaff(){
+    public function deactivateNonAcademicStaff(){
         User::findOrFail($this->user_id)->update([
             'isActive' => 0,
         ]);
@@ -102,7 +101,7 @@ class AcademicStaff extends Component
         $this->resetInput();
     }
 
-    public function activateAcademicStaff($user_id){
+    public function activateNonAcademicStaff($user_id){
 
         $this->user_id = $user_id;
         User::findOrFail($this->user_id)->update([
@@ -112,27 +111,27 @@ class AcademicStaff extends Component
         $this->resetInput();
     }
 
-    public function deleteAcademicStaff($user_id)
+    public function deleteNonAcademicStaff($user_id)
     {
         $this->user_id = $user_id;
         $user = User::findOrFail($user_id);
         $this->deleteStaffId = $user->staffId;
     }
 
-    public function destroyAcademicStaff()
+    public function destroyNonAcademicStaff()
     {
         try {
             $user = User::FindOrFail($this->user_id);
             $user->delete();
-            session()->flash('message', 'Academic Staff deleted successfully.');
+            session()->flash('message', 'Non-Academic Staff deleted successfully.');
         } catch (\Illuminate\Database\QueryException $e) {
             if ($e->errorInfo[1] == 1451) { // check if error is foreign key constraint violation
-                session()->flash('error', 'Cannot delete because Academic Staff is referenced in another module.');
+                session()->flash('error', 'Cannot delete because Non-Academic Staff is referenced in another module.');
             } else {
-                session()->flash('error', 'An error occurred while deleting Academic Staff.');
+                session()->flash('error', 'An error occurred while deleting Non-Academic Staff.');
             }
         } catch (\Exception $e) {
-            session()->flash('error', 'An error occurred while deleting Academic Staff.');
+            session()->flash('error', 'An error occurred while deleting Non-Academic Staff.');
         }
 
         $this->dispatchBrowserEvent('close-modal');
@@ -155,7 +154,7 @@ class AcademicStaff extends Component
                 ->orWhere('profiles.lastname', 'like', '%'.$this->search.'%')
                 ->orWhere('profiles.firstname', 'like', '%'.$this->search.'%');
         })
-        ->where('users.role_as', 2)
+        ->where('users.role_as', 3)
         ->leftJoin('profiles', 'profiles.user_id', '=', 'users.id')
         ->leftJoin('titles', 'profiles.title_id', '=', 'titles.id')
         ->select('users.*', 'profiles.lastname as lastname', 'profiles.firstname as firstname', 'profiles.slug as slug', 'titles.name as title')
@@ -164,7 +163,7 @@ class AcademicStaff extends Component
 
         $this->faculties = Faculty::orderBy('name')->get();
 
-        return view('livewire.admin.user.academic-staff', [
+        return view('livewire.admin.user.non-academic-staff', [
             'users' => $users,
             'deleteStaffId' => $this->deleteStaffId,
             'faculties'=>$this->faculties,

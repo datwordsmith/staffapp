@@ -11,9 +11,6 @@
     @section('breadcrumbs')
         <nav aria-label="breadcrumb">
         <ul class="breadcrumb">
-            <li class="breadcrumb-item" aria-current="page">
-                <a href="{{ url('admin/staff')}}">Staff</a>
-            </li>
             <li class="breadcrumb-item active" aria-current="page">
                 Profile
             </li>

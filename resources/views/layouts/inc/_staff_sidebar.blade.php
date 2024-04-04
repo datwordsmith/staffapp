@@ -49,5 +49,25 @@
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('staff/teachingexperience')}}">
+            <span class="menu-title">Teaching Experience</span>
+            <i class="fa-regular fa-newspaper menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#staff-menu" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-title">Awards</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-account-group menu-icon"></i>
+        </a>
+        <div class="collapse" id="staff-menu">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/scholarships_prizes')}}">Scholarships and Prizes</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/honours_distinctions')}}">Honours and Distinctions</a></li>
+          </ul>
+        </div>
+      </li>
     </ul>
   </nav>

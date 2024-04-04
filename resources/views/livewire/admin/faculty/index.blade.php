@@ -7,13 +7,13 @@
                 <i class="mdi mdi-sitemap menu-icon"></i>
             </span> Faculties
         </h3>
-        @endsection
+    @endsection
 
     @section('breadcrumbs')
         <nav aria-label="breadcrumb">
         <ul class="breadcrumb">
             <li class="breadcrumb-item active" aria-current="page">
-            <span></span>Faculties</i>
+                Faculties
             </li>
         </ul>
         </nav>

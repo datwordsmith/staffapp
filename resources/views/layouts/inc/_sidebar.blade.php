@@ -20,12 +20,18 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('admin/staff')}}">
-            <span class="menu-title">Staff</span>
-            <i class="mdi mdi-account-group menu-icon"></i>
+        <a class="nav-link" data-bs-toggle="collapse" href="#staff-menu" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-title">Staff</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-account-group menu-icon"></i>
         </a>
+        <div class="collapse" id="staff-menu">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('academicstaff') }}">Academic Staff</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('non-academic-staff')}}">Non-academic Staff</a></li>
+          </ul>
+        </div>
       </li>
-
       <li class="nav-item">
         <a class="nav-link" href="{{ url('admin/titles')}}">
           <span class="menu-title">Titles</span>
@@ -48,7 +54,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('admin/social-media')}}">
+        <a class="nav-link" href="{{ url('admin/social_media')}}">
           <span class="menu-title">Social Media</span>
           <i class="fa-solid fa-hashtag menu-icon"></i>
         </a>

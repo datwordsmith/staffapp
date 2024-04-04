@@ -29,13 +29,14 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
     // Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
 
     Route::get('/titles', App\Http\Livewire\Admin\Title\Index::class);
-    Route::get('/social-media', App\Http\Livewire\Admin\SocialMedia\Index::class);
+    Route::get('/social_media', App\Http\Livewire\Admin\SocialMedia\Index::class);
     // Route::get('/roles', App\Http\Livewire\Admin\Role\index::class);
     Route::get('/faculties', App\Http\Livewire\Admin\Faculty\Index::class);
     Route::get('/departments', App\Http\Livewire\Admin\Department\Index::class);
     Route::get('/programmes', App\Http\Livewire\Admin\Programme\Index::class);
 
-    Route::get('/staff', App\Http\Livewire\Admin\User\AcademicStaff::class);
+    Route::get('/academicstaff', App\Http\Livewire\Admin\User\AcademicStaff::class)->name('academicstaff');
+    Route::get('/nonacademic-staff', App\Http\Livewire\Admin\User\NonAcademicStaff::class)->name('non-academic-staff');
     Route::get('/profile/{staffId}', App\Http\Livewire\Admin\User\Profile::class);
 });
 
@@ -44,5 +45,8 @@ Route::prefix('staff')->middleware(['isStaff'])->group(function (){
     Route::get('/interests', App\Http\Livewire\Staff\Interests\Index::class);
     Route::get('/publications', App\Http\Livewire\Staff\Publications\Index::class);
     Route::get('/socialmedia', App\Http\Livewire\Staff\SocialMedia\Index::class);
+    Route::get('/teachingexperience', App\Http\Livewire\Staff\TeachingExperience\Index::class);
+    Route::get('/scholarships_prizes', App\Http\Livewire\Staff\Awards\Index::class);
+    Route::get('/honours_distinctions', App\Http\Livewire\Staff\Honours\Index::class);
 });
 

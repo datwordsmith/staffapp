@@ -1,11 +1,11 @@
 <div>
-    @include('livewire.admin.user.modals.academic-staff_modal-form')
+    @include('livewire.admin.user.modals.non-academic-staff_modal-form')
 
     @section('pagename')
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-account-group menu-icon"></i>
-            </span> Academic Staff
+            </span> Non-Academic Staff
         </h3>
     @endsection
 
@@ -13,7 +13,7 @@
         <nav aria-label="breadcrumb">
         <ul class="breadcrumb">
             <li class="breadcrumb-item" aria-current="page">
-                Academic Staff
+                Non-Academic Staff
             </li>
         </ul>
         </nav>
@@ -26,11 +26,11 @@
             <div class="card-body">
                 <div class="d-flex mb-2">
                     <div class="d-flex">
-                        <h4 class="card-title mb-3">Academic Staff</h4>
+                        <h4 class="card-title mb-3">Non-Academic Staff</h4>
                     </div>
                     <div class="ms-auto">
                         <button class="btn btn-sm btn-gradient-primary" data-bs-toggle="modal" data-bs-target="#addStaffModal">
-                            <i class="mdi mdi-plus-circle-outline"></i> Academic Staff
+                            <i class="mdi mdi-plus-circle-outline"></i> Non-Academic Staff
                         </button>
                     </div>
                 </div>
@@ -88,12 +88,12 @@
 
                                         @if ($user->isActive)
                                             <!-- Show ban button if the user is active -->
-                                            <a href="#" wire:click="banAcademicStaff({{ $user->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#banStaffModal">
+                                            <a href="#" wire:click="banNonAcademicStaff({{ $user->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#banStaffModal">
                                                 <i class="fa-solid fa-ban"></i>
                                             </a>
                                         @else
                                             <!-- Show activate button if the user is inactive -->
-                                            <a href="#" wire:click="activateAcademicStaff({{ $user->id }})" class="btn btn-sm btn-success me-2">
+                                            <a href="#" wire:click="activateNonAcademicStaff({{ $user->id }})" class="btn btn-sm btn-success me-2">
                                                 <i class="fa-solid fa-lock-open"></i>
                                             </a>
                                         @endif
@@ -102,7 +102,7 @@
                                             @if ($this->hasProfile($user->id))
                                                 <button class="btn btn-sm btn-secondary disabled"><i class="fa-regular fa-trash-can"></i></button>
                                             @else
-                                                <a href="#" wire:click="deleteAcademicStaff({{ $user->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteStaffModal"><i class="fa-solid fa-trash-can"></i></a>
+                                                <a href="#" wire:click="deleteNonAcademicStaff({{ $user->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteStaffModal"><i class="fa-solid fa-trash-can"></i></a>
                                             @endif
                                         @endcan
                                     </td>
