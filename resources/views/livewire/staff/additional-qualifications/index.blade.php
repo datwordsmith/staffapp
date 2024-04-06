@@ -19,14 +19,16 @@
         </nav>
     @endsection
 
+    @section('subheader')
+        <small class="purple-text">Qualifications since appointment or last promotion/present status</small>
+    @endsection
 
     <div class="row">
         <div class="col-md-4 grid-margin">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Add Additional Qualification</h4>
-                <small class="text-danger">(Qualifications since appointment or last promotion/present status)</small>
-                <form wire:submit.prevent="storeQualification" class="mt-3">
+                <form wire:submit.prevent="storeQualification">
                     <div class="form-group">
                         <label>Insititution</label>
                         <input type="text" wire:model.defer="institution" class="form-control" placeholder="Insititution" required>
@@ -55,7 +57,6 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Additional Qualifications</h4>
-                <small class="text-danger">(Qualifications since appointment or last promotion/present status)</small>
                 @if (session('message'))
                     <div class="alert alert-success" role="alert">
                         {{ session('message') }}
@@ -66,7 +67,7 @@
                         {{ session('error') }}
                     </div>
                 @endif
-                <div class="table-responsive mt-3">
+                <div class="table-responsive">
                     <div class="">
                         <input type="text" class="form-control" wire:model="search" placeholder="Search...">
                     </div>

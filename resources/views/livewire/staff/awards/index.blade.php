@@ -19,14 +19,16 @@
         </nav>
     @endsection
 
+    @section('subheader')
+        <small class="purple-text">List scholarship(s) and prizes won prior to, and during University Teaching Career</small>
+    @endsection
 
     <div class="row">
         <div class="col-md-4 grid-margin">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Add New Scholarship/Prize</h4>
-                <small class="text-primary">(List scholarship(s) and prizes won prior to, and during University Teaching Career)</small>
-                <form wire:submit.prevent="storeAward" class="mt-3">
+                <form wire:submit.prevent="storeAward">
                     <div class="form-group">
                         <label>Award</label>
                         <input type="text" wire:model.defer="award" class="form-control" placeholder="Award" required>

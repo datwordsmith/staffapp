@@ -49,7 +49,7 @@ class Index extends Component
 
     public function storeResearch(){
         $validatedData = $this->validate();
-        $this->user->OngoingResearches()->create([
+        $this->user->ongoingResearches()->create([
             'topic' => $validatedData['topic'],
             'summary' => $validatedData['summary'],
             'findings' => $validatedData['findings'],

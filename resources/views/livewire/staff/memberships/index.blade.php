@@ -19,14 +19,16 @@
         </nav>
     @endsection
 
+    @section('subheader')
+        <small class="purple-text">List membership of learned societies</small>
+    @endsection
 
     <div class="row">
         <div class="col-md-4 grid-margin">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Add New Membership</h4>
-                <small class="text-primary">(List membership of learned societies)</small>
-                <form wire:submit.prevent="storeMembership" class="mt-3">
+                <form wire:submit.prevent="storeMembership" class="">
                     <div class="form-group">
                         <label>Society</label>
                         <input type="text" wire:model.defer="society" class="form-control" placeholder="Membership" required>

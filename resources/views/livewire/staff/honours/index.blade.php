@@ -19,14 +19,16 @@
         </nav>
     @endsection
 
+    @section('subheader')
+        <small class="purple-text">List academic honours and distinctions</small>
+    @endsection
 
     <div class="row">
         <div class="col-md-4 grid-margin">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Add New Honour/Distinction</h4>
-                <small class="text-primary">(List academic honours and distinctions)</small>
-                <form wire:submit.prevent="storeAward" class="mt-3">
+                <form wire:submit.prevent="storeAward">
                     <div class="form-group">
                         <label>Award</label>
                         <input type="text" wire:model.defer="award" class="form-control" placeholder="Award" required>

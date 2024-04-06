@@ -1,13 +1,13 @@
 <div>
-    @include('livewire.staff.conferences.modal-form')
+    @include('livewire.staff.creative-works.modal-form')
 
     @section('pagename')
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="fa-regular fa-thumbs-up menu-icon"></i>
-            </span> Conferences
+            </span> Creative Works
         </h3>
-        @endsection
+    @endsection
 
     @section('breadcrumbs')
         <nav aria-label="breadcrumb">
@@ -20,30 +20,34 @@
     @endsection
 
     @section('subheader')
-        <small class="purple-text">List conferences attended</small>
+        <small class="purple-text">
+            Music, Fine and Applied Arts, Literature,
+            Archaeology/Technical Inventions, Design and Constructions, Professional
+            Exhibition, Plays, Directorship of Plays, Opera, Concert, Professional Performance
+            and Production of Popular Music etc with relevant manuals and descriptions
+        </small>
     @endsection
-
 
     <div class="row">
         <div class="col-md-4 grid-margin">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Add New Conference</h4>
-                <form wire:submit.prevent="storeConference" class="">
+                <h4 class="card-title">Add New Item</h4>
+                <form wire:submit.prevent="storeCreativeWork" class="mt-3">
                     <div class="form-group">
-                        <label>Conference</label>
-                        <input type="text" wire:model.defer="conference" class="form-control" placeholder="Conference" required>
-                        @error('conference') <small class="text-danger">{{ $message }}</small> @enderror
+                        <label>Title</label>
+                        <input type="text" wire:model.defer="title" class="form-control" placeholder="Title" required>
+                        @error('title') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
                     <div class="form-group">
-                        <label>Conference Location</label>
-                        <input type="text" wire:model.defer="location" class="form-control" placeholder="Conference Location" required>
-                        @error('location') <small class="text-danger">{{ $message }}</small> @enderror
+                        <label>Author</label>
+                        <input type="text" wire:model.defer="author" class="form-control" placeholder="Author" required>
+                        @error('author') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
                     <div class="form-group">
-                        <label>Paper Presented</label>
-                        <textarea wire:model.defer="paper_presented" class="form-control" rows="4" placeholder="Paper Presented"></textarea>
-                        @error('paper_presented') <small class="text-danger">{{ $message }}</small> @enderror
+                        <label>Category</label>
+                        <input type="text" wire:model.defer="category" class="form-control" placeholder="Category" required>
+                        @error('category') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
                     <div class="form-group">
                         <label for="date">Date</label>
@@ -62,7 +66,7 @@
         <div class="col-md-8 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-3">All Conferences</h4>
+                <h4 class="card-title mb-3">Creative Works</h4>
                 @if (session('message'))
                     <div class="alert alert-success" role="alert">
                         {{ session('message') }}
@@ -80,28 +84,28 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                            <th scope="col" class="ps-3">Conference</th>
-                            <th scope="col" class="ps-3">Location</th>
-                            <th scope="col" class="ps-3">Paper Presented</th>
+                            <th scope="col" class="ps-3">Title</th>
+                            <th scope="col" class="ps-3">Author</th>
+                            <th scope="col" class="ps-3">Category</th>
                             <th scope="col" class="ps-3">Date</th>
                             <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($conferences as $conference)
+                            @forelse ($creativeWorks as $creativeWork)
                                 <tr>
-                                    <td class="ps-3"> {{$conference->conference}} </td>
-                                    <td class="ps-3"> {{$conference->location}} </td>
-                                    <td class="ps-3 text-wrap"> {{$conference->paper_presented}} </td>
-                                    <td class="ps-3"> {{$conference->date}} </td>
+                                    <td class="ps-3"> {{$creativeWork->title}} </td>
+                                    <td class="ps-3"> {{$creativeWork->author}} </td>
+                                    <td class="ps-3 text-wrap"> {{$creativeWork->category}} </td>
+                                    <td class="ps-3"> {{$creativeWork->date}} </td>
                                     <td class="d-flex justify-content-end">
-                                        <a href="#" wire:click="editConference({{ $conference->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateConferenceModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                        <a href="#" wire:click="deleteConference({{ $conference->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConferenceModal"><i class="fa-solid fa-trash-can"></i></a>
+                                        <a href="#" wire:click="editCreativeWork({{ $creativeWork->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateCreativeWorkModal"><i class="fa-solid fa-pen-nib"></i></a>
+                                        <a href="#" wire:click="deleteCreativeWork({{ $creativeWork->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCreativeWorkModal"><i class="fa-solid fa-trash-can"></i></a>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-danger text-center">No Conference Found</td>
+                                    <td colspan="5" class="text-danger text-center">No Creative Work Found</td>
                                 </tr>
                             @endforelse
 
@@ -109,7 +113,7 @@
                     </table>
                 </div>
                 <div>
-                    {{ $conferences->links() }}
+                    {{ $creativeWorks->links() }}
                 </div>
 
             </div>
@@ -121,8 +125,8 @@
 @section('scripts')
     <script>
         window.addEventListener('close-modal', event => {
-            $('#updateConferenceModal').modal('hide');
-            $('#deleteConferenceModal').modal('hide');
+            $('#updateCreativeWorkModal').modal('hide');
+            $('#deleteCreativeWorkModal').modal('hide');
         });
     </script>
 @endsection
