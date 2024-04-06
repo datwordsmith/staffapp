@@ -108,7 +108,7 @@ class Index extends Component
                     ->orWhere('awarding_body', 'like', '%' . $this->search . '%')
                     ->orWhere('date', 'like', '%' . $this->search . '%');
             })
-            ->orderBy('date', 'asc')
+            ->orderBy('date', 'desc')
             ->paginate(5);
 
         return view('livewire.staff.honours.index', [
