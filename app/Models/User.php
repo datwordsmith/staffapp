@@ -108,4 +108,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(AdditionalQualification::class);
     }
+
+    public function completedResearches()
+    {
+        return $this->hasMany(CompletedResearch::class);
+    }
+
+    public function OngoingResearches()
+    {
+        return $this->hasMany(OngoingResearch::class);
+    }
 }

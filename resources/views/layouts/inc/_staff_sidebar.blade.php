@@ -92,5 +92,18 @@
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#research-menu" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-title">Researches</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-account-group menu-icon"></i>
+        </a>
+        <div class="collapse" id="research-menu">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/completed_researches')}}">Completed Researches</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/ongoing_researches')}}">Ongoing Researches</a></li>
+          </ul>
+        </div>
+      </li>
     </ul>
   </nav>
