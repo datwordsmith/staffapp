@@ -114,8 +114,13 @@ class User extends Authenticatable
         return $this->hasMany(CompletedResearch::class);
     }
 
-    public function OngoingResearches()
+    public function ongoingResearches()
     {
         return $this->hasMany(OngoingResearch::class);
+    }
+
+    public function creativeWorks()
+    {
+        return $this->hasMany(CreativeWork::class);
     }
 }

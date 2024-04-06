@@ -54,5 +54,6 @@ Route::prefix('staff')->middleware(['isStaff'])->group(function (){
     Route::get('/additional_qualifications', App\Http\Livewire\Staff\AdditionalQualifications\Index::class);
     Route::get('/completed_researches', App\Http\Livewire\Staff\CompletedResearches\Index::class);
     Route::get('/ongoing_researches', App\Http\Livewire\Staff\OngoingResearches\Index::class);
+    Route::get('/creative_works', App\Http\Livewire\Staff\CreativeWorks\Index::class);
 });
 
