@@ -98,4 +98,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Conference::class);
     }
+
+    public function initialQualifications()
+    {
+        return $this->hasMany(InitialQualification::class);
+    }
+
+    public function additionalQualifications()
+    {
+        return $this->hasMany(AdditionalQualification::class);
+    }
 }

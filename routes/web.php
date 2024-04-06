@@ -50,5 +50,7 @@ Route::prefix('staff')->middleware(['isStaff'])->group(function (){
     Route::get('/honours_distinctions', App\Http\Livewire\Staff\Honours\Index::class);
     Route::get('/societymemberships', App\Http\Livewire\Staff\Memberships\Index::class);
     Route::get('/conferences', App\Http\Livewire\Staff\Conferences\Index::class);
+    Route::get('/initial_qualifications', App\Http\Livewire\Staff\InitialQualifications\Index::class);
+    Route::get('/additional_qualifications', App\Http\Livewire\Staff\AdditionalQualifications\Index::class);
 });
 

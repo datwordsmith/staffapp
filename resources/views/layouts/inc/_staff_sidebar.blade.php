@@ -22,24 +22,18 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('staff/profile')}}">
-            <span class="menu-title">My Profile</span>
-            <i class="fa-regular fa-address-card menu-icon"></i>
+        <a class="nav-link" data-bs-toggle="collapse" href="#profile-menu" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-title">My Profile</span>
+          <i class="menu-arrow"></i>
+          <i class="fa-regular fa-address-card menu-icon"></i>
         </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('staff/interests')}}">
-            <span class="menu-title">Interests</span>
-            <i class="fa-regular fa-thumbs-up menu-icon"></i>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('staff/socialmedia')}}">
-            <span class="menu-title">Social Media</span>
-            <i class="fa-solid fa-hashtag menu-icon"></i>
-        </a>
+        <div class="collapse" id="profile-menu">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/profile')}}">Overview</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/interests')}}">Interests</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/socialmedia')}}">Social Media</a></li>
+          </ul>
+        </div>
       </li>
 
       <li class="nav-item">
@@ -47,6 +41,20 @@
             <span class="menu-title">Publications</span>
             <i class="fa-regular fa-newspaper menu-icon"></i>
         </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#qualification-menu" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-title">Qualifications</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-account-group menu-icon"></i>
+        </a>
+        <div class="collapse" id="qualification-menu">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/initial_qualifications')}}">Initial Qualifications</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/additional_qualifications')}}">Additional Qualifications</a></li>
+          </ul>
+        </div>
       </li>
 
       <li class="nav-item">

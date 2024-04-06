@@ -114,7 +114,7 @@ class Index extends Component
                     ->orWhere('paper_presented', 'like', '%' . $this->search . '%')
                     ->orWhere('date', 'like', '%' . $this->search . '%');
             })
-            ->orderBy('date', 'asc')
+            ->orderBy('date', 'desc')
             ->orderBy('conference', 'asc')
             ->orderBy('location', 'asc')
             ->paginate(5);

@@ -108,7 +108,7 @@ class Index extends Component
                     ->orWhere('class', 'like', '%' . $this->search . '%')
                     ->orWhere('date', 'like', '%' . $this->search . '%');
             })
-            ->orderBy('date', 'asc')
+            ->orderBy('date', 'desc')
             ->orderBy('society', 'asc')
             ->paginate(5);
 
