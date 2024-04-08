@@ -18,13 +18,13 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Research Topic</label>
-                            <input type="text" wire:model.defer="topic" class="form-control" placeholder="Research Topic">
+                            <input type="text" wire:model.defer="topic" class="form-control" placeholder="Research Topic" required>
                             @error('topic') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
                         <div class="form-group">
                             <label>Publication Number</label>
-                            <input type="text" wire:model.defer="publication_number" class="form-control" placeholder="Publication Number">
+                            <input type="text" wire:model.defer="publication_number" class="form-control" placeholder="Publication Number" required>
                             @error('publication_number') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
@@ -77,13 +77,13 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Research Topic</label>
-                            <input type="text" wire:model.defer="topic" class="form-control" placeholder="Research Topic">
+                            <input type="text" wire:model.defer="topic" class="form-control" placeholder="Research Topic" required>
                             @error('topic') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
                         <div class="form-group">
                             <label>Publication Number</label>
-                            <input type="text" wire:model.defer="publication_number" class="form-control" placeholder="Publication Number">
+                            <input type="text" wire:model.defer="publication_number" class="form-control" placeholder="Publication Number" required>
                             @error('publication_number') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 

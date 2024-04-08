@@ -37,11 +37,24 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#publication-menu" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-title">Publications</span>
+          <i class="menu-arrow"></i>
+          <i class="fa-regular fa-address-card menu-icon"></i>
+        </a>
+        <div class="collapse" id="publication-menu">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/creative_works')}}">Creative Works</a></li>
+          </ul>
+        </div>
+      </li>
+
+      {{-- <li class="nav-item">
         <a class="nav-link" href="{{ url('staff/publications')}}">
             <span class="menu-title">Publications</span>
             <i class="fa-regular fa-newspaper menu-icon"></i>
         </a>
-      </li>
+      </li> --}}
 
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#qualification-menu" aria-expanded="false" aria-controls="ui-basic">
@@ -107,8 +120,15 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('staff/creative_works')}}">
-            <span class="menu-title">Creative Works</span>
+        <a class="nav-link" href="{{ url('staff/university_administration')}}">
+            <span class="menu-title">University Administration</span>
+            <i class="fa-regular fa-newspaper menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('staff/community_services')}}">
+            <span class="menu-title">Community Service</span>
             <i class="fa-regular fa-newspaper menu-icon"></i>
         </a>
       </li>

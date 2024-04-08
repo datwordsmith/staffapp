@@ -1,9 +1,9 @@
 <!-- Add Modal -->
-<div wire:ignore.self class="modal fade" id="addResearchModal" tabindex="-1" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="addServiceModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5">Add New Research</h1>
+                <h1 class="modal-title fs-5">Add New Record</h1>
                 <button type="button" class="btn-close" wire:click ="closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div wire:loading class="py-5">
@@ -14,29 +14,34 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="storeResearch" class="">
+                <form wire:submit.prevent="storeService" class="">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Research Topic</label>
-                            <input type="text" wire:model.defer="topic" class="form-control" placeholder="Research Topic" required>
-                            @error('topic') <small class="text-danger">{{ $message }}</small> @enderror
+                            <label>Duty</label>
+                            <textarea wire:model.defer="duty" class="form-control" rows="4" placeholder="Duty" required></textarea>
+                            @error('duty') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
                         <div class="form-group">
-                            <label>Summary</label>
-                            <textarea wire:model.defer="summary" class="form-control" rows="4" placeholder="Summary" required></textarea>
-                            @error('summary') <small class="text-danger">{{ $message }}</small> @enderror
+                            <label>Experience</label>
+                            <textarea wire:model.defer="experience" class="form-control" rows="4" placeholder="Experience" required></textarea>
+                            @error('experience') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
                         <div class="form-group">
-                            <label>Findings</label>
-                            <textarea wire:model.defer="findings" class="form-control" rows="4" placeholder="Findings" required></textarea>
-                            @error('findings') <small class="text-danger">{{ $message }}</small> @enderror
+                            <label>Commending Officer</label>
+                            <input type="text" wire:model.defer="commending_officer" class="form-control" placeholder="Commending Officer">
+                            @error('commending_officer') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="date">Date</label>
-                            <input type="date" wire:model.defer="date" class="form-control" required>
+                            <label class="form-label"><small>Date</small></label>
+                            <select wire:model.defer="date" class="form-select form-control" required>
+                                <option value="">Select Year</option>
+                                @for ($y = date('Y'); $y >= 2010; $y--)
+                                    <option value="{{ $y }}">{{ $y }}</option>
+                                @endfor
+                            </select>
                             @error('date') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
                     </div>
@@ -52,11 +57,11 @@
 </div>
 
 <!-- Edit Modal -->
-<div wire:ignore.self class="modal fade" id="updateResearchModal" tabindex="-1" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="updateServiceModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5">Edit Research</h1>
+                <h1 class="modal-title fs-5">Edit</h1>
                 <button type="button" class="btn-close" wire:click ="closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div wire:loading class="py-5">
@@ -67,29 +72,34 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="updateResearch()">
+                <form wire:submit.prevent="updateService()">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Research Topic</label>
-                            <input type="text" wire:model.defer="topic" class="form-control" placeholder="Research Topic" required>
-                            @error('topic') <small class="text-danger">{{ $message }}</small> @enderror
+                            <label>Duty</label>
+                            <textarea wire:model.defer="duty" class="form-control" rows="4" placeholder="Duty" required></textarea>
+                            @error('duty') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
                         <div class="form-group">
-                            <label>Summary</label>
-                            <textarea wire:model.defer="summary" class="form-control" rows="4" placeholder="Summary" required></textarea>
-                            @error('summary') <small class="text-danger">{{ $message }}</small> @enderror
+                            <label>Experience</label>
+                            <textarea wire:model.defer="experience" class="form-control" rows="4" placeholder="Experience" required></textarea>
+                            @error('experience') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
                         <div class="form-group">
-                            <label>Findings</label>
-                            <textarea wire:model.defer="findings" class="form-control" rows="4" placeholder="Findings" required></textarea>
-                            @error('findings') <small class="text-danger">{{ $message }}</small> @enderror
+                            <label>Commending Officer</label>
+                            <input type="text" wire:model.defer="commending_officer" class="form-control" placeholder="Commending Officer">
+                            @error('commending_officer') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="date">Date</label>
-                            <input type="date" wire:model.defer="date" class="form-control" required>
+                            <label class="form-label"><small>Date</small></label>
+                            <select wire:model.defer="date" class="form-select form-control" required>
+                                <option value="">Select Year</option>
+                                @for ($y = date('Y'); $y >= 2010; $y--)
+                                    <option value="{{ $y }}">{{ $y }}</option>
+                                @endfor
+                            </select>
                             @error('date') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
                     </div>
@@ -104,11 +114,11 @@
 </div>
 
 <!-- DELETE MODAL -->
-<div wire:ignore.self class="modal fade" id="deleteResearchModal" tabindex="-1" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="deleteServiceModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5">Delete Research</h1>
+                <h1 class="modal-title fs-5">Delete</h1>
                 <button type="button" class="btn-close" wire:click ="closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div wire:loading class="py-5">
@@ -119,9 +129,9 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyResearch()">
+                <form wire:submit.prevent="destroyService()">
                     <div class="modal-body">
-                        <h4>Are you sure you want to delete this research?</h4>
+                        <h4>Are you sure you want to delete this item?</h4>
                     </div>
                     <div class="modal-footer">
                         <button type="button" wire:click ="closeModal" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
