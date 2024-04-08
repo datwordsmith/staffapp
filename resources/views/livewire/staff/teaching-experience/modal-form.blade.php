@@ -41,13 +41,13 @@
                         <div class="row">
                             <div class="col-md-4 form-group">
                                 <label class="form-label"><small>No. of Lectures</small></label>
-                                <input type="number" wire:model.defer="lectures" class="form-control" required>
+                                <input type="number" wire:model.defer="lectures" class="form-control form-control-sm" required>
                                 @error('lectures') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
 
                             <div class="col-md-4 form-group">
                                 <label class="form-label"><small>Semester</small></label>
-                                <select class="form-select form-control form-control-lg" wire:model.defer="semester" required>
+                                <select class="form-select form-control" wire:model.defer="semester" required>
                                     <option selected>Select Semester</option>
                                     <option value="First">First</option>
                                     <option value="Second">Second</option>
@@ -58,7 +58,12 @@
 
                             <div class="col-md-4 form-group">
                                 <label class="form-label"><small>Year</small></label>
-                                <input type="number" wire:model.defer="year" class="form-control" min="2010" max="{{ date('Y') }}" required>
+                                <select wire:model.defer="year" class="form-select form-control" required>
+                                    <option value="">Select Year</option>
+                                    @for ($y = date('Y'); $y >= 2010; $y--)
+                                        <option value="{{ $y }}">{{ $y }}</option>
+                                    @endfor
+                                </select>
                                 @error('year') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
                         </div>
@@ -116,13 +121,13 @@
                         <div class="row">
                             <div class="col-md-4 form-group">
                                 <label class="form-label"><small>No. of Lectures</small></label>
-                                <input type="number" wire:model.defer="lectures" class="form-control" required>
+                                <input type="number" wire:model.defer="lectures" class="form-control form-control-sm" required>
                                 @error('lectures') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
 
                             <div class="col-md-4 form-group">
                                 <label class="form-label"><small>Semester</small></label>
-                                <select class="form-select form-control form-control-lg" wire:model.defer="semester" required>
+                                <select class="form-select form-control" wire:model.defer="semester" required>
                                     <option selected>Select Semester</option>
                                     <option value="First">First</option>
                                     <option value="Second">Second</option>
@@ -133,10 +138,16 @@
 
                             <div class="col-md-4 form-group">
                                 <label class="form-label"><small>Year</small></label>
-                                <input type="number" wire:model.defer="year" class="form-control" min="2010" max="{{ date('Y') }}" required>
+                                <select wire:model.defer="year" class="form-select form-control" required>
+                                    <option value="">Select Year</option>
+                                    @for ($y = date('Y'); $y >= 2010; $y--)
+                                        <option value="{{ $y }}">{{ $y }}</option>
+                                    @endfor
+                                </select>
                                 @error('year') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
                         </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" wire:click ="closeModal" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>

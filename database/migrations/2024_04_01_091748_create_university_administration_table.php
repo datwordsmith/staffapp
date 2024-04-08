@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('duty');
             $table->longText('experience');
             $table->string('commending_officer')->nullable();
-            $table->date('date');
+            $table->year('date');
 
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')

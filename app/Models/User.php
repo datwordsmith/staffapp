@@ -123,4 +123,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(CreativeWork::class);
     }
+
+    public function universityAdministrations()
+    {
+        return $this->hasMany(UniversityAdministration::class);
+    }
+
+    public function communityServices()
+    {
+        return $this->hasMany(CommunityService::class);
+    }
 }
