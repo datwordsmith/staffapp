@@ -45,6 +45,8 @@
         <div class="collapse" id="publication-menu">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ url('staff/creative_works')}}">Creative Works</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/accepted_papers')}}">Accepted Papers</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/submitted_papers')}}">Submitted Papers</a></li>
           </ul>
         </div>
       </li>
