@@ -33,16 +33,20 @@
                     <h4 class="text-muted mb-3">{{$staff->designation}}</h4>
 
                     <div class="row pt-3 border-top border-bottom mb-3">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <strong class="purple-text">Staff ID</strong>
                             <p class="text-muted mt-1">{{$user->staffId}}</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <strong class="purple-text">Email</strong>
                             <p class="text-muted mt-1">{{$user->email}}</p>
                         </div>
+                        <div class="col-md-4">
+                            <strong class="purple-text">DOB</strong>
+                            <p class="text-muted mt-1">{{$staff->dob}}</p>
+                        </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <strong class="purple-text">Faculty</strong>
                             <p class="text-muted mt-1">
                                 @if ($user->department && $user->department->department && $user->department->department->faculty)
@@ -50,7 +54,7 @@
                                 @endif
                             </p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <strong class="purple-text">Department</strong>
                             @if ($user->department && $user->department->department)
                                 <p class="text-muted mt-1">{{ $user->department->department->name }}</p>

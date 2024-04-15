@@ -133,4 +133,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(CommunityService::class);
     }
+
+    public function journalPapers()
+    {
+        return $this->hasMany(JournalPaper::class);
+    }
+
+    public function staffPublications()
+    {
+        return $this->hasMany(StaffPublication::class);
+    }
+
+    public function firstAppointment()
+    {
+        return $this->hasOne(FirstAppointment::class);
+    }
 }

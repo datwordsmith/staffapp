@@ -31,7 +31,7 @@ class LoginController extends Controller
     protected function authenticated(){
 
         if(Auth::user()->role_as < '2' ){
-            return redirect('admin/academic-staff');
+            return redirect('admin/academicstaff');
         } else {
             return redirect('staff/profile');
         }

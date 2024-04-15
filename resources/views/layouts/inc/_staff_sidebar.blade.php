@@ -37,6 +37,13 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link" href="{{ url('staff/first_appointment')}}">
+            <span class="menu-title">First Appointment</span>
+            <i class="fa-regular fa-newspaper menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#publication-menu" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Publications</span>
           <i class="menu-arrow"></i>
@@ -45,6 +52,11 @@
         <div class="collapse" id="publication-menu">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ url('staff/creative_works')}}">Creative Works</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/accepted_papers')}}">Accepted Papers</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/submitted_papers')}}">Submitted Papers</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/monographs_books')}}">Monographs/Books</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/journal_articles')}}">Journal Articles</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/conference_proceedings')}}">Conference Proceedings</a></li>
           </ul>
         </div>
       </li>

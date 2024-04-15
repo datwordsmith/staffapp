@@ -9,7 +9,7 @@
             <form wire:submit.prevent="updateBio()">
                 <div class="modal-body px-5">
                     <div class="row">
-                        <div class="col-lg-6 form-group">
+                        <div class="col-md-4 form-group">
                             <label for="title">Title</label>
                             <select class="form-select" wire:model.defer="title_id" required>
                                 <option value="">Select Title</option>
@@ -22,29 +22,36 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-6 form-group">
+                        <div class="col-md-4 form-group">
                             <label for="lastname">Lastname</label>
                             <input type="text" wire:model.defer="lastname" class="form-control">
                             @error('lastname') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
-                        <div class="col-lg-6 form-group">
+                        <div class="col-md-4 form-group">
                             <label for="firstname">Firstname</label>
                             <input type="text" wire:model.defer="firstname" class="form-control">
                             @error('firstname') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
-                        <div class="col-lg-6 form-group">
+                        <div class="col-md-4 form-group">
                             <label for="othername">Othername</label>
                             <input type="text" wire:model.defer="othername" class="form-control">
                             @error('othername') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
-                        <div class="col-lg-6 form-group">
+                        <div class="col-md-4 form-group">
+                            <label for="date">Date of Birth</label>
+                            <input type="date" wire:model.defer="dob" class="form-control" required>
+                            @error('dob') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+
+                        <div class="col-md-4 form-group">
                             <label for="designation">Designation</label>
                             <input type="text" wire:model.defer="designation" class="form-control">
                             @error('designation') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
+
                     </div>
 
                     <div class="form-group">

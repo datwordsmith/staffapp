@@ -68,8 +68,6 @@
 
                                             <small class="purple-text">Findings</small>
                                             <p>{{ $research->findings }}</p>
-
-
                                         </td>
                                         <td class="align-top">
                                             <div class="d-flex justify-content-end">

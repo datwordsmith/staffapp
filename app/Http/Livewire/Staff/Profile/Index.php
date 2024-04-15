@@ -24,7 +24,7 @@ class Index extends Component
     public $profile, $biography, $photo;
     public $maxBioCharacters = 1000;
     public $user, $staffId;
-    public $title_id, $lastname, $firstname, $othername, $designation;
+    public $title_id, $lastname, $firstname, $othername, $dob, $designation;
     public $search;
 
     public function mount()
@@ -40,6 +40,7 @@ class Index extends Component
             'lastname' => 'required|string',
             'firstname' => 'required|string',
             'othername' => 'required|string',
+            'dob' => 'required|date|before_or_equal:today',
             'designation' => 'required|string',
             'biography' => 'required|string|max:1000',
         ];
@@ -77,6 +78,7 @@ class Index extends Component
         $this->firstname = $profile->firstname;
         $this->lastname = $profile->lastname;
         $this->othername = $profile->othername;
+        $this->dob = $profile->dob;
         $this->designation = $profile->designation;
         $this->biography = $profile->biography;
     }
@@ -88,6 +90,7 @@ class Index extends Component
             'lastname' => $validatedData['lastname'],
             'firstname' => $validatedData['firstname'],
             'othername' => $validatedData['othername'],
+            'dob' => $validatedData['dob'],
             'designation' => $validatedData['designation'],
             'biography' => $validatedData['biography'],
         ]);
