@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Livewire\Staff\JournalPapers;
+namespace App\Http\Livewire\Staff\StaffPublications;
 
+use App\Models\StaffPublication;
 use Livewire\Component;
-use App\Models\JournalPaper;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 
-class Submitted extends Component
+class ConferenceProceedings extends Component
 {
     use WithPagination;
     use WithFileUploads;
     protected $paginationTheme = 'bootstrap';
 
-    public $title, $authors, $year, $journal, $journal_volume, $abstract, $evidence, $isSubmitted;
+    public $title, $authors, $year, $journal, $journal_volume, $doi, $details, $abstract, $evidence, $category_id;
     public $user, $staffId, $deleteName;
     public $search;
 
@@ -32,8 +32,10 @@ class Submitted extends Component
             'year' => 'required|numeric',
             'journal' => 'required|string',
             'journal_volume' => 'required|string',
-            'abstract' => 'required|mimes:pdf|max:5120',
-            'evidence' => 'required|mimes:pdf|max:5120',
+            'doi' => 'nullable|string',
+            'details' => 'nullable|string|max:1000',
+            'abstract' => 'nullable|mimes:pdf|max:5120',
+            'evidence' => 'nullable|mimes:pdf|max:5120',
         ];
     }
 
@@ -43,8 +45,11 @@ class Submitted extends Component
         $this->year = null;
         $this->journal = null;
         $this->journal_volume = null;
+        $this->doi = null;
+        $this->details = null;
         $this->abstract = null;
         $this->evidence = null;
+        $this->category_id = null;
     }
 
     public function closeModal() {
@@ -54,53 +59,62 @@ class Submitted extends Component
         $this->resetInput();
     }
 
-    public function storePaper(){
+    public function storePublication(){
 
         $validatedData = $this->validate();
 
         $staffId = auth()->user()->staffId;
         $currentTimestamp = now()->timestamp;
 
-        $abstractfile = $staffId . '_' . $currentTimestamp . '.' . $validatedData['abstract']->getClientOriginalExtension();
-        $evidencefile = $staffId . '_' . $currentTimestamp . '.' . $validatedData['evidence']->getClientOriginalExtension();
+        $abstractfile = null;
+        $evidencefile = null;
 
-        $this->user->journalPapers()->create([
+        if ($this->abstract) {
+            $abstractfile = $staffId . '_' . $currentTimestamp . '.' . $this->abstract->getClientOriginalExtension();
+            File::move($this->abstract->getRealPath(), public_path('uploads/documents/' . $abstractfile));
+        }
+
+        if ($this->evidence) {
+            $evidencefile = $staffId . '_' . $currentTimestamp . '.' . $this->evidence->getClientOriginalExtension();
+            File::move($this->evidence->getRealPath(), public_path('uploads/documents/' . $evidencefile));
+        }
+
+
+        $this->user->staffPublications()->create([
             'title' => $validatedData['title'],
             'authors' => $validatedData['authors'],
             'year' => $validatedData['year'],
             'journal' => $validatedData['journal'],
             'journal_volume' => $validatedData['journal_volume'],
+            'doi' => $validatedData['doi'],
+            'details' => $validatedData['details'],
             'abstract' => $abstractfile,
-            'abstractFileName' =>$validatedData['abstract']->getClientOriginalName(),
+            'abstractFileName' => $this->abstract ? $this->abstract->getClientOriginalName() : null,
             'evidence' => $evidencefile,
-            'evidenceFileName' => $validatedData['evidence']->getClientOriginalName(),
-            'isSubmitted' => 1,
+            'evidenceFileName' => $this->evidence ? $this->evidence->getClientOriginalName() : null,
+            'category_id' => 3,
         ]);
 
-        File::move($this->abstract->getRealPath(), public_path('uploads/documents/' . $abstractfile));
-        File::move($this->evidence->getRealPath(), public_path('uploads/documents/' . $evidencefile));
 
-        session()->flash('message', 'Submitted Journal Paper Added Successfully.');
+        session()->flash('message', 'Publication Added Successfully.');
 
         $this->dispatchBrowserEvent('close-modal');
         $this->resetInput();
     }
 
-    public function editPaper(int $paper_id){
-        $this->paper_id = $paper_id;
-        $paper = JournalPaper::findOrFail($paper_id);
-        $this->title = $paper->title;
-        $this->authors = $paper->authors;
-        $this->year = $paper->year;
-        $this->journal = $paper->journal;
-        $this->journal_volume = $paper->journal_volume;
-        $this->abstract = $paper->abstract;
-        $this->abstractFileName = $paper->abstractFileName;
-        $this->evidence = $paper->evidence;
-        $this->evidenceFileName = $paper->evidenceFileName;
+    public function editPublication(int $publication_id){
+        $this->publication_id = $publication_id;
+        $publication = StaffPublication::findOrFail($publication_id);
+        $this->title = $publication->title;
+        $this->authors = $publication->authors;
+        $this->year = $publication->year;
+        $this->journal = $publication->journal;
+        $this->journal_volume = $publication->journal_volume;
+        $this->doi = $publication->doi;
+        $this->details = $publication->details;
     }
 
-    public function updatePaper(){
+    public function updatePublication(){
 
         $rules = [
             'title' => 'required|string',
@@ -108,21 +122,23 @@ class Submitted extends Component
             'year' => 'required|numeric',
             'journal' => 'required|string',
             'journal_volume' => 'required|string',
+            'doi' => 'nullable|string',
+            'details' => 'nullable|string',
         ];
 
         $validatedData = $this->validate($rules);
 
-        $paper = JournalPaper::findOrFail($this->paper_id);
+        $publication = StaffPublication::findOrFail($this->publication_id);
 
-        $paper->title = $validatedData['title'];
-        $paper->authors = $validatedData['authors'];
-        $paper->year = $validatedData['year'];
-        $paper->journal = $validatedData['journal'];
-        $paper->journal_volume = $validatedData['journal_volume'];
+        $publication->title = $validatedData['title'];
+        $publication->authors = $validatedData['authors'];
+        $publication->year = $validatedData['year'];
+        $publication->journal = $validatedData['journal'];
+        $publication->journal_volume = $validatedData['journal_volume'];
 
-        $paper->save();
+        $publication->save();
 
-        session()->flash('message', 'Submitted Journal Paper Updated Successfully.');
+        session()->flash('message', 'Publication Updated Successfully.');
         $this->dispatchBrowserEvent('close-modal');
         $this->resetInput();
     }
@@ -135,28 +151,28 @@ class Submitted extends Component
 
         $validatedData = $this->validate($rules);
 
-        $paper = JournalPaper::findOrFail($this->paper_id);
+        $publication = StaffPublication::findOrFail($this->publication_id);
 
         $staffId = auth()->user()->staffId;
         $currentTimestamp = now()->timestamp;
 
         // Delete existing abstract file
-        $existingAbstract = $paper->abstract;
+        $existingAbstract = $publication->abstract;
         if ($existingAbstract && file_exists('uploads/documents/' . $existingAbstract)) {
             unlink('uploads/documents/' . $existingAbstract);
         }
 
         // Generate new abstract file name
         $abstractfile = $staffId . '_' . $currentTimestamp . '.' . $validatedData['abstract']->getClientOriginalExtension();
-        $paper->abstract = $abstractfile;
-        $paper->abstractFileName = $validatedData['abstract']->getClientOriginalName();
+        $publication->abstract = $abstractfile;
+        $publication->abstractFileName = $validatedData['abstract']->getClientOriginalName();
         // Move new abstract file
         File::move($this->abstract->getRealPath(), public_path('uploads/documents/' . $abstractfile));
 
-        $paper->abstract = $abstractfile;
-        $paper->abstractFileName = $validatedData['abstract']->getClientOriginalName();
+        $publication->abstract = $abstractfile;
+        $publication->abstractFileName = $validatedData['abstract']->getClientOriginalName();
 
-        $paper->save();
+        $publication->save();
 
         session()->flash('message', 'Abstract Updated Successfully.');
         $this->dispatchBrowserEvent('close-modal');
@@ -171,46 +187,46 @@ class Submitted extends Component
 
         $validatedData = $this->validate($rules);
 
-        $paper = JournalPaper::findOrFail($this->paper_id);
+        $publication = StaffPublication::findOrFail($this->publication_id);
 
         $staffId = auth()->user()->staffId;
         $currentTimestamp = now()->timestamp;
 
         // Delete existing evidence file
-        $existingEvidence = $paper->evidence;
+        $existingEvidence = $publication->evidence;
         if ($existingEvidence && file_exists('uploads/documents/' . $existingEvidence)) {
             unlink('uploads/documents/' . $existingEvidence);
         }
 
         // Generate new abstract file name
         $evidencefile = $staffId . '_' . $currentTimestamp . '.' . $validatedData['evidence']->getClientOriginalExtension();
-        $paper->evidence = $evidencefile;
-        $paper->evidenceFileName = $validatedData['evidence']->getClientOriginalName();
+        $publication->evidence = $evidencefile;
+        $publication->evidenceFileName = $validatedData['evidence']->getClientOriginalName();
         // Move new abstract file
         File::move($this->evidence->getRealPath(), public_path('uploads/documents/' . $evidencefile));
 
-        $paper->evidence = $evidencefile;
-        $paper->evidenceFileName = $validatedData['evidence']->getClientOriginalName();
+        $publication->evidence = $evidencefile;
+        $publication->evidenceFileName = $validatedData['evidence']->getClientOriginalName();
 
-        $paper->save();
+        $publication->save();
 
         session()->flash('message', 'Evidence Updated Successfully.');
         $this->dispatchBrowserEvent('close-modal');
         $this->resetInput();
     }
-    public function deletePaper($paper_id)
+    public function deletePublication($publication_id)
     {
-        $this->paper_id = $paper_id;
-        $paper = JournalPaper::findOrFail($paper_id);
+        $this->publication_id = $publication_id;
+        $publication = StaffPublication::findOrFail($publication_id);
     }
 
-    public function destroyPaper()
+    public function destroyPublication()
     {
         try {
-            $paper = JournalPaper::FindOrFail($this->paper_id);
-            $existingAbstract = $paper->abstract;
-            $existingEvidence = $paper->evidence;
-            $paper->delete();
+            $publication = StaffPublication::FindOrFail($this->publication_id);
+            $existingAbstract = $publication->abstract;
+            $existingEvidence = $publication->evidence;
+            $publication->delete();
 
             // Delete documents
             if ($existingAbstract && file_exists('uploads/documnets/' . $existingAbstract)) {
@@ -221,15 +237,15 @@ class Submitted extends Component
                 unlink('uploads/documnets/' . $existingEvidence);
             }
 
-            session()->flash('message', 'Submitted Journal Paper deleted successfully.');
+            session()->flash('message', 'Publication deleted successfully.');
         } catch (\Illuminate\Database\QueryException $e) {
             if ($e->errorInfo[1] == 1451) { // check if error is foreign key constraint violation
-                session()->flash('error', 'Cannot delete journal paper because it is referenced in user profile.');
+                session()->flash('error', 'Cannot delete publication because it is referenced in user profile.');
             } else {
-                session()->flash('error', 'An error occurred while deleting the journal paper.');
+                session()->flash('error', 'An error occurred while deleting the publication.');
             }
         } catch (\Exception $e) {
-            session()->flash('error', 'An error occurred while deleting the journal paper.');
+            session()->flash('error', 'An error occurred while deleting the publication.');
         }
 
         $this->dispatchBrowserEvent('close-modal');
@@ -250,31 +266,23 @@ class Submitted extends Component
         return Response::download($file);
     }
 
-    public function viewAbstract($filename)
-    {
-        return redirect()->to('/uploads/documents/' . $filename);
-    }
-
-    public function viewEvidence($filename)
-    {
-        return redirect()->to('/uploads/documents/' . $filename);
-    }
-
     public function render()
     {
-        $papers = JournalPaper::where('user_id', $this->user->id)
-            ->where('isSubmitted', 1)
+        $publications = StaffPublication::where('user_id', $this->user->id)
+            ->where('category_id', 3)
             ->where(function ($query) {
                 $query->where('title', 'like', '%' . $this->search . '%')
                     ->orWhere('authors', 'like', '%' . $this->search . '%')
                     ->orWhere('year', 'like', '%' . $this->search . '%')
+                    ->orWhere('doi', 'like', '%' . $this->search . '%')
                     ->orWhere('journal', 'like', '%' . $this->search . '%');
             })
             ->orderBy('year', 'desc')
             ->paginate(5);
 
-        return view('livewire.staff.journal-papers.submitted', [
-            'papers' => $papers,
+        return view('livewire.staff.staff-publications.proceedings', [
+            'publications' => $publications,
             ])->extends('layouts.staff')->section('content');
     }
+
 }

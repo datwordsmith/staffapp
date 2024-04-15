@@ -59,5 +59,9 @@ Route::prefix('staff')->middleware(['isStaff'])->group(function (){
     Route::get('/community_services', App\Http\Livewire\Staff\CommunityServices\Index::class);
     Route::get('/accepted_papers', App\Http\Livewire\Staff\JournalPapers\Accepted::class);
     Route::get('/submitted_papers', App\Http\Livewire\Staff\JournalPapers\Submitted::class);
+    Route::get('/first_appointment', App\Http\Livewire\Staff\FirstAppointment\Index::class);
+    Route::get('/monographs_books', App\Http\Livewire\Staff\StaffPublications\Index::class)->name('monographs_books');
+    Route::get('/journal_articles', App\Http\Livewire\Staff\StaffPublications\JournalArticles::class)->name('journal_articles');
+    Route::get('/conference_proceedings', App\Http\Livewire\Staff\StaffPublications\ConferenceProceedings::class)->name('conference_proceedings');
 });
 
