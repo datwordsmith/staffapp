@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('first_appointment', function (Blueprint $table) {
+        Schema::create('aper', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->text('post');
-            $table->text('grade_step');
-            $table->date('first_appointment');
-            $table->date('confirmation');
+            $table->unsignedBigInteger('status_id');
 
             $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
+
+            $table->foreign('status_id')->references('id')->on('aper_status')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
@@ -36,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('first_appointment');
+        Schema::dropIfExists('aper');
     }
 };

@@ -63,5 +63,6 @@ Route::prefix('staff')->middleware(['isStaff'])->group(function (){
     Route::get('/monographs_books', App\Http\Livewire\Staff\StaffPublications\Index::class)->name('monographs_books');
     Route::get('/journal_articles', App\Http\Livewire\Staff\StaffPublications\JournalArticles::class)->name('journal_articles');
     Route::get('/conference_proceedings', App\Http\Livewire\Staff\StaffPublications\ConferenceProceedings::class)->name('conference_proceedings');
+    Route::get('/appraisal_request', App\Http\Livewire\Staff\AppraisalRequest\Index::class);
 });
 
