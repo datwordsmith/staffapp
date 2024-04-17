@@ -39,7 +39,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url('staff/first_appointment')}}">
             <span class="menu-title">First Appointment</span>
-            <i class="fa-regular fa-newspaper menu-icon"></i>
+            <i class="fa-solid fa-user-tie menu-icon"></i>
         </a>
       </li>
 
@@ -47,7 +47,7 @@
         <a class="nav-link" data-bs-toggle="collapse" href="#publication-menu" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Publications</span>
           <i class="menu-arrow"></i>
-          <i class="fa-regular fa-address-card menu-icon"></i>
+          <i class="fa-regular fa-newspaper menu-icon"></i>
         </a>
         <div class="collapse" id="publication-menu">
           <ul class="nav flex-column sub-menu">
@@ -61,18 +61,11 @@
         </div>
       </li>
 
-      {{-- <li class="nav-item">
-        <a class="nav-link" href="{{ url('staff/publications')}}">
-            <span class="menu-title">Publications</span>
-            <i class="fa-regular fa-newspaper menu-icon"></i>
-        </a>
-      </li> --}}
-
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#qualification-menu" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Qualifications</span>
           <i class="menu-arrow"></i>
-          <i class="mdi mdi-account-group menu-icon"></i>
+          <i class="fas fa-certificate menu-icon"></i>
         </a>
         <div class="collapse" id="qualification-menu">
           <ul class="nav flex-column sub-menu">
@@ -85,7 +78,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url('staff/teachingexperience')}}">
             <span class="menu-title">Teaching Experience</span>
-            <i class="fa-regular fa-newspaper menu-icon"></i>
+            <i class="fas fa-chalkboard-teacher menu-icon"></i>
         </a>
       </li>
 
@@ -93,7 +86,7 @@
         <a class="nav-link" data-bs-toggle="collapse" href="#staff-menu" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Awards</span>
           <i class="menu-arrow"></i>
-          <i class="mdi mdi-account-group menu-icon"></i>
+          <i class="fas fa-award menu-icon"></i>
         </a>
         <div class="collapse" id="staff-menu">
           <ul class="nav flex-column sub-menu">
@@ -106,14 +99,14 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url('staff/societymemberships')}}">
             <span class="menu-title">Society Memberships</span>
-            <i class="fa-regular fa-newspaper menu-icon"></i>
+            <i class="fas fa-users menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{{ url('staff/conferences')}}">
             <span class="menu-title">Conferences</span>
-            <i class="fa-regular fa-newspaper menu-icon"></i>
+            <i class="fa-solid fa-users-between-lines menu-icon"></i>
         </a>
       </li>
 
@@ -121,7 +114,7 @@
         <a class="nav-link" data-bs-toggle="collapse" href="#research-menu" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Researches</span>
           <i class="menu-arrow"></i>
-          <i class="mdi mdi-account-group menu-icon"></i>
+          <i class="fa-solid fa-book-open-reader menu-icon"></i>
         </a>
         <div class="collapse" id="research-menu">
           <ul class="nav flex-column sub-menu">
@@ -134,14 +127,21 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url('staff/university_administration')}}">
             <span class="menu-title">University Administration</span>
-            <i class="fa-regular fa-newspaper menu-icon"></i>
+            <i class="fa-solid fa-briefcase menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{{ url('staff/community_services')}}">
             <span class="menu-title">Community Service</span>
-            <i class="fa-regular fa-newspaper menu-icon"></i>
+            <i class="fa-solid fa-handshake-angle menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('staff/appraisal_request')}}">
+            <span class="menu-title">Performance Appraisal</span>
+            <i class="fa-solid fa-chart-line menu-icon"></i>
         </a>
       </li>
     </ul>

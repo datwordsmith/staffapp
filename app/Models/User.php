@@ -148,4 +148,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(FirstAppointment::class);
     }
+
+    public function appraisalRequests()
+    {
+        return $this->hasMany(APER::class);
+    }
 }
