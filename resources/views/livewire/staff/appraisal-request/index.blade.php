@@ -33,12 +33,13 @@
             </ul>
         </div>
     @else
-        @if(!$isPending)
+
             <div class="d-flex justify-content-end mb-3 me-auto">
                 <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addAperModal">
                     <i class="fa-solid fa-plus"></i> New Request
                 </button>
             </div>
+            @if($isPending)
         @endif
     @endif
 
@@ -60,58 +61,55 @@
                         </div>
                     @endif
                     <div class="table-responsive">
-                        <div class="">
+                        <div class="mb-3">
                             <input type="text" class="form-control" wire:model="search" placeholder="Search...">
                         </div>
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover" id="aperTable">
                             <thead>
                                 <tr>
-                                <th scope="col" class="ps-3">Date Submitted</th>
-                                <th scope="col" class="ps-3">Current Status</th>
-                                <th scope="col" class="ps-3">Date Updated</th>
-                                <th scope="col"></th>
+                                    <th scope="col">Date Submitted</th>
+                                    <th scope="col" class="text-center">Evaluation Grade</th>
+                                    <th scope="col" class="text-center">Evaluation Status</th>
+                                    <th scope="col" class="text-center">Approval Status</th>
+                                    <th scope="col">Date Updated</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($apers as $aper)
                                     <tr>
-                                        @php
-                                        $statusClass = ''; // Default value
-                                        switch ($aper->status_id) {
-                                            case 2:
-                                                $statusClass = 'success';
-                                                break;
-                                            case 3:
-                                                $statusClass = 'danger';
-                                                break;
-                                            default:
-                                                $statusClass = 'primary';
-                                        }
-                                        @endphp
-
-                                        <td class="ps-3"> {{$aper->created_at}} </td>
-                                        <td class="ps-3"><span class="badge bg-{{ $statusClass }}"> {{$aper->status}} </span></td>
-                                        <td class="ps-3"> {{$aper->updated_at}} </td>
-                                        <td class="ps-3">
+                                        <td>{{ $aper->created_at->format('d-m-Y') }}</td>
+                                        <td class="text-center">{{ $aper->evaluation ? $aper->evaluation->grade : '-' }}</td>
+                                        <td class="text-center">
+                                            {{ $aper->evaluation?->status->name ?? 'Pending' }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $aper->approval?->status->name ?? 'Pending' }}
+                                        </td>
+                                        <td>{{ $aper->updated_at }}</td>
+                                        <td>
                                             <div class="d-flex justify-content-end">
                                                 @if($aper->status_id > 1)
-                                                    <a href="#" wire:click="deleteAper({{ $aper->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAperModal"><i class="fa-solid fa-trash-can"></i></a>
+                                                    <a href="#" wire:click="deleteAper({{ $aper->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAperModal">
+                                                        <i class="fa-solid fa-trash-can"></i>
+                                                    </a>
                                                 @else
-                                                    <a wire:click="viewAper({{ $aper->id }})" class="btn btn-sm btn-primary"><i class="fa-solid fa-folder-open"></i> View </a>
+                                                    <a wire:click="viewAper({{ $aper->id }})" class="btn btn-sm btn-primary">
+                                                        <i class="fa-solid fa-folder-open"></i> View
+                                                    </a>
                                                 @endif
                                             </div>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4" class="text-danger text-center">No Appraisal Request Found</td>
+                                        <td colspan="6" class="text-danger text-center">No Appraisal Request Found</td>
                                     </tr>
                                 @endforelse
-
                             </tbody>
                         </table>
                     </div>
-                    <div>
+                    <div class="mt-2">
                         {{ $apers->links() }}
                     </div>
                 </div>
@@ -125,6 +123,13 @@
         window.addEventListener('close-modal', event => {
             $('#addAperModal').modal('hide');
             $('#deleteAperModal').modal('hide');
+        });
+
+        $(document).ready(function() {
+            $('#aperTable').DataTable({
+                "paging": true, // Enable pagination
+                "searching": true, // Enable search
+            });
         });
     </script>
 @endsection

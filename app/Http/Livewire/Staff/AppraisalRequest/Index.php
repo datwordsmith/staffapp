@@ -70,9 +70,7 @@ class Index extends Component
     }
 
     public function storeAper(){
-        $this->user->appraisalRequests()->create([
-            'status_id' => 1,
-        ]);
+        $this->user->appraisalRequests()->create();
         session()->flash('message', 'Appraisal Request Submitted Successfully.');
         $this->dispatchBrowserEvent('close-modal');
         $this->resetInput();
@@ -112,18 +110,32 @@ class Index extends Component
     {
 
         $apers = APER::where(function ($query) {
-            $query->where('aper.created_at', 'like', '%'.$this->search.'%')
-                ->orWhere('aper_status.name', 'like', '%'.$this->search.'%');
+            $query->whereHas('approval.status', function ($q) {
+                    $q->where('name', 'like', '%'.$this->search.'%');
+                    $q->orwhere('name', 'like', '%Pending%');
+                })
+                ->orWhereHas('evaluation.status', function ($q) {
+                    $q->where('name', 'like', '%'.$this->search.'%');
+                    $q->orwhere('name', 'like', '%Pending%');
+                })
+                ->orWhereHas('evaluation', function ($q) {
+                    $q->where('grade', 'like', '%'.$this->search.'%');
+                })
+                ->orWhere('created_at', 'like', '%' . $this->search . '%');
         })
         ->where('user_id', $this->user->id)
-        ->leftJoin('aper_status', 'aper_status.id', '=', 'aper.status_id')
-        ->select('aper.*', 'aper_status.name as status')
-        ->orderBy('aper.created_at', 'DESC')
+        ->orderBy('created_at', 'ASC')
         ->paginate(5);
 
+
+
         $isPending = APER::where('user_id', $this->user->id)
-            ->where('status_id', 1)
-            ->first();
+            ->leftJoin('aper_evaluation', 'aper_evaluation.aper_id', '=', 'aper.id')
+            ->leftJoin('aper_approval', 'aper_approval.aper_id', '=', 'aper.id')
+            ->whereNotNull('aper_evaluation.aper_id')
+            ->whereNotNull('aper_approval.aper_id')
+            ->exists();
+
 
         $checks = $this->checkRecords();
 

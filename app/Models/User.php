@@ -153,4 +153,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(APER::class);
     }
+
+    public function aperEvaluation()
+    {
+        return $this->hasMany(AperEvaluation::class);
+    }
+
+    public function aperApproval()
+    {
+        return $this->hasMany(AperApproval::class);
+    }
 }
