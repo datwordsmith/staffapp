@@ -14,6 +14,10 @@
         <!-- End layout styles -->
         <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}" />
         <script src="https://kit.fontawesome.com/4c207f4e5f.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+        <script src="https://code.jquery.com/3.5.1/jquery.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
         @livewireStyles
       </head>
       <body>

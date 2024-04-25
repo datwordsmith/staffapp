@@ -16,13 +16,8 @@ return new class extends Migration
         Schema::create('aper', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('status_id');
 
             $table->foreign('user_id')->references('id')->on('users')
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
-
-            $table->foreign('status_id')->references('id')->on('aper_status')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 

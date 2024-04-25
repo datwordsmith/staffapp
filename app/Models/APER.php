@@ -13,7 +13,6 @@ class APER extends Model
 
     protected $fillable = [
         'user_id',
-        'status_id',
     ];
 
     public function user()
@@ -21,8 +20,13 @@ class APER extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function status()
+    public function evaluation()
     {
-        return $this->belongsTo(AperStatus::class);
+        return $this->hasOne(AperEvaluation::class, 'aper_id');
+    }
+
+    public function approval()
+    {
+        return $this->hasOne(AperApproval::class, 'aper_id');
     }
 }
