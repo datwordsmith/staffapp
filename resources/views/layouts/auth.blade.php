@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="{{ asset('admin/assets/css/customstyle.css') }}">
         <!-- End layout styles -->
         <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}" />
-        <script src="https://kit.fontawesome.com/4c207f4e5f.js" crossorigin="anonymous"></script>
+        <link href="{{asset('css/style.css')}}" rel="stylesheet">
         <style>
             body, html {
                 height: 100%;

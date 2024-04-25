@@ -18,7 +18,7 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="{{ asset('admin/assets/css/allstaff.css') }}">
 
-  <script src="https://kit.fontawesome.com/4c207f4e5f.js" crossorigin="anonymous"></script>
+  <link href="{{asset('css/style.css')}}" rel="stylesheet">
   @livewireStyles
 </head>
 <body id="body">
