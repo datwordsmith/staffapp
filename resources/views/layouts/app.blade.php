@@ -15,6 +15,7 @@
 
     <!-- Scripts -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
     @livewireStyles
 </head>
 <body>

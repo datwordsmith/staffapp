@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="{{ asset('admin/assets/css/customstyle.css') }}">
         <!-- End layout styles -->
         <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}" />
-        <script src="https://kit.fontawesome.com/4c207f4e5f.js" crossorigin="anonymous"></script>
+        <link href="{{asset('css/style.css')}}" rel="stylesheet">
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
         <script src="https://code.jquery.com/3.5.1/jquery.js"></script>
