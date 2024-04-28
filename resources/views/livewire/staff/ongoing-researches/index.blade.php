@@ -77,7 +77,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="2">No Reseach found.</td>
+                                        <td colspan="2">No Research found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>

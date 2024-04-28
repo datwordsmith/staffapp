@@ -38,12 +38,14 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
     Route::get('/academicstaff', App\Http\Livewire\Admin\User\AcademicStaff::class)->name('academicstaff');
     Route::get('/nonacademic-staff', App\Http\Livewire\Admin\User\NonAcademicStaff::class)->name('non-academic-staff');
     Route::get('/profile/{staffId}', App\Http\Livewire\Admin\User\Profile::class);
+
+    Route::get('/appraisal_requests', App\Http\Livewire\Admin\Aper\Index::class);
 });
 
 Route::prefix('staff')->middleware(['isStaff'])->group(function (){
     Route::get('/profile', App\Http\Livewire\Staff\Profile\Index::class);
     Route::get('/interests', App\Http\Livewire\Staff\Interests\Index::class);
-    Route::get('/publications', App\Http\Livewire\Staff\Publications\Index::class);
+    // Route::get('/publications', App\Http\Livewire\Staff\Publications\Index::class);
     Route::get('/socialmedia', App\Http\Livewire\Staff\SocialMedia\Index::class);
     Route::get('/teachingexperience', App\Http\Livewire\Staff\TeachingExperience\Index::class);
     Route::get('/scholarships_prizes', App\Http\Livewire\Staff\Awards\Index::class);

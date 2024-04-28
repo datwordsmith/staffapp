@@ -3,17 +3,32 @@
 namespace App\Http\Livewire\Staff\Profile;
 
 use App\Models\Title;
+use App\Models\Awards;
+use App\Models\Honours;
 use App\Models\Profile;
 use Livewire\Component;
 use App\Models\Interests;
+use App\Models\Conference;
+use App\Models\Membership;
 use App\Models\socialMedia;
 use Illuminate\Support\Str;
+use App\Models\CreativeWork;
+use App\Models\JournalPaper;
 use App\Models\Publications;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use App\Models\OngoingResearch;
+use App\Models\CommunityService;
+use App\Models\FirstAppointment;
+use App\Models\StaffPublication;
+use App\Models\CompletedResearch;
+use App\Models\TeachingExperience;
+use App\Models\InitialQualification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use App\Models\AdditionalQualification;
 use Illuminate\Support\Facades\Storage;
+use App\Models\UniversityAdministration;
 
 class Index extends Component
 {
@@ -186,33 +201,128 @@ class Index extends Component
         $staff = Profile::where('user_id', $this->user->id)
                     ->first();
 
-        $publications = Publications::where('user_id', $this->user->id)
-            ->where(function ($query) {
-                $query->where('publication', 'like', '%' . $this->search . '%')
-                    ->orWhere('url', 'like', '%' . $this->search . '%');
-            })
-            ->orderBy('created_at', 'desc')
-            ->paginate(5);
 
         $socials = socialMedia::where('user_id', $this->user->id)
                     ->leftjoin('social_platforms', 'social_media.socialPlatform_id', '=', 'social_platforms.id')
                     ->select('social_media.*', 'social_platforms.name as sm', 'social_platforms.icon as icon')
                     ->orderBy('social_platforms.name', 'ASC')
-                    ->get();
+                    ->paginate(5);
 
         $interests = Interests::where('user_id', $this->user->id)
                     ->orderBy('interest', 'asc')
-                    ->get();
+                    ->paginate(5);
 
         $titles = Title::all();
 
+        $firstAppointment = FirstAppointment::where('user_id', $this->user->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
+
+        $experiences = TeachingExperience::where('user_id', $this->user->id)
+            ->orderBy('year')
+            ->paginate(5);
+
+        $awards = Awards::where('user_id', $this->user->id)
+            ->orderBy('date', 'desc')
+            ->paginate(5);
+
+        $honours = Honours::where('user_id', $this->user->id)
+            ->orderBy('date', 'desc')
+            ->paginate(5);
+
+        $memberships = Membership::where('user_id', $this->user->id)
+            ->orderBy('date', 'desc')
+            ->orderBy('society', 'asc')
+            ->paginate(5);
+
+        $conferences = Conference::where('user_id', $this->user->id)
+            ->orderBy('date', 'desc')
+            ->orderBy('conference', 'asc')
+            ->orderBy('location', 'asc')
+            ->paginate(5);
+
+        $Iqualifications = InitialQualification::where('user_id', $this->user->id)
+            ->orderBy('date', 'desc')
+            ->orderBy('institution', 'asc')
+            ->paginate(1);
+
+        $qualifications = AdditionalQualification::where('user_id', $this->user->id)
+            ->orderBy('date', 'desc')
+            ->orderBy('institution', 'asc')
+            ->paginate(5);
+
+        $researches = CompletedResearch::where('user_id', $this->user->id)
+            ->orderBy('date', 'desc')
+            ->paginate(1);
+
+
+        $ongoingResearches = OngoingResearch::where('user_id', $this->user->id)
+            ->orderBy('date', 'desc')
+            ->paginate(1);
+
+        $monographs = StaffPublication::where('user_id', $this->user->id)
+            ->where('category_id', 1)
+            ->orderBy('year', 'desc')
+            ->paginate(5);
+
+        $articles = StaffPublication::where('user_id', $this->user->id)
+            ->where('category_id', 2)
+            ->orderBy('year', 'desc')
+            ->paginate(5);
+
+        $conferenceProceedings = StaffPublication::where('user_id', $this->user->id)
+            ->where('category_id', 3)
+            ->orderBy('year', 'desc')
+            ->paginate(5);
+
+        $creativeWorks = CreativeWork::where('user_id', $this->user->id)
+            ->orderBy('date', 'desc')
+            ->orderBy('title', 'asc')
+            ->orderBy('author', 'asc')
+            ->orderBy('category', 'asc')
+            ->paginate(5);
+
+        $acceptedPapers = JournalPaper::where('user_id', $this->user->id)
+            ->where('isSubmitted', 0)
+            ->orderBy('year', 'desc')
+            ->paginate(5);
+
+        $submittedPapers = JournalPaper::where('user_id', $this->user->id)
+            ->where('isSubmitted', 1)
+            ->orderBy('year', 'desc')
+            ->paginate(5);
+
+        $administrations = UniversityAdministration::where('user_id', $this->user->id)
+            ->orderBy('date', 'desc')
+            ->paginate(5);
+
+        $services = CommunityService::where('user_id', $this->user->id)
+            ->orderBy('date', 'desc')
+            ->paginate(5);
 
         return view('livewire.staff.profile.index', [
-            'publications' => $publications,
             'socials' => $socials,
             'interests' => $interests,
             'staff' => $staff,
             'titles' => $titles,
+            'firstAppointment' => $firstAppointment,
+            'experiences' => $experiences,
+            'awards' => $awards,
+            'honours' => $honours,
+            'memberships' => $memberships,
+            'conferences' => $conferences,
+            'Iqualifications' => $Iqualifications,
+            'Aqualifications' => $qualifications,
+            'researches' => $researches,
+            'ongoingResearches' => $ongoingResearches,
+            'monographs' => $monographs,
+            'articles' => $articles,
+            'conferenceProceedings' => $conferenceProceedings,
+            'creativeWorks' => $creativeWorks,
+            'acceptedPapers' => $acceptedPapers,
+            'submittedPapers' => $submittedPapers,
+            'administrations' => $administrations,
+            'services' => $services,
             ])->extends('layouts.staff')->section('content');
     }
 

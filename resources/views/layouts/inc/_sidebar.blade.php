@@ -61,11 +61,20 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link" href="{{ url('admin/appraisal_requests')}}">
+          <span class="menu-title">Appraisal Requests</span>
+          <i class="fa-solid fa-users-gear menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="">
           <span class="menu-title">Portal Admin</span>
           <i class="fa-solid fa-users-gear menu-icon"></i>
         </a>
       </li>
+
+
 
 
     </ul>
