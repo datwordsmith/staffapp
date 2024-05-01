@@ -26,7 +26,7 @@
             <div class="card-body">
                 <h4 class="card-title mb-4">Add New Interest</h4>
 
-                <form wire:submit.prevent="storeInterest" class="">
+                <form wire:submit="storeInterest" class="">
                     <div class="form-group">
                     <label for="interest">Interest</label>
                     <input type="text" wire:model.defer="interest" class="form-control" placeholder="Interest">

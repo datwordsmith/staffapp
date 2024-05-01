@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="updateFaculty()">
+                <form wire:submit="updateFaculty()">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="faculty">Faculty</label>
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyFaculty()">
+                <form wire:submit="destroyFaculty()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this faculty - "{{ $deleteName }}"?</h4>
                     </div>

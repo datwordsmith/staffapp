@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="storePaper" enctype="multipart/form-data">
+                <form wire:submit="storePaper" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 form-group">
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="updatePaper" enctype="multipart/form-data">
+                <form wire:submit="updatePaper" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 form-group">
@@ -165,7 +165,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyPaper()">
+                <form wire:submit="destroyPaper()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this Paper?</h4>
                     </div>
@@ -190,7 +190,7 @@
                 <button type="button" class="btn-close" wire:click="closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div>
-                <form wire:submit.prevent="changeAbstract" enctype="multipart/form-data">
+                <form wire:submit="changeAbstract" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12 form-group">
@@ -222,7 +222,7 @@
                 <button type="button" class="btn-close" wire:click="closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div>
-                <form wire:submit.prevent="changeEvidence" enctype="multipart/form-data">
+                <form wire:submit="changeEvidence" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12 form-group">

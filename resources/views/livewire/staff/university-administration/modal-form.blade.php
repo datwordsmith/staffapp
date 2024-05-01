@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="storeAdministration" class="">
+                <form wire:submit="storeAdministration" class="">
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Duty</label>
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="updateAdministration()">
+                <form wire:submit="updateAdministration()">
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Duty</label>
@@ -129,7 +129,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyAdministration()">
+                <form wire:submit="destroyAdministration()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this item?</h4>
                     </div>

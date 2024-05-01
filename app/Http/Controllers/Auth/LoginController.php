@@ -28,7 +28,7 @@ class LoginController extends Controller
      * @var string
      */
     //protected $redirectTo = RouteServiceProvider::HOME;
-    protected function authenticated(){
+    protected function authenticated(\Illuminate\Http\Request $request, $user){
 
         if(Auth::user()->role_as < '2' ){
             return redirect('admin/academicstaff');

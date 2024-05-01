@@ -6,7 +6,7 @@
                 <h1 class="modal-title fs-5">Update Profile</h1>
                 <button type="button" class="btn-close" wire:click ="closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form wire:submit.prevent="updateBio()">
+            <form wire:submit="updateBio()">
                 <div class="modal-body px-5">
                     <div class="row">
                         <div class="col-md-4 form-group">
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyBio()">
+                <form wire:submit="destroyBio()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this?</h4>
                     </div>
@@ -119,7 +119,7 @@
                         <img class="img-thumbnail" src="{{ $photo->temporaryUrl() }}" width="100">
                     </div>
                 @endif
-                <form wire:submit.prevent="uploadPhoto" enctype="multipart/form-data">
+                <form wire:submit="uploadPhoto" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="photoInput" class="form-label">Choose File</label>
                         <input type="file" wire:model="photo" class="form-control" id="photoInput">
@@ -151,7 +151,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyPhoto()">
+                <form wire:submit="destroyPhoto()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete your profile photo?</h4>
                     </div>

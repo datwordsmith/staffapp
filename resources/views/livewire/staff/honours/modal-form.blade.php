@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="updateAward()">
+                <form wire:submit="updateAward()">
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Award</label>
@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyAward()">
+                <form wire:submit="destroyAward()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this Award?</h4>
                     </div>

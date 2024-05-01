@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="storePublication" class="">
+                <form wire:submit="storePublication" class="">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="publication">Publication</label>
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="updatePublication()">
+                <form wire:submit="updatePublication()">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="publication">Publication</label>
@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyPublication()">
+                <form wire:submit="destroyPublication()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this pubication?</h4>
                     </div>

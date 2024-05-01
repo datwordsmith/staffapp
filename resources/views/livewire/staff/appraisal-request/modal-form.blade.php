@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="storeAper()">
+                <form wire:submit="storeAper()">
                     <div class="modal-body">
                         <h4>Request Annual Performance Evaluation Report (APER)?</h4>
                     </div>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyAper()">
+                <form wire:submit="destroyAper()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this Request?</h4>
                     </div>

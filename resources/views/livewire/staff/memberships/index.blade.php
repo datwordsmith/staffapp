@@ -28,7 +28,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Add New Membership</h4>
-                <form wire:submit.prevent="storeMembership" class="">
+                <form wire:submit="storeMembership" class="">
                     <div class="form-group">
                         <label>Society</label>
                         <input type="text" wire:model.defer="society" class="form-control" placeholder="Membership" required>

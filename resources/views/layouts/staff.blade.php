@@ -15,9 +15,8 @@
         <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}" />
         <link href="{{asset('css/style.css')}}" rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-        <script src="https://code.jquery.com/3.5.1/jquery.js"></script>
-        <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap5.css">
+
         @livewireStyles
       </head>
       <body>
@@ -47,6 +46,12 @@
         </div>
         <!-- container-scroller -->
         <!-- plugins:js -->
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
+
         <script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
 
         <script src="{{ asset('admin/assets/js/off-canvas.js') }}"></script>

@@ -28,7 +28,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Add Additional Qualification</h4>
-                <form wire:submit.prevent="storeQualification">
+                <form wire:submit="storeQualification">
                     <div class="form-group">
                         <label>Insititution</label>
                         <input type="text" wire:model.defer="institution" class="form-control" placeholder="Insititution" required>

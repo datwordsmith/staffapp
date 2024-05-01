@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroySocialMedia()">
+                <form wire:submit="destroySocialMedia()">
                     <div class="modal-body">
                         <h4>Are you sure you want to remove this account?</h4>
                     </div>

@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Add Social Media</h4>
 
-                    <form wire:submit.prevent="storeSocialMedia" class="">
+                    <form wire:submit="storeSocialMedia" class="">
                         <div class="form-group">
                             <select class="form-select" wire:model.defer="socialPlatform_id" required>
                                 <option value="">Select a Platform</option>

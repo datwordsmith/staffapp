@@ -142,23 +142,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($firstAppointment as $appointment)
+                                @foreach($firstAppointment as $appointment)
                                     <tr>
                                         <td class="text-wrap">{{ $appointment->post }}</td>
                                         <td class="text-wrap">{{ $appointment->grade_step }}</td>
                                         <td class="text-wrap">{{ $appointment->first_appointment }}</td>
                                         <td class="text-wrap">{{ $appointment->confirmation }}</td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="4">No publications found.</td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
-                    </div>
-                    <div>
-                        {{ $firstAppointment->links() }}
                     </div>
                 </div>
             </div>
@@ -170,7 +163,7 @@
                 <div class="card-header text-white bg-gradient-primary pt-3"><h4> FULAFIA Teaching Experience</h4></div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover" id="experiences">
                             <thead>
                                 <tr>
                                     <th scope="col">Course Code</th>
@@ -181,7 +174,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($experiences as $experience)
+                                @foreach($experiences as $experience)
                                     <tr>
                                         <td class="text-wrap">{{ $experience->course_code }}</td>
                                         <td class="text-wrap">{{ $experience->course_title }}</td>
@@ -189,17 +182,11 @@
                                         <td class="text-wrap">{{ $experience->lectures }}</td>
                                         <td class="text-wrap">{{ $experience->semester }}/{{ $experience->year }}</td>
                                     </tr>
-                                @empty
-                                    <tr class="">
-                                        <td colspan="5" class="text-center text-danger py-5">No Experiences Listed.</td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
-                    <div>
-                        {{ $experiences->links() }}
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -211,7 +198,7 @@
                 <div class="card-body">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                          <button class="nav-link active" id="pills-initial-tab" data-bs-toggle="pill" data-bs-target="#pills-initial" type="button" role="tab" aria-controls="pills-initial" aria-selected="true">First Appointment</button>
+                          <button class="nav-link active" id="pills-initial-tab" data-bs-toggle="pill" data-bs-target="#pills-initial" type="button" role="tab" aria-controls="pills-initial" aria-selected="true">Qualifications on First Appointment</button>
                         </li>
                         <li class="nav-item" role="presentation">
                           <button class="nav-link" id="pills-others-tab" data-bs-toggle="pill" data-bs-target="#pills-others" type="button" role="tab" aria-controls="pills-others" aria-selected="false">Other Qualifications</button>
@@ -221,7 +208,7 @@
                         <!--First Qualification - Content-->
                         <div class="tab-pane fade show active" id="pills-initial" role="tabpanel" aria-labelledby="pills-initial-tab" tabindex="0">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover" id="Iqualifications" style="width: 100%">
                                     <thead>
                                         <tr>
                                         <th scope="col" class="ps-3">Institution</th>
@@ -230,30 +217,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($Iqualifications as $qualification)
+                                        @foreach ($Iqualifications as $qualification)
                                             <tr>
                                                 <td class="ps-3"> {{$qualification->institution}} </td>
                                                 <td class="ps-3"> {{$qualification->qualification}} </td>
                                                 <td class="ps-3"> {{$qualification->date}} </td>
                                             </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="3" class="text-danger text-center">No Qualification Found</td>
-                                            </tr>
-                                        @endforelse
+
+                                        @endforeach
 
                                     </tbody>
                                 </table>
-                            </div>
-                            <div>
-                                {{ $Iqualifications->links() }}
                             </div>
                         </div>
 
                         <!--Other Qualifications - Content-->
                         <div class="tab-pane fade" id="pills-others" role="tabpanel" aria-labelledby="pills-others-tab" tabindex="0">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover" id="Aqualifications" style="width: 100%">
                                     <thead>
                                         <tr>
                                         <th scope="col" class="ps-3">Institution</th>
@@ -262,23 +243,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($Aqualifications as $qualification)
+                                        @foreach ($Aqualifications as $qualification)
                                             <tr>
                                                 <td class="ps-3"> {{$qualification->institution}} </td>
                                                 <td class="ps-3"> {{$qualification->qualification}} </td>
                                                 <td class="ps-3"> {{$qualification->date}} </td>
                                             </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="3" class="text-danger text-center">No Qualification Found</td>
-                                            </tr>
-                                        @endforelse
+                                        @endforeach
 
                                     </tbody>
                                 </table>
-                            </div>
-                            <div>
-                                {{ $Aqualifications->links() }}
                             </div>
                         </div>
                     </div>
@@ -304,7 +278,7 @@
                         <!--Awards - Content-->
                         <div class="tab-pane fade show active" id="pills-scholarships" role="tabpanel" aria-labelledby="pills-scholarships-tab" tabindex="0">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover" id="awards"  style="width: 100%">
                                     <thead>
                                         <tr>
                                         <th scope="col" class="ps-3">Award</th>
@@ -313,30 +287,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($awards as $award)
+                                        @foreach ($awards as $award)
                                             <tr>
                                                 <td class="ps-3"> {{$award->award}} </td>
                                                 <td class="ps-3"> {{$award->awarding_body}} </td>
                                                 <td class="ps-3"> {{$award->date}} </td>
                                             </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="3" class="text-danger text-center">No Scholarship/Prize Found</td>
-                                            </tr>
-                                        @endforelse
+                                        @endforeach
 
                                     </tbody>
                                 </table>
-                            </div>
-                            <div>
-                                {{ $awards->links() }}
                             </div>
                         </div>
 
                         <!--Honours - Content-->
                         <div class="tab-pane fade" id="pills-honours" role="tabpanel" aria-labelledby="pills-honours-tab" tabindex="0">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover" id="honours" style="width: 100%">
                                     <thead>
                                         <tr>
                                         <th scope="col" class="ps-3">Award</th>
@@ -345,23 +312,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($honours as $award)
+                                        @foreach ($honours as $award)
                                             <tr>
                                                 <td class="ps-3"> {{$award->award}} </td>
                                                 <td class="ps-3"> {{$award->awarding_body}} </td>
                                                 <td class="ps-3"> {{$award->date}} </td>
                                             </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="4" class="text-danger text-center">No Honours/Distinctions Found</td>
-                                            </tr>
-                                        @endforelse
+                                        @endforeach
 
                                     </tbody>
                                 </table>
-                            </div>
-                            <div>
-                                {{ $honours->links() }}
                             </div>
                         </div>
                     </div>
@@ -376,7 +336,7 @@
                 <div class="card-header text-white bg-gradient-primary pt-3"><h4>Memberships</h4></div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover" id="memberships" style="width: 100%">
                             <thead>
                                 <tr>
                                 <th scope="col" class="ps-3">Society</th>
@@ -385,23 +345,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($memberships as $membership)
+                                @foreach ($memberships as $membership)
                                     <tr>
                                         <td class="ps-3"> {{$membership->society}} </td>
                                         <td class="ps-3"> {{$membership->class}} </td>
                                         <td class="ps-3"> {{$membership->date}} </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="3" class="text-danger text-center">No Membership Found</td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
 
                             </tbody>
                         </table>
-                    </div>
-                    <div>
-                        {{ $memberships->links() }}
                     </div>
                 </div>
             </div>
@@ -413,7 +366,7 @@
                 <div class="card-header text-white bg-gradient-primary pt-3"><h4>Conferences</h4></div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover" id="conferences" style="width: 100%">
                             <thead>
                                 <tr>
                                 <th scope="col" class="ps-3">Conference</th>
@@ -423,24 +376,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($conferences as $conference)
+                                @foreach ($conferences as $conference)
                                     <tr>
                                         <td class="ps-3"> {{$conference->conference}} </td>
                                         <td class="ps-3"> {{$conference->location}} </td>
                                         <td class="ps-3 text-wrap"> {{$conference->paper_presented}} </td>
                                         <td class="ps-3"> {{$conference->date}} </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="4" class="text-danger text-center">No Conference Found</td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
 
                             </tbody>
                         </table>
-                    </div>
-                    <div>
-                        {{ $conferences->links() }}
                     </div>
                 </div>
             </div>
@@ -463,16 +409,16 @@
                         <!--COMPLETED - Content-->
                         <div class="tab-pane fade show active" id="pills-complete" role="tabpanel" aria-labelledby="pills-complete-tab" tabindex="0">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover" id="researches" style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th scope="col">Research Details</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($researches as $research)
+                                        @foreach($researches as $research)
                                             <tr>
-                                                <td class="text-wrap ">
+                                                <td class="">
                                                     <small class="purple-text">Date</small>
                                                     <p class="text-purple">{{ date('d M, Y', strtotime($research->date)) }}</p>
 
@@ -483,36 +429,29 @@
                                                     <p>{{ $research->publication_number }}</p>
 
                                                     <small class="purple-text">Summary</small>
-                                                    <p>{{ $research->summary }}</p>
+                                                    <p class="text-wrap">{{ $research->summary }}</p>
 
                                                     <small class="purple-text">Findings</small>
                                                     <p>{{ $research->findings }}</p>
                                                 </td>
                                             </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="1">No Reseach found.</td>
-                                            </tr>
-                                        @endforelse
+                                        @endforeach
                                     </tbody>
                                 </table>
-                            </div>
-                            <div>
-                                {{ $awards->links() }}
                             </div>
                         </div>
 
                         <!--ONGOING - Content-->
                         <div class="tab-pane fade" id="pills-ongoing" role="tabpanel" aria-labelledby="pills-ongoing-tab" tabindex="0">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover" id="ongoingResearches" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th scope="col">Research Details</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($ongoingResearches as $research)
+                                        @foreach($ongoingResearches as $research)
                                             <tr>
                                                 <td class="text-wrap ">
                                                     <small class="purple-text">Date</small>
@@ -526,20 +465,11 @@
 
                                                     <small class="purple-text">Findings</small>
                                                     <p>{{ $research->findings }}</p>
-
-
                                                 </td>
                                             </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="1">No Research found.</td>
-                                            </tr>
-                                        @endforelse
+                                        @endforeach
                                     </tbody>
                                 </table>
-                            </div>
-                            <div>
-                                {{ $ongoingResearches->links() }}
                             </div>
                         </div>
                     </div>
@@ -563,14 +493,28 @@
                         <li class="nav-item" role="presentation">
                           <button class="nav-link" id="pills-conference-tab" data-bs-toggle="pill" data-bs-target="#pills-conference" type="button" role="tab" aria-controls="pills-conference" aria-selected="false">Conference Proceedings</button>
                         </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="pills-acceptedPapers-tab" data-bs-toggle="pill" data-bs-target="#pills-acceptedPapers" type="button" role="tab" aria-controls="pills-acceptedPapers" aria-selected="false">Accepted Papers</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="pills-submittedPapers-tab" data-bs-toggle="pill" data-bs-target="#pills-submittedPapers" type="button" role="tab" aria-controls="pills-submittedPapers" aria-selected="false">Submitted Papers</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="pills-creativeWorks-tab" data-bs-toggle="pill" data-bs-target="#pills-creativeWorks" type="button" role="tab" aria-controls="pills-creativeWorks" aria-selected="false">Creatve Works</button>
+                        </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <!--MONOGRAPHS - Content-->
                         <div class="tab-pane fade show active" id="pills-monograph" role="tabpanel" aria-labelledby="pills-monograph-tab" tabindex="0">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover" id="monographs" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
-                                        @forelse($monographs as $publication)
+                                        @foreach($monographs as $publication)
                                             <tr>
                                                 <td class="text-wrap ">
                                                     <small class="purple-text">Title (Year)</small>
@@ -587,9 +531,6 @@
 
                                                     <small class="purple-text">Details</small>
                                                     <p>{{ $publication->details }}</p>
-
-                                                    <small class="purple-text">Journal (Volume)</small>
-                                                    <p>{{ $publication->journal }} {{ $publication->journal_volume }}</p>
 
                                                     <small class="purple-text mb-2">Abstract</small>
                                                     <p class="mt-2">
@@ -609,25 +550,23 @@
 
                                                 </td>
                                             </tr>
-                                        @empty
-                                            <tr class="">
-                                                <td colspan="6" class="text-center text-danger py-5">No Monographs/Books Listed.</td>
-                                            </tr>
-                                        @endforelse
+                                        @endforeach
                                     </tbody>
                                 </table>
-                            </div>
-                            <div>
-                                {{ $monographs->links() }}
                             </div>
                         </div>
 
                         <!--JOURNAL ARTICLES - Content-->
                         <div class="tab-pane fade" id="pills-articles" role="tabpanel" aria-labelledby="pills-articles-tab" tabindex="0">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover" id="articles" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
-                                        @forelse($articles as $publication)
+                                        @foreach($articles as $publication)
                                             <tr>
                                                 <td class="text-wrap ">
                                                     <small class="purple-text">Title (Year)</small>
@@ -644,9 +583,6 @@
 
                                                     <small class="purple-text">Details</small>
                                                     <p>{{ $publication->details }}</p>
-
-                                                    <small class="purple-text">Journal (Volume)</small>
-                                                    <p>{{ $publication->journal }} {{ $publication->journal_volume }}</p>
 
                                                     <small class="purple-text mb-2">Abstract</small>
                                                     <p class="mt-2">
@@ -665,25 +601,23 @@
                                                     </p>
                                                 </td>
                                             </tr>
-                                        @empty
-                                            <tr class="">
-                                                <td class="text-center text-danger py-5">No Journal Articles Listed.</td>
-                                            </tr>
-                                        @endforelse
+                                        @endforeach
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="mt-2">
-                                {{ $articles->links() }}
                             </div>
                         </div>
 
                         <!--CONFERENCE PROCEEDINGS - Content-->
                         <div class="tab-pane fade" id="pills-conference" role="tabpanel" aria-labelledby="pills-conference-tab" tabindex="0">
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover" id="conferenceProceedings" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
-                                        @forelse($conferenceProceedings as $publication)
+                                        @foreach($conferenceProceedings as $publication)
                                             <tr>
                                                 <td class="text-wrap ">
                                                     <small class="purple-text">Title (Year)</small>
@@ -700,9 +634,6 @@
 
                                                     <small class="purple-text">Details</small>
                                                     <p>{{ $publication->details }}</p>
-
-                                                    <small class="purple-text">Journal (Volume)</small>
-                                                    <p>{{ $publication->journal }} {{ $publication->journal_volume }}</p>
 
                                                     <small class="purple-text mb-2">Abstract</small>
                                                     <p class="mt-2">
@@ -721,20 +652,195 @@
                                                     </p>
                                                 </td>
                                             </tr>
-                                        @empty
-                                            <tr class="">
-                                                <td class="text-center text-danger py-5">No Conference Proceedings Listed.</td>
-                                            </tr>
-                                        @endforelse
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="mt-2">
-                                {{ $conferenceProceedings->links() }}
+                        </div>
+
+                        <!--ACCEPTED PAPERS - Content-->
+                        <div class="tab-pane fade" id="pills-acceptedPapers" role="tabpanel" aria-labelledby="pills-acceptedPapers-tab" tabindex="0">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover" id="acceptedPapers" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($acceptedPapers as $paper)
+                                            <tr>
+                                                <td class="text-wrap ">
+                                                    <small class="purple-text">Title (Year)</small>
+                                                    <p class="text-purple">{{ $paper->title }} ({{ $paper->year }})</p>
+
+                                                    <small class="purple-text">Authors</small>
+                                                    <p>{{ $paper->authors }}</p>
+
+                                                    <small class="purple-text">Journal (Volume)</small>
+                                                    <p>{{ $paper->journal }} {{ $paper->journal_volume }}</p>
+
+                                                    <small class="purple-text mb-2">Abstract</small>
+                                                    <p class="mt-2">
+                                                        {{ $paper->abstractFileName }} <button class="btn btn-sm btn-gradient-primary ms-2" wire:click="downloadAbstract('{{ $paper->abstract }}')"><i class="fas fa-cloud-download-alt"></i> Download Abstract</button>
+                                                    </p>
+
+                                                    <small class="purple-text">Evidence (Letter from the Editor)</small>
+                                                    <p class="mt-2">
+                                                        {{ $paper->evidenceFileName }} <button class="btn btn-sm btn-gradient-primary ms-2" wire:click="downloadEvidence('{{ $paper->evidence }}')"><i class="fas fa-cloud-download-alt"></i> Download Evidence</button>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!--SUBMITTED PAPERS - Content-->
+                        <div class="tab-pane fade" id="pills-submittedPapers" role="tabpanel" aria-labelledby="pills-submittedPapers-tab" tabindex="0">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover" id="submittedPapers" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($submittedPapers as $paper)
+                                            <tr>
+                                                <td class="text-wrap ">
+                                                    <small class="purple-text">Title (Year)</small>
+                                                    <p class="text-purple">{{ $paper->title }} ({{ $paper->year }})</p>
+
+                                                    <small class="purple-text">Authors</small>
+                                                    <p>{{ $paper->authors }}</p>
+
+                                                    <small class="purple-text">Journal (Volume)</small>
+                                                    <p>{{ $paper->journal }} {{ $paper->journal_volume }}</p>
+
+                                                    <small class="purple-text mb-2">Abstract</small>
+                                                    <p class="mt-2">
+                                                        {{ $paper->abstractFileName }} <button class="btn btn-sm btn-gradient-primary ms-2" wire:click="downloadAbstract('{{ $paper->abstract }}')"><i class="fas fa-cloud-download-alt"></i> Download Abstract</button>
+                                                    </p>
+
+                                                    <small class="purple-text">Evidence (Letter from the Editor)</small>
+                                                    <p class="mt-2">
+                                                        {{ $paper->evidenceFileName }} <button class="btn btn-sm btn-gradient-primary ms-2" wire:click="downloadEvidence('{{ $paper->evidence }}')"><i class="fas fa-cloud-download-alt"></i> Download Evidence</button>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!--CREATIVE WORKS - Content-->
+                        <div class="tab-pane fade" id="pills-creativeWorks" role="tabpanel" aria-labelledby="pills-creativeWorks-tab" tabindex="0">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover" id="creativeWorks" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="ps-3">Title</th>
+                                            <th scope="col" class="ps-3">Author</th>
+                                            <th scope="col" class="ps-3">Category</th>
+                                            <th scope="col" class="ps-3">Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($creativeWorks as $creativeWork)
+                                            <tr>
+                                                <td class="ps-3"> {{$creativeWork->title}} </td>
+                                                <td class="ps-3"> {{$creativeWork->author}} </td>
+                                                <td class="ps-3 text-wrap"> {{$creativeWork->category}} </td>
+                                                <td class="ps-3"> {{$creativeWork->date}} </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
+
+        <!--Administrations-->
+        <div class="col-md-12 mb-3">
+            <div class="card">
+                <div class="card-header text-white bg-gradient-primary pt-3"><h4>University Administration</h4></div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="administrations" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Administration Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($administrations as $administration)
+                                    <tr>
+                                        <td class="text-wrap ">
+                                            <small class="purple-text">Year</small>
+                                            <p class="text-purple">{{ $administration->date }}</p>
+
+                                            <small class="purple-text">Duty</small>
+                                            <p>{{ $administration->duty }}</p>
+
+                                            <small class="purple-text">Experience</small>
+                                            <p>{{ $administration->experience }}</p>
+
+                                            <small class="purple-text">Commending Officer</small>
+                                            <p>{{ $administration->commending_officer }}</p>
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Community Services-->
+        <div class="col-md-12 mb-3">
+            <div class="card">
+                <div class="card-header text-white bg-gradient-primary pt-3"><h4>Community Service</h4></div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="services" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($services as $service)
+                                    <tr>
+                                        <td class="text-wrap ">
+                                            <small class="purple-text">Year</small>
+                                            <p class="text-purple">{{ $service->date }}</p>
+
+                                            <small class="purple-text">Duty</small>
+                                            <p>{{ $service->duty }}</p>
+
+                                            <small class="purple-text">Experience</small>
+                                            <p>{{ $service->experience }}</p>
+
+                                            <small class="purple-text">Commending Officer</small>
+                                            <p>{{ $service->commending_officer }}</p>
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -749,5 +855,30 @@
             $('#uploadPhotoModal').modal('hide');
             $('#deletePhotoModal').modal('hide');
         });
+
+        const tables = [
+            '#experiences',
+            '#awards',
+            '#honours',
+            '#memberships',
+            '#conferences',
+            '#Iqualifications',
+            '#Aqualifications',
+            '#researches',
+            '#ongoingResearches',
+            '#monographs',
+            '#articles',
+            '#conferenceProceedings',
+            '#administrations',
+            '#acceptedPapers',
+            '#submittedPapers',
+            '#services',
+            '#creativeWorks'
+            ];
+
+        tables.forEach(tableId => {
+            new DataTable(tableId);
+        });
+
     </script>
 @endsection

@@ -29,7 +29,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Add New Conference</h4>
-                <form wire:submit.prevent="storeConference" class="">
+                <form wire:submit="storeConference" class="">
                     <div class="form-group">
                         <label>Conference</label>
                         <input type="text" wire:model.defer="conference" class="form-control" placeholder="Conference" required>
