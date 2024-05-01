@@ -33,7 +33,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Add New Item</h4>
-                <form wire:submit.prevent="storeCreativeWork" class="mt-3">
+                <form wire:submit="storeCreativeWork" class="mt-3">
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" wire:model.defer="title" class="form-control" placeholder="Title" required>

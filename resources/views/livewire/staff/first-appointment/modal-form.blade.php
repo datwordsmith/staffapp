@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="storeAppointment">
+                <form wire:submit="storeAppointment">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 form-group">
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="updateAppointment">
+                <form wire:submit="updateAppointment">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 form-group">
@@ -129,7 +129,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyAppointment()">
+                <form wire:submit="destroyAppointment()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this Record?</h4>
                     </div>

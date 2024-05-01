@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="updateConference()">
+                <form wire:submit="updateConference()">
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Conference</label>
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyConference()">
+                <form wire:submit="destroyConference()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this Conference?</h4>
                     </div>

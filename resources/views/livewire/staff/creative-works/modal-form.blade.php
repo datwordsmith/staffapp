@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="updateCreativeWork()">
+                <form wire:submit="updateCreativeWork()">
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Title</label>
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyCreativeWork()">
+                <form wire:submit="destroyCreativeWork()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this item?</h4>
                     </div>

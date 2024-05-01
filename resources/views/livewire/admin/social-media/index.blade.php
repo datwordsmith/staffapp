@@ -15,7 +15,7 @@
             <div class="card-body">
                 <h4 class="card-title mb-4">Add New Platform</h4>
 
-                <form wire:submit.prevent="storePlatform" class="">
+                <form wire:submit="storePlatform" class="">
                     <div class="form-group">
                         <label for="platform">Platform</label>
                         <input type="text" wire:model.defer="name" class="form-control" placeholder="Social Media Platform">

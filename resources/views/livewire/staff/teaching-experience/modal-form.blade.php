@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="storeExperience" class="">
+                <form wire:submit="storeExperience" class="">
                     <div class="modal-body">
                         <p><small>(Indicate courses taught with dates, credit units, total hours of lecture, practical/field work
                             involved, indicate as well, number of lecturers co-teaching the courses)</small></p>
@@ -96,7 +96,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="updateExperience()">
+                <form wire:submit="updateExperience()">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 form-group">
@@ -175,7 +175,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyExperience()">
+                <form wire:submit="destroyExperience()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this Experience?</h4>
                     </div>

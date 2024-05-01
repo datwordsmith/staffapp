@@ -70,15 +70,9 @@
                                         <td>{{ $aper->created_at->format('d-m-Y') }}</td>
                                         <td>
                                             <div class="d-flex justify-content-end">
-                                                @if($aper->status_id > 1)
-                                                    <a href="#" wire:click="deleteAper({{ $aper->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAperModal">
-                                                        <i class="fa-solid fa-trash-can"></i>
-                                                    </a>
-                                                @else
-                                                    <a wire:click="viewAper({{ $aper->id }})" class="btn btn-sm btn-primary">
-                                                        <i class="fa-solid fa-folder-open"></i> View
-                                                    </a>
-                                                @endif
+                                                <a wire:click="viewAper({{ $aper->id }})" class="btn btn-sm btn-primary">
+                                                    <i class="fa-solid fa-folder-open"></i> View
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -100,10 +94,5 @@
 </div>
 
 @section('scripts')
-    <script>
-        window.addEventListener('close-modal', event => {
-            $('#addAperModal').modal('hide');
-            $('#deleteAperModal').modal('hide');
-        });
-    </script>
+
 @endsection

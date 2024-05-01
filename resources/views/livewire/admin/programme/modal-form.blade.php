@@ -14,11 +14,11 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="storeProgramme()">
+                <form wire:submit="storeProgramme()">
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Faculty</label>
-                            <select class="form-select form-control form-control-lg" wire:model.defer="faculty_id" wire:change="$emit('faculty_id', $event.target.value)" required>
+                            <select class="form-select form-control form-control-lg" wire:model.defer="faculty_id" wire:change="$dispatch('faculty_id', $event.target.value)" required>
                                 <option value="">Select a Faculty</option>
                                 @foreach ($faculties as $faculty)
                                     <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
@@ -74,11 +74,11 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="updateDepartment()">
+                <form wire:submit="updateDepartment()">
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Faculty</label>
-                            <select class="form-select form-control form-control-lg" wire:model.defer="faculty_id" wire:change="$emit('faculty_id', $event.target.value)" required>
+                            <select class="form-select form-control form-control-lg" wire:model.defer="faculty_id" wire:change="$dispatch('faculty_id', $event.target.value)" required>
                                 <option value="">Select a Faculty</option>
                                 @foreach ($faculties as $faculty)
                                     <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
@@ -134,7 +134,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyProgramme()">
+                <form wire:submit="destroyProgramme()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this programme - "{{ $deleteName }}"?</h4>
                     </div>

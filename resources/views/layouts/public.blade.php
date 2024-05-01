@@ -45,9 +45,9 @@ Fixed Navigation
             @auth
                 <li class="nav-item">
                     @can('superadmin')
-                    <a class="btn btn-success" href="{{url('admin/staff')}}"><i class="bi bi-person"></i> Dashboard</a>
+                    <a class="btn btn-success" href="{{url('admin/academicstaff')}}"><i class="bi bi-person"></i> Dashboard</a>
                     @elsecan('admin')
-                    <a class="btn btn-success" href="{{url('admin/staff')}}"><i class="bi bi-person"></i> Dashboard</a>
+                    <a class="btn btn-success" href="{{url('admin/academicstaff')}}"><i class="bi bi-person"></i> Dashboard</a>
                     @elsecan('staff')
                         <a class="btn btn-info" href="{{ url('staff/profile') }}"><i class="bi bi-person"></i> My Profile</a>
                     @endcan

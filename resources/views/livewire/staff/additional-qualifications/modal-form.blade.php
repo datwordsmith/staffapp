@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="updateQualification()">
+                <form wire:submit="updateQualification()">
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Institution</label>
@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyQualification()">
+                <form wire:submit="destroyQualification()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this Qualification?</h4>
                     </div>

@@ -79,7 +79,6 @@
                                                 {{ $paper->evidenceFileName }} <button class="btn btn-sm btn-gradient-primary ms-2" wire:click="downloadEvidence('{{ $paper->evidence }}')"><i class="fas fa-cloud-download-alt"></i> Download Evidence</button>
                                                 <a href="#" wire:click="editPaper({{ $paper->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#changeEvidenceModal"><i class="fa-solid fa-pen-nib"></i></a>
                                             </p>
-
                                         </td>
                                         <td class="align-top">
                                             <div class="d-flex justify-content-end">

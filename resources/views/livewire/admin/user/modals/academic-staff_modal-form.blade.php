@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="storeAcademicStaff()">
+                <form wire:submit="storeAcademicStaff()">
                     <div class="modal-body">
 
                         <div class="form-group">
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form-group">
-                            <select class="form-select form-control form-control-lg" wire:model.defer="faculty_id" wire:change="$emit('faculty_id', $event.target.value)" required>
+                            <select class="form-select form-control form-control-lg" wire:model.defer="faculty_id" wire:change="$dispatch('faculty_id', $event.target.value)" required>
                                 <option value="">Select a Faculty</option>
                                 @foreach ($faculties as $faculty)
                                     <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
@@ -80,7 +80,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="deactivateAcademicStaff()">
+                <form wire:submit="deactivateAcademicStaff()">
                     <div class="modal-body">
                         <h4>Are you sure you want to deactivate this user - "{{ $banStaffId }}"?</h4>
                     </div>
@@ -112,7 +112,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyAcademicStaff()">
+                <form wire:submit="destroyAcademicStaff()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this user - "{{ $deleteStaffId }}"?</h4>
                     </div>

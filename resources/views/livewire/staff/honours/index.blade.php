@@ -28,7 +28,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Add New Honour/Distinction</h4>
-                <form wire:submit.prevent="storeAward">
+                <form wire:submit="storeAward">
                     <div class="form-group">
                         <label>Award</label>
                         <input type="text" wire:model.defer="award" class="form-control" placeholder="Award" required>

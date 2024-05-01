@@ -26,7 +26,7 @@
             <div class="card-body">
                 <h4 class="card-title mb-4">Add New Title</h4>
 
-                <form wire:submit.prevent="storeTitle" class="">
+                <form wire:submit="storeTitle" class="">
                     <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" wire:model.defer="name" class="form-control" placeholder="Title">

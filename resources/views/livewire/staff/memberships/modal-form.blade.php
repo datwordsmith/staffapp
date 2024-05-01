@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="updateMembership()">
+                <form wire:submit="updateMembership()">
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Society</label>
@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit.prevent="destroyMembership()">
+                <form wire:submit="destroyMembership()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this Membership?</h4>
                     </div>
