@@ -116,5 +116,13 @@
             $('#updateAwardModal').modal('hide');
             $('#deleteAwardModal').modal('hide');
         });
+
+        var modals = ['#updateAwardModal', '#deleteAwardModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

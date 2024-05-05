@@ -13,7 +13,7 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $department_id, $name, $description, $faculty_id, $deleteName;
+    public $faculties, $department_id, $name, $description, $faculty_id, $deleteName;
     public $search;
 
     public function rules()

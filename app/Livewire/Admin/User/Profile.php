@@ -49,14 +49,25 @@ class Profile extends Component
     public function render()
     {
 
+
+
         $pendingEvaluation = APER::where('user_id', $this->user->id)
-            ->whereHas('evaluation')
-            ->exists();
+            ->whereDoesntHave('evaluation')
+            ->first();
+
 
         $pendingApproval = APER::where('user_id', $this->user->id)
-            ->leftJoin('aper_evaluation', 'aper_evaluation.aper_id', '=', 'aper.id')
-            ->where('aper_evaluation.status_id', 2)
-            ->exists();
+            ->whereHas('evaluation', function ($query) {
+                $query->where('status_id', 2);
+            })
+            ->whereDoesntHave('approval')
+            ->first();
+
+        $isApproved = APER::where('user_id', $this->user->id)
+            ->whereHas('approval')
+            ->first();
+
+        //dd($isApproved);
 
 
         $socials = socialMedia::where('user_id', $this->user->id)
@@ -178,6 +189,7 @@ class Profile extends Component
             'services' => $services,
             'pendingEvaluation' => $pendingEvaluation,
             'pendingApproval' => $pendingApproval,
+            'isApproved' => $isApproved,
             ])->extends('layouts.admin')->section('content');
     }
 }

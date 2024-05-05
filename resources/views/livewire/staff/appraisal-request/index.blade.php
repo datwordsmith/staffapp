@@ -61,10 +61,8 @@
                         </div>
                     @endif
                     <div class="table-responsive">
-                        <div class="mb-3">
-                            <input type="text" class="form-control" wire:model="search" placeholder="Search...">
-                        </div>
-                        <table class="table table-striped table-hover" id="aperTable">
+
+                        <table class="table table-striped table-hover" id="aperTable" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th scope="col">Date Submitted</th>
@@ -89,14 +87,15 @@
                                         <td>{{ $aper->updated_at }}</td>
                                         <td>
                                             <div class="d-flex justify-content-end">
-                                                @if($aper->status_id > 1)
+                                                @if(!$aper->evaluation)
                                                     <a href="#" wire:click="deleteAper({{ $aper->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAperModal">
                                                         <i class="fa-solid fa-trash-can"></i>
                                                     </a>
-                                                @else
-                                                    <a wire:click="viewAper({{ $aper->id }})" class="btn btn-sm btn-primary">
+                                                @elseif($aper->approval)
+                                                    <a href="{{ route('aperview', ['aperId' => $aper->id]) }}" class="btn btn-sm btn-primary">
                                                         <i class="fa-solid fa-folder-open"></i> View
                                                     </a>
+                                                @else
                                                 @endif
                                             </div>
                                         </td>
@@ -109,9 +108,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="mt-2">
-                        {{ $apers->links() }}
-                    </div>
                 </div>
             </div>
         </div>
@@ -123,6 +119,15 @@
         window.addEventListener('close-modal', event => {
             $('#addAperModal').modal('hide');
             $('#deleteAperModal').modal('hide');
+        });
+        new DataTable('#aperTable');
+
+        var modals = ['#addAperModal', '#deleteAperModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
         });
 
         $(document).ready(function() {

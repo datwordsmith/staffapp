@@ -19,9 +19,8 @@ class AcademicStaff extends Component
     protected $paginationTheme = 'bootstrap';
     public $user_id, $staffId, $email, $role_as;
     public $banStaffId, $deleteStaffId;
-    public $faculty_id, $department_id;
+    public $faculty_id, $departments, $department_id;
     public $search;
-    protected $listeners = ['faculty_id' => 'updatedFacultyId'];
 
     public function rules()
     {
@@ -53,9 +52,9 @@ class AcademicStaff extends Component
         $this->resetInput();
     }
 
-    public function updatedFacultyId($value)
+    public function updated($faculty_id)
     {
-        $this->departments = Department::where('faculty_id', $value)->orderBy('name')->get();
+        $this->departments = Department::where('faculty_id', $this->faculty_id)->orderBy('name')->get();
     }
 
     public function storeAcademicStaff()
@@ -168,7 +167,6 @@ class AcademicStaff extends Component
             'users' => $users,
             'deleteStaffId' => $this->deleteStaffId,
             'faculties'=>$this->faculties,
-            'departments' => $this->departments,
             ])->extends('layouts.admin')->section('content');
     }
 }

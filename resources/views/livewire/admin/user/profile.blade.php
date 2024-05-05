@@ -20,30 +20,42 @@
 
     <div class="row">
         <div class="col-md-12">
-            @if(!$pendingEvaluation)
-                <div class="alert alert-warning d-flex justify-content-between align-items-cente" role="alert">
+            @if($pendingEvaluation)
+                <div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert">
                     <div>
                         <strong class="alert-heading">Evaluation Request</strong>
                         for Annual Performance Evaluation Report (APER)
                     </div>
                     <div>
-                        <a href="#" class="btn btn-sm btn-warning">
+                        <a href="{{ route('evaluate', ['aperId' => $pendingEvaluation->id]) }}" class="btn btn-sm btn-warning">
                             Evaluate
                         </a>
                     </div>
                 </div>
             @elseif($pendingApproval)
-                <div class="alert alert-danger d-flex justify-content-between align-items-cente" role="alert">
+                <div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">
                     <div>
                         <strong class="alert-heading">Approval Request</strong>
                         for Annual Performance Evaluation Report (APER)
                     </div>
                     <div>
-                        <a href="#" class="btn btn-sm btn-info">
+                        <a href="{{ route('approval', ['aperId' => $pendingApproval->id]) }}" class="btn btn-sm btn-info">
                             Approve/Decline
                         </a>
                     </div>
                 </div>
+            @elseif($isApproved)
+                {{--<div class="alert alert-info d-flex justify-content-between align-items-center" role="alert">
+                    <div>
+                        <strong class="alert-heading">View Request</strong>
+                        for Annual Performance Evaluation Report (APER)
+                    </div>
+                    <div>
+                        <a href="{{ route('aperreport', ['aperId' => $isApproved->id]) }}" class="btn btn-sm btn-info">
+                            View
+                        </a>
+                    </div>
+                </div> --}}
             @else
             @endif
         </div>
@@ -865,6 +877,15 @@
             $('#banStaffModal').modal('hide');
             $('#deleteStaffModal').modal('hide');
         });
+
+        var modals = ['#addStaffModal', '#banStaffModal', '#deleteStaffModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
+
 
         const tables = [
             '#experiences',

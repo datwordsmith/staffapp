@@ -124,5 +124,13 @@
             $('#updateConferenceModal').modal('hide');
             $('#deleteConferenceModal').modal('hide');
         });
+
+        var modals = ['#updateConferenceModal', '#deleteConferenceModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

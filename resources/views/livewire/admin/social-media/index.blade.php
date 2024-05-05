@@ -97,5 +97,13 @@
             $('#updatePlatformModal').modal('hide');
             $('#deletePlatformModal').modal('hide');
         });
+
+        var modals = ['#updatePlatformModal', '#deletePlatformModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

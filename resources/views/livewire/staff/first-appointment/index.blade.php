@@ -92,5 +92,13 @@
             $('#updateAppointmentModal').modal('hide');
             $('#deleteAppointmentModal').modal('hide');
         });
+
+        var modals = ['#addAppointmentModal', '#updateAppointmentModal', '#deleteAppointmentModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

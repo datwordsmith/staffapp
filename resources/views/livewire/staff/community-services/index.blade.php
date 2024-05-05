@@ -104,5 +104,13 @@
             $('#updateServiceModal').modal('hide');
             $('#deleteServiceModal').modal('hide');
         });
+
+        var modals = ['#addServiceModal', '#updateServiceModal', '#deleteServiceModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

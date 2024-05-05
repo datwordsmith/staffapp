@@ -117,5 +117,13 @@
             $('#updateQualificationModal').modal('hide');
             $('#deleteQualificationModal').modal('hide');
         });
+
+        var modals = ['#updateQualificationModal', '#deleteQualificationModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

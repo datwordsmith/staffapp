@@ -14,6 +14,7 @@ class AperApproval extends Model
     protected $fillable = [
         'aper_id',
         'approver_id',
+        'grade',
         'status_id',
         'note',
     ];

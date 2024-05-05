@@ -116,5 +116,13 @@
             $('#updateMembershipModal').modal('hide');
             $('#deleteMembershipModal').modal('hide');
         });
+
+        var modals = ['#updateMembershipModal', '#deleteMembershipModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

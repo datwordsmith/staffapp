@@ -100,5 +100,13 @@
             $('#updateResearchModal').modal('hide');
             $('#deleteResearchModal').modal('hide');
         });
+
+        var modals = ['#addResearchModal', '#updateResearchModal', '#deleteResearchModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection
