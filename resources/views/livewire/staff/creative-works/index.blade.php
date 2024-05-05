@@ -128,5 +128,13 @@
             $('#updateCreativeWorkModal').modal('hide');
             $('#deleteCreativeWorkModal').modal('hide');
         });
+
+        var modals = ['#updateCreativeWorkModal', '#deleteCreativeWorkModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

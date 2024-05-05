@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('aper_id');
             $table->unsignedBigInteger('approver_id');
+            $table->unsignedBigInteger('grade');
             $table->unsignedBigInteger('status_id');
-            $table->longText('note');
+            $table->longText('note')->nullable();
 
             $table->foreign('aper_id')->references('id')->on('aper')
                 ->onUpdate('cascade')

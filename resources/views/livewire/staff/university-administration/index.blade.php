@@ -104,5 +104,13 @@
             $('#updateAdministrationModal').modal('hide');
             $('#deleteAdministrationModal').modal('hide');
         });
+
+        var modals = ['#addAdministrationModal', '#updateAdministrationModal', '#deleteAdministrationModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

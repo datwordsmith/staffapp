@@ -90,5 +90,13 @@
             $('#updatePublicationModal').modal('hide');
             $('#deletePublicationModal').modal('hide');
         });
+
+        var modals = ['#addPublicationModal', '#updatePublicationModal', '#deletePublicationModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

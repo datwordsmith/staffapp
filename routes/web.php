@@ -33,7 +33,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
 
     Route::get('/faculties', App\Livewire\Admin\Faculty\Index::class);
     Route::get('/departments', App\Livewire\Admin\Department\Index::class);
-    Route::get('/programmes', App\Livewire\Admin\Programme\Index::class);
+    //Route::get('/programmes', App\Livewire\Admin\Programme\Index::class);
 
     Route::get('/academicstaff', App\Livewire\Admin\User\AcademicStaff::class)->name('academicstaff');
     Route::get('/nonacademic-staff', App\Livewire\Admin\User\NonAcademicStaff::class)->name('non-academic-staff');
@@ -41,11 +41,13 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
 
 
     Route::get('/appraisal_requests', App\Livewire\Admin\Aper\Index::class);
-    Route::get('/aper_evaluation/{staffId}', App\Livewire\Admin\Aper\Index::class);
+    Route::get('/aper/{aperId}/evaluation', App\Livewire\Admin\Aper\Evaluation::class)->name('evaluate');
+    Route::get('/aper/{aperId}/approval', App\Livewire\Admin\Aper\Approval::class)->name('approval');
+    Route::get('/aper/{aperId}/report', App\Livewire\Admin\Aper\Report::class)->name('aperreport');
 });
 
 Route::prefix('staff')->middleware(['isStaff'])->group(function (){
-    Route::get('/profile', App\Livewire\Staff\Profile\Index::class);
+    Route::get('/profile', App\Livewire\Staff\Profile\Index::class)->name('myprofile');
     Route::get('/interests', App\Livewire\Staff\Interests\Index::class);
     // Route::get('/publications', App\Livewire\Staff\Publications\Index::class);
     Route::get('/socialmedia', App\Livewire\Staff\SocialMedia\Index::class);
@@ -68,5 +70,6 @@ Route::prefix('staff')->middleware(['isStaff'])->group(function (){
     Route::get('/journal_articles', App\Livewire\Staff\StaffPublications\JournalArticles::class)->name('journal_articles');
     Route::get('/conference_proceedings', App\Livewire\Staff\StaffPublications\ConferenceProceedings::class)->name('conference_proceedings');
     Route::get('/appraisal_request', App\Livewire\Staff\AppraisalRequest\Index::class);
+    Route::get('/appraisal_request/{aperId}/view', App\Livewire\Staff\AppraisalRequest\View::class)->name('aperview');
 });
 

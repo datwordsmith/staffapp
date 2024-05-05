@@ -121,5 +121,13 @@
             $('#updateDepartmentModal').modal('hide');
             $('#deleteDepartmentModal').modal('hide');
         });
+
+        var modals = ['#updateDepartmentModal', '#deleteDepartmentModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

@@ -132,5 +132,13 @@
             $('#changeAbstractModal').modal('hide');
             $('#changeEvidenceModal').modal('hide');
         });
+
+        var modals = ['#addPublicationModal', '#updatePublicationModal', '#deletePublicationModal', '#changeAbstractModal', '#changeEvidenceModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

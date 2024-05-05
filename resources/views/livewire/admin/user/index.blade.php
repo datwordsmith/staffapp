@@ -100,5 +100,13 @@
             $('#updateProgrammeModal').modal('hide');
             $('#deleteProgrammeModal').modal('hide');
         });
+
+        var modals = ['#addProgrammeModal', '#updateProgrammeModal', '#deleteProgrammeModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

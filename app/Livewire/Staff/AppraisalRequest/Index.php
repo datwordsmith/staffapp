@@ -109,21 +109,7 @@ class Index extends Component
     public function render()
     {
 
-        $apers = APER::where(function ($query) {
-            $query->whereHas('approval.status', function ($q) {
-                    $q->where('name', 'like', '%'.$this->search.'%');
-                    $q->orwhere('name', 'like', '%Pending%');
-                })
-                ->orWhereHas('evaluation.status', function ($q) {
-                    $q->where('name', 'like', '%'.$this->search.'%');
-                    $q->orwhere('name', 'like', '%Pending%');
-                })
-                ->orWhereHas('evaluation', function ($q) {
-                    $q->where('grade', 'like', '%'.$this->search.'%');
-                })
-                ->orWhere('created_at', 'like', '%' . $this->search . '%');
-        })
-        ->where('user_id', $this->user->id)
+        $apers = APER::where('user_id', $this->user->id)
         ->orderBy('created_at', 'ASC')
         ->paginate(5);
 

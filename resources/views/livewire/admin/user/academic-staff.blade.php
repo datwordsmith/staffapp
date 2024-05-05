@@ -133,5 +133,13 @@
             $('#banStaffModal').modal('hide');
             $('#deleteStaffModal').modal('hide');
         });
+
+        var modals = ['#addStaffModal', '#banStaffModal', '#deleteStaffModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

@@ -14,6 +14,7 @@ class Index extends Component
 
     public $post, $grade_step, $first_appointment, $confirmation;
     public $user, $staffId, $deleteName;
+    public $appointment_id;
     public $search;
 
     public function mount()

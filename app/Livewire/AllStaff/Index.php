@@ -41,7 +41,8 @@ class Index extends Component
 
     public function render()
     {
-        $allstaff = User::where(function ($query) {
+        $allstaff = User::whereHas('profile')
+        ->where(function ($query) {
             $query->where('users.staffId', 'like', '%'.$this->search.'%')
                 ->orWhere('users.email', 'like', '%'.$this->search.'%')
                 ->orWhere('profiles.lastname', 'like', '%'.$this->search.'%')

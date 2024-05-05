@@ -107,5 +107,13 @@
             $('#updateFacultyModal').modal('hide');
             $('#deleteFacultyModal').modal('hide');
         });
+
+        var modals = ['#updateFacultyModal', '#deleteFacultyModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

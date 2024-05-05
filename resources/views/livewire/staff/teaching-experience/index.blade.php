@@ -94,5 +94,13 @@
             $('#updateExperienceModal').modal('hide');
             $('#deleteExperienceModal').modal('hide');
         });
+
+        var modals = ['#addExperienceModal', '#updateExperienceModal', '#deleteExperienceModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

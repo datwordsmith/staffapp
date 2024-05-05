@@ -15,7 +15,7 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $programme_id, $name, $description, $department_id, $deleteName;
-    public $faculty_id;
+    public $faculties, $faculty_id;
     public $departments;
     public $search;
     protected $listeners = ['faculty_id' => 'updatedFacultyId'];

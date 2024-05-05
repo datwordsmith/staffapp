@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form-group">
-                            <select class="form-select form-control form-control-lg" wire:model.defer="faculty_id" wire:change="$dispatch('faculty_id', $event.target.value)" required>
+                            <select class="form-select form-control form-control-lg" wire:model.live="faculty_id" required>
                                 <option value="">Select a Faculty</option>
                                 @foreach ($faculties as $faculty)
                                     <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>

@@ -99,5 +99,13 @@
         window.addEventListener('close-modal', event => {
             $('#deleteSocialMediaModal').modal('hide');
         });
+
+        var modals = ['#deleteSocialMediaModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

@@ -99,5 +99,13 @@
             $('#updateTitleModal').modal('hide');
             $('#deleteTitleModal').modal('hide');
         });
+
+        var modals = ['#updateTitleModal', '#deleteTitleModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
     </script>
 @endsection

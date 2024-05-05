@@ -28,7 +28,8 @@
         <div class="collapse" id="staff-menu">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('academicstaff') }}">Academic Staff</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ route('non-academic-staff')}}">Non-academic Staff</a></li>
+            {{-- <li class="nav-item"> <a class="nav-link" href="">Non-academic Staff</a></li> --}}
+            <li class="nav-item"> <a class="nav-link" href="#">Non-academic Staff</a></li>
           </ul>
         </div>
       </li>
@@ -63,7 +64,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url('admin/appraisal_requests')}}">
           <span class="menu-title">Appraisal Requests</span>
-          <i class="fa-solid fa-users-gear menu-icon"></i>
+          <i class="fa-solid fa-chart-line menu-icon"></i>
         </a>
       </li>
 

@@ -40,7 +40,6 @@ return new class extends Migration
 
             $table->unsignedFloat('grade');
             $table->unsignedBigInteger('status_id');
-            $table->longText('note');
 
             $table->foreign('aper_id')->references('id')->on('aper')
                 ->onUpdate('cascade')

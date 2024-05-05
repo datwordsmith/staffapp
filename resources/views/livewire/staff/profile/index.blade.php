@@ -856,6 +856,15 @@
             $('#deletePhotoModal').modal('hide');
         });
 
+
+        var modals = ['#updateBioModal', '#deleteBioModal', '#uploadPhotoModal', '#deletePhotoModal'];
+        modals.forEach(function(modalId) {
+            $(modalId).on('hidden.bs.modal', function () {
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            });
+        });
+
         const tables = [
             '#experiences',
             '#awards',

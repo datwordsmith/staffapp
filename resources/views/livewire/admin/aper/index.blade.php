@@ -39,10 +39,7 @@
                         </div>
                     @endif
                     <div class="table-responsive">
-                        <div class="mb-3">
-                            <input type="text" class="form-control" wire:model="search" placeholder="Search...">
-                        </div>
-                        <table class="table table-striped table-hover" id="aperTable">
+                        <table class="table table-striped table-hover" id="aperTable" style="width: 100%">
                             <thead>
                                 <tr>
 
@@ -56,7 +53,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($apers as $aper)
+                                @foreach ($apers as $aper)
                                     <tr>
                                         <td>{{ $aper->staffId }}</td>
                                         <td>{{ $aper->title }}  {{ $aper->lastname }} {{$aper->firstname}}</td>
@@ -70,22 +67,21 @@
                                         <td>{{ $aper->created_at->format('d-m-Y') }}</td>
                                         <td>
                                             <div class="d-flex justify-content-end">
-                                                <a wire:click="viewAper({{ $aper->id }})" class="btn btn-sm btn-primary">
-                                                    <i class="fa-solid fa-folder-open"></i> View
-                                                </a>
+                                                @if($aper->approval)
+                                                    <a href="{{ route('aperreport', ['aperId' => $aper->id]) }}" class="btn btn-sm btn-primary">
+                                                        <i class="fa-solid fa-folder-open"></i> View
+                                                    </a>
+                                                @else
+                                                    <a wire:click="viewAper({{ $aper->id }})" class="btn btn-sm btn-primary">
+                                                        <i class="fa-solid fa-folder-open"></i> View
+                                                    </a>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="7" class="text-danger text-center">No Appraisal Request Found</td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
-                    </div>
-                    <div class="mt-2">
-                        {{ $apers->links() }}
                     </div>
                 </div>
             </div>
@@ -94,5 +90,8 @@
 </div>
 
 @section('scripts')
+    <script>
+        new DataTable('#aperTable');
+    </script>
 
 @endsection
