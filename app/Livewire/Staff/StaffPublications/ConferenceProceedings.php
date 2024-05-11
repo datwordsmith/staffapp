@@ -19,6 +19,7 @@ class ConferenceProceedings extends Component
     public $title, $authors, $year, $journal, $journal_volume, $doi, $details, $abstract, $evidence, $category_id;
     public $user, $staffId, $deleteName;
     public $search;
+    public $publication_id;
 
     public function mount()
     {

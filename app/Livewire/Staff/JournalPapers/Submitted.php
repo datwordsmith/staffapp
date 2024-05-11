@@ -19,6 +19,7 @@ class Submitted extends Component
     public $title, $authors, $year, $journal, $journal_volume, $abstract, $evidence, $isSubmitted;
     public $user, $staffId, $deleteName;
     public $search;
+    public $paper_id;
 
     public function mount()
     {

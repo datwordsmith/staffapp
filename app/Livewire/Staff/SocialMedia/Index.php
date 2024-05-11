@@ -14,6 +14,8 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $socialPlatform_id, $socialmedia, $url;
+    public $socialMediaPlatforms;
+    public $socialMedia_id;
     public $user, $staffId, $deleteName;
     public $search;
 

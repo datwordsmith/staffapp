@@ -12,7 +12,7 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $interest;
+    public $interest_id, $interest;
     public $user, $staffId, $deleteName;
     public $search;
 
@@ -83,12 +83,6 @@ class Index extends Component
             $interest = Interests::FindOrFail($this->interest_id);
             $interest->delete();
             session()->flash('message', 'Interest deleted successfully.');
-        } catch (\Illuminate\Database\QueryException $e) {
-            if ($e->errorInfo[1] == 1451) { // check if error is foreign key constraint violation
-                session()->flash('error', 'Cannot delete interest because it is referenced in user profile.');
-            } else {
-                session()->flash('error', 'An error occurred while deleting the interest.');
-            }
         } catch (\Exception $e) {
             session()->flash('error', 'An error occurred while deleting the interest.');
         }

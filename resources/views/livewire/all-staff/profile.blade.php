@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            <div class="col-md-8 mb-3">
+            {{-- <div class="col-md-8 mb-3">
                 <div class="card borderless shadow">
                     <div class="card-header text-white bkg-primary pt-3"><h4>Publications</h4></div>
                     <div class="card-body">
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
 
         </div>

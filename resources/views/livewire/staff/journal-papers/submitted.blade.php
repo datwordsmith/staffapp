@@ -115,7 +115,7 @@
             $('#changeEvidenceModal').modal('hide');
         });
 
-        var modals = ['#addPaperModal', '#updatePaperModal', '#deletePaperModal', '#changeAbstractModal'. '#changeEvidenceModal'];
+        var modals = ['#addPaperModal', '#updatePaperModal', '#deletePaperModal', '#changeAbstractModal', '#changeEvidenceModal'];
         modals.forEach(function(modalId) {
             $(modalId).on('hidden.bs.modal', function () {
                 $('body').removeClass('modal-open');
