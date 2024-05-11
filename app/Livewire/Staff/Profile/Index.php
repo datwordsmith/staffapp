@@ -37,7 +37,7 @@ class Index extends Component
     use WithFileUploads;
     protected $paginationTheme = 'bootstrap';
 
-    public $profile, $biography, $photo;
+    public $profile_id, $profile, $biography, $photo;
     public $maxBioCharacters = 1000;
     public $user, $staffId;
     public $title_id, $lastname, $firstname, $othername, $dob, $designation;

@@ -16,6 +16,8 @@ class Index extends Component
     public $user, $staffId, $deleteName;
     public $search;
 
+    public $qualification_id;
+
     public function mount()
     {
         $this->user = Auth::user();

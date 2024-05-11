@@ -25,7 +25,7 @@
                         <label for="icon">Icon</label>
                         <input type="text" wire:model.defer="icon" class="form-control" placeholder="Icon Class">
                         <small>Eg: <em class="text-secondary">"fa-brands fa-facebook"</em></small>
-                        <p><small><a href="fontawesome.com/v6/search?o=r&m=free&f=brands" target="_blank">See More Icon Classes</a></small></p>
+                        <p><small><a href="https://fontawesome.com/v6/search?o=r&m=free&f=brands" target="_blank">See More Icon Classes</a></small></p>
                         @error('icon') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
                     <div class="d-flex justify-content-end">

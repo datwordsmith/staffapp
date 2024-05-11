@@ -14,6 +14,7 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $title, $author, $category, $date;
+    public $creativeWork_id;
     public $user, $staffId, $deleteName;
     public $search;
 

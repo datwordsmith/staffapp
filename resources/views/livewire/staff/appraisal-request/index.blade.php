@@ -33,13 +33,12 @@
             </ul>
         </div>
     @else
-
+        @if(!$isPending)
             <div class="d-flex justify-content-end mb-3 me-auto">
                 <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addAperModal">
                     <i class="fa-solid fa-plus"></i> New Request
                 </button>
             </div>
-            @if($isPending)
         @endif
     @endif
 

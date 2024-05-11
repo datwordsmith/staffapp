@@ -15,6 +15,7 @@ class Index extends Component
     public $society, $class, $date;
     public $user, $staffId, $deleteName;
     public $search;
+    public $membership_id;
 
     public function mount()
     {

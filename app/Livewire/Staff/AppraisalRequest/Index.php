@@ -20,6 +20,8 @@ class Index extends Component
     public $user, $staffId, $deleteName;
     public $search;
 
+    public $aper_id;
+
     public function mount()
     {
         $this->user = Auth::user();
@@ -86,16 +88,18 @@ class Index extends Component
     {
         try {
             $aper = APER::FindOrFail($this->aper_id);
-            $aper->delete();
-            session()->flash('message', 'Appraisal Request deleted successfully.');
-        } catch (\Illuminate\Database\QueryException $e) {
-            if ($e->errorInfo[1] == 1451) { // check if error is foreign key constraint violation
-                session()->flash('error', 'Cannot delete request because it is referenced in user profile.');
+
+            $hasEvaluation = $aper->evaluation()->exists();
+
+            if ($hasEvaluation) {
+                session()->flash('error', 'Cannot delete request because it is referenced in evaluation table.');
             } else {
-                session()->flash('error', 'An error occurred while deleting the request.');
+                $aper->delete();
+                session()->flash('message', 'Appraisal Request deleted successfully.');
             }
+
         } catch (\Exception $e) {
-            session()->flash('error', 'An error occurred while deleting the request.');
+            session()->flash('error', 'An error occurred while deleting the award.');
         }
 
         $this->dispatch('close-modal');
@@ -115,11 +119,25 @@ class Index extends Component
 
 
 
-        $isPending = APER::where('user_id', $this->user->id)
+        /* $isPending = APER::where('user_id', $this->user->id)
             ->leftJoin('aper_evaluation', 'aper_evaluation.aper_id', '=', 'aper.id')
             ->leftJoin('aper_approval', 'aper_approval.aper_id', '=', 'aper.id')
             ->whereNotNull('aper_evaluation.aper_id')
             ->whereNotNull('aper_approval.aper_id')
+            ->exists(); */
+
+        $isPending = APER::where('user_id', $this->user->id)
+            ->leftJoin('aper_evaluation', 'aper_evaluation.aper_id', '=', 'aper.id')
+            ->leftJoin('aper_approval', 'aper_approval.aper_id', '=', 'aper.id')
+            ->where(function ($query) {
+                // Check if there's no evaluation record or if the evaluation status is not 2
+                $query->whereNull('aper_evaluation.aper_id')
+                      ->orWhere('aper_evaluation.status_id', '<>', 2);
+            })
+            ->orWhere(function ($query) {
+                // Check if there's no approval record
+                $query->whereNull('aper_approval.aper_id');
+            })
             ->exists();
 
 

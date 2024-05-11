@@ -122,7 +122,23 @@ class AcademicStaff extends Component
     {
         try {
             $user = User::FindOrFail($this->user_id);
+            // Check if the user has a profile
+            if ($user->profile()->exists()) {
+                session()->flash('error', 'Cannot delete because the user has a profile.');
+                return;
+            }
+
+            // If the user doesn't have a profile, proceed with deletion
+            $user->load('department'); // Load the department relationship
+
+            // Delete the department record if it exists
+            if ($user->department) {
+                $user->department->delete();
+            }
+
+            // Delete the user
             $user->delete();
+
             session()->flash('message', 'Academic Staff deleted successfully.');
         } catch (\Illuminate\Database\QueryException $e) {
             if ($e->errorInfo[1] == 1451) { // check if error is foreign key constraint violation

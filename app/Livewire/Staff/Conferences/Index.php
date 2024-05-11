@@ -15,6 +15,7 @@ class Index extends Component
     public $conference, $location, $paper_presented, $date;
     public $user, $staffId, $deleteName;
     public $search;
+    public $conference_id;
 
     public function mount()
     {

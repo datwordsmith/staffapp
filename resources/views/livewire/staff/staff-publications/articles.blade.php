@@ -92,7 +92,7 @@
                                             <small class="purple-text">Evidence (Letter from the Editor)</small>
                                             <p class="mt-2">
                                                 {{ $publication->evidenceFileName }}
-                                                @if ($publication->abstractFileName)
+                                                @if ($publication->evidenceFileName)
                                                 <button class="btn btn-sm btn-gradient-primary ms-2" wire:click="downloadEvidence('{{ $publication->evidence }}')"><i class="fas fa-cloud-download-alt"></i> Download Evidence</button>
                                                 @endif
                                                 <a href="#" wire:click="editPublication({{ $publication->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#changeEvidenceModal"><i class="fa-solid fa-pen-nib"></i></a>

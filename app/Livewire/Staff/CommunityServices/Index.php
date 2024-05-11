@@ -15,6 +15,7 @@ class Index extends Component
     public $duty, $experience, $commending_officer, $date;
     public $user, $staffId, $deleteName;
     public $search;
+    public $service_id;
 
     public function mount()
     {

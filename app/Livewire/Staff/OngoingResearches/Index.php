@@ -15,6 +15,7 @@ class Index extends Component
     public $topic, $publication_number, $summary, $findings, $date;
     public $user, $staffId, $deleteName;
     public $search;
+    public $research_id;
 
     public function mount()
     {

@@ -16,6 +16,8 @@ class Index extends Component
     public $user, $staffId, $deleteName;
     public $search;
 
+    public $research_id;
+
     public function mount()
     {
         // Fetch user details based on $userId

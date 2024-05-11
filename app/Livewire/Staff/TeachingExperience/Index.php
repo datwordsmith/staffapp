@@ -15,6 +15,7 @@ class Index extends Component
     public $course_code, $course_title, $credit_unit, $lectures, $semester, $year;
     public $user, $staffId, $deleteName;
     public $search;
+    public $experience_id;
 
     public function mount()
     {

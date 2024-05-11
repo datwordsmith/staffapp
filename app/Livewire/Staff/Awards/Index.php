@@ -15,6 +15,7 @@ class Index extends Component
     public $award, $awarding_body, $date;
     public $user, $staffId, $deleteName;
     public $search;
+    public $award_id;
 
     public function mount()
     {
