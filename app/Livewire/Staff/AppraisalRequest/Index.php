@@ -114,7 +114,7 @@ class Index extends Component
     {
 
         $apers = APER::where('user_id', $this->user->id)
-        ->orderBy('created_at', 'ASC')
+        ->orderBy('created_at', 'DESC')
         ->paginate(5);
 
 

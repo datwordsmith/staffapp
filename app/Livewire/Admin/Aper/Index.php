@@ -40,7 +40,7 @@ class Index extends Component
             ->leftJoin('profiles', 'profiles.user_id', '=', 'users.id')
             ->leftJoin('titles', 'profiles.title_id', '=', 'titles.id')
             ->select('aper.*', 'profiles.lastname as lastname', 'profiles.firstname as firstname', 'users.staffId as staffId', 'titles.name as title')
-            ->orderBy('aper.created_at', 'ASC')
+            ->orderBy('aper.created_at', 'DESC')
             ->get();
 
         return view('livewire.admin.aper.index', [

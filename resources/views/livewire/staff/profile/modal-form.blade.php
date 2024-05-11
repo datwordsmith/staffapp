@@ -1,3 +1,77 @@
+<!-- Add Modal -->
+<div wire:ignore.self class="modal fade" id="addBioModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Update Profile {{$user->id}}</h1>
+                <button type="button" class="btn-close" wire:click ="closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form wire:submit="newProfile({{ $user->id }})">
+                <div class="modal-body px-5">
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            <label for="title">Title</label>
+                            <select class="form-select" wire:model.defer="title_id" required>
+                                <option value="">Select Title</option>
+                                @foreach ($titles as $title)
+                                    <option value="{{ $title->id }}">{{ $title->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('title_id')
+                                <small class="error text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-4 form-group">
+                            <label for="lastname">Lastname</label>
+                            <input type="text" wire:model.defer="lastname" class="form-control" required>
+                            @error('lastname') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+
+                        <div class="col-md-4 form-group">
+                            <label for="firstname">Firstname</label>
+                            <input type="text" wire:model.defer="firstname" class="form-control" required>
+                            @error('firstname') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+
+                        <div class="col-md-4 form-group">
+                            <label for="othername">Othername</label>
+                            <input type="text" wire:model.defer="othername" class="form-control" required>
+                            @error('othername') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+
+                        <div class="col-md-4 form-group">
+                            <label for="date">Date of Birth</label>
+                            <input type="date" wire:model.defer="dob" class="form-control" required>
+                            @error('dob') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+
+                        <div class="col-md-4 form-group">
+                            <label for="designation">Designation</label>
+                            <input type="text" wire:model.defer="designation" class="form-control" required>
+                            @error('designation') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio">Biography</label>
+                        <textarea wire:model="biography" class="form-control" rows="5" maxlength="{{ $maxBioCharacters }}" style="line-height: 1.5;" required></textarea>
+                        <small class="text-muted">{{ strlen($this->biography) }}/{{ $maxBioCharacters }} characters</small>
+
+                        @error('biography') <small class="text-danger">{{ $message }}</small> @enderror
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" wire:click ="closeModal" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-gradient-primary"><i class="fa-regular fa-thumbs-up"></i> Update</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
 <!-- Edit Modal -->
 <div wire:ignore.self class="modal fade" id="updateBioModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
