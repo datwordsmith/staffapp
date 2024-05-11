@@ -74,6 +74,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($apers as $aper)
+
                                     <tr>
                                         <td>{{ $aper->created_at->format('d-m-Y') }}</td>
                                         <td class="text-center">{{ $aper->evaluation ? $aper->evaluation->grade : '-' }}</td>
