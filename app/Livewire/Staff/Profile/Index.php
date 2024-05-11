@@ -86,6 +86,31 @@ class Index extends Component
         dd('here');
     }
 
+    public function newProfile(int $my_id)
+    {
+        $validatedData = $this->validate();
+        if ($this->user->id = $my_id) {
+            $staffId = auth()->user()->staffId;
+            Profile::create([
+                'user_id' => $my_id,
+                'title_id' => $validatedData['title_id'],
+                'lastname' => $validatedData['lastname'],
+                'firstname' => $validatedData['firstname'],
+                'othername' => $validatedData['othername'],
+                'dob' => $validatedData['dob'],
+                'designation' => $validatedData['designation'],
+                'biography' => $validatedData['biography'],
+                'slug' => $staffId,
+            ]);
+
+            session()->flash('message', 'Profile Updated Successfully.');
+        } else {
+            session()->flash('error', 'Failed to update profile.');
+        }
+        $this->dispatch('close-modal');
+        $this->resetInput();
+    }
+
 
     public function editBio(int $profile_id){
         $this->profile_id = $profile_id;

@@ -29,8 +29,18 @@
 
                 </div>
                 <div class="col-md-8 mt-md-0 mt-4">
-                    <h2>{{$staff->title->name}} {{$staff->firstname}} {{$staff->lastname}} {{$staff->othername}}</h2>
-                    <h4 class="text-muted mb-3">{{$staff->designation}}</h4>
+                    <h2>
+                        @if($staff)
+                            {{$staff->title->name}} {{$staff->firstname}} {{$staff->lastname}} {{$staff->othername}}
+                        @else
+                            Profile Update Required
+                        @endif
+                    </h2>
+                    <h4 class="text-muted mb-3">
+                        @if($staff)
+                            {{$staff->designation}}
+                        @endif
+                    </h4>
 
                     <div class="row pt-3 border-top border-bottom mb-3">
                         <div class="col-md-4">
@@ -43,7 +53,11 @@
                         </div>
                         <div class="col-md-4">
                             <strong class="purple-text">DOB</strong>
-                            <p class="text-muted mt-1">{{$staff->dob}}</p>
+                            <p class="text-muted mt-1">
+                                @if($staff)
+                                    {{$staff->dob}}
+                                @endif
+                            </p>
                         </div>
 
                         <div class="col-md-4">
@@ -64,12 +78,20 @@
 
                     <p><strong class="purple-text">Biography:</strong> <i class="fa-regular fa-pen-to-square"></i></p>
                     <p class="text-secondary">
-                        {{ $staff->biography}}
+                        @if($staff)
+                            {{ $staff->biography}}
+                        @endif
                     </p>
                     <div class="d-flex">
                         <div class="ms-auto">
-                            <a href="#" wire:click="editBio({{ $staff->id }})" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#updateBioModal">
+                            @if($staff)
+                                <a href="#" wire:click="editBio({{ $staff->id }})" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#updateBioModal">
                                 Update Profile <i class="fa-solid fa-pen-nib"></i>
+                            @else
+                                <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#addBioModal">
+                                    <i class="fa-solid fa-pen-nib"></i> Update Profile
+                                </button>
+                            @endif
                             </a>
                             @if(!empty($staff->biography))
                                 <a href="#" wire:click="deleteBio({{ $staff->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBioModal">
@@ -850,6 +872,7 @@
 @section('scripts')
     <script>
         window.addEventListener('close-modal', event => {
+            $('#addBioModal').modal('hide');
             $('#updateBioModal').modal('hide');
             $('#deleteBioModal').modal('hide');
             $('#uploadPhotoModal').modal('hide');
@@ -857,7 +880,7 @@
         });
 
 
-        var modals = ['#updateBioModal', '#deleteBioModal', '#uploadPhotoModal', '#deletePhotoModal'];
+        var modals = ['#addBioModal', '#updateBioModal', '#deleteBioModal', '#uploadPhotoModal', '#deletePhotoModal'];
         modals.forEach(function(modalId) {
             $(modalId).on('hidden.bs.modal', function () {
                 $('body').removeClass('modal-open');
