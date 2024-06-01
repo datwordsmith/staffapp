@@ -1,4 +1,4 @@
-<!-- DELETE MODAL -->
+<!-- ADD MODAL -->
 <div wire:ignore.self class="modal fade" id="addAperModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -14,9 +14,22 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit="storeAper()">
+                <form wire:submit.prevent="storeAper()">
                     <div class="modal-body">
-                        <h4>Request Annual Performance Evaluation Report (APER)?</h4>
+                        <p>Request Annual Performance Evaluation Report (APER)?</p>
+
+                        <div class="form-group">
+                            <label>Select Request Category</label>
+                            <select class="form-select form-control form-control-lg" wire:model.defer="category_id" required>
+                                <option value="">Select a Category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <small class="error text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" wire:click ="closeModal" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

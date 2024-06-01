@@ -99,8 +99,8 @@
                                     <td class="ps-3 text-wrap"> {{$creativeWork->category}} </td>
                                     <td class="ps-3"> {{$creativeWork->date}} </td>
                                     <td class="d-flex justify-content-end">
-                                        <a href="#" wire:click="editCreativeWork({{ $creativeWork->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateCreativeWorkModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                        <a href="#" wire:click="deleteCreativeWork({{ $creativeWork->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCreativeWorkModal"><i class="fa-solid fa-trash-can"></i></a>
+                                        <a href="#" wire:click="editCreativeWork({{ $creativeWork->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateCreativeWorkModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                        <a href="#" wire:click="deleteCreativeWork({{ $creativeWork->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCreativeWorkModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                     </td>
                                 </tr>
                             @empty

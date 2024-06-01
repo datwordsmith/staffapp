@@ -50,7 +50,7 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                <th scope="col" class="ps-3">Post</th>
+                                <th scope="col" class="ps-3">Rank</th>
                                 <th scope="col" class="ps-3">Salary Grade/Step</th>
                                 <th scope="col" class="ps-3">Date of First Appointment</th>
                                 <th scope="col" class="ps-3">Confirmation Date</th>
@@ -60,13 +60,13 @@
                             <tbody>
                                 @if ($appointment)
                                     <tr>
-                                        <td class="ps-3"> {{$appointment->post}} </td>
+                                        <td class="ps-3"> {{$appointment->rank->rank}} </td>
                                         <td class="ps-3"> {{$appointment->grade_step}} </td>
                                         <td class="ps-3"> {{$appointment->first_appointment}} </td>
                                         <td class="ps-3"> {{$appointment->confirmation}} </td>
                                         <td class="d-flex justify-content-end">
-                                            <a href="#" wire:click="editAppointment({{ $appointment->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateAppointmentModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                            <a href="#" wire:click="deleteAppointment({{ $appointment->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAppointmentModal"><i class="fa-solid fa-trash-can"></i></a>
+                                            <a href="#" wire:click="editAppointment({{ $appointment->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateAppointmentModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                            <a href="#" wire:click="deleteAppointment({{ $appointment->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAppointmentModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                         </td>
                                     </tr>
                                 @else

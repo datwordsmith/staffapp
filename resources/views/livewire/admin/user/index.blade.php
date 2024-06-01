@@ -69,9 +69,9 @@
                                     <td class="ps-3"> {{$user->firstname}} </td>
                                     <td class="ps-3"> {{$user->title}} </td>
                                     <td class="d-flex justify-content-end">
-                                        <a href="#" class="btn btn-sm btn-success me-2"><i class="fa-regular fa-folder-open"></i></a>
-                                        <a href="#" wire:click="editProgramme({{ $user->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateProgrammeModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                        <a href="#" wire:click="deleteProgramme({{ $user->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProgrammeModal"><i class="fa-solid fa-trash-can"></i></a>
+                                        <a href="#" class="btn btn-sm btn-success me-2"><i class="fa-regular fa-folder-open"></i> View</a>
+                                        <a href="#" wire:click="editProgramme({{ $user->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateProgrammeModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                        <a href="#" wire:click="deleteProgramme({{ $user->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProgrammeModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                     </td>
                                 </tr>
                             @empty

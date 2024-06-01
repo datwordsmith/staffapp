@@ -1,5 +1,4 @@
 <div>
-    @include('livewire.staff.appraisal-request.modal-form')
 
     @section('pagename')
         <h3 class="page-title">
@@ -43,8 +42,8 @@
                             <thead>
                                 <tr>
 
-                                    <th scope="col" class="">Staff ID</th>
-                                    <th scope="col" class="">Fullname</th>
+                                    <th scope="col" class="">Staff</th>
+                                    <th scope="col" class="">Category</th>
                                     <th scope="col" class="text-center">Evaluation Grade</th>
                                     <th scope="col" class="text-center">Evaluation Status</th>
                                     <th scope="col" class="text-center">Approval Status</th>
@@ -55,8 +54,8 @@
                             <tbody>
                                 @foreach ($apers as $aper)
                                     <tr>
-                                        <td>{{ $aper->staffId }}</td>
-                                        <td>{{ $aper->title }}  {{ $aper->lastname }} {{$aper->firstname}}</td>
+                                        <td>{{ $aper->staffId }} - {{ $aper->title }}  {{ $aper->lastname }} {{$aper->firstname}}</td>
+                                        <td>{{ $aper->category->category }}</td>
                                         <td class="text-center">{{ $aper->evaluation ? $aper->evaluation->grade : '-' }}</td>
                                         <td class="text-center">
                                             {{ $aper->evaluation?->status->name ?? 'Pending' }}

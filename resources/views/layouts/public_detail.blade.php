@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="{{ asset('admin/assets/css/allstaff.css') }}">
 
   <link href="{{asset('css/style.css')}}" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   @livewireStyles
 </head>
 <body id="body">
@@ -74,15 +76,7 @@ Welcome Slider
 
 
 <footer id="footer" class="text-white">
-  <div class="top-footer">
-    <div class="container">
-      <div class="row justify-content-around">
-        <div class="col text-center text-white">
-            LOGO
-        </div>
-      </div>
-    </div> <!-- end container -->
-  </div>
+
   <div class="footer-bottom">
     <h6>&copy; Copyright 2024. All rights reserved.</h6>
     <p>Federal University, Lafia</p>

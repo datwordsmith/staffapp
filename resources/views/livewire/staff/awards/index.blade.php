@@ -87,8 +87,8 @@
                                     <td class="ps-3"> {{$award->awarding_body}} </td>
                                     <td class="ps-3"> {{$award->date}} </td>
                                     <td class="d-flex justify-content-end">
-                                        <a href="#" wire:click="editAward({{ $award->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateAwardModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                        <a href="#" wire:click="deleteAward({{ $award->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAwardModal"><i class="fa-solid fa-trash-can"></i></a>
+                                        <a href="#" wire:click="editAward({{ $award->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateAwardModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                        <a href="#" wire:click="deleteAward({{ $award->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAwardModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                     </td>
                                 </tr>
                             @empty

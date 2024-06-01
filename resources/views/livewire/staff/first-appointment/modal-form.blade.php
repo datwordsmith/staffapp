@@ -18,9 +18,16 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <label class="form-label"><small>Post</small></label>
-                                <input type="text" wire:model.defer="post" class="form-control" placeholder="Post" required>
-                                @error('post') <small class="text-danger">{{ $message }}</small> @enderror
+                                <label class="form-label">Rank</label>
+                                <select class="form-select form-control form-control-lg" wire:model.defer="rank_id" required>
+                                    <option value="">Select Rank</option>
+                                    @foreach ($ranks as $rank)
+                                        <option value="{{ $rank->id }}">{{ $rank->rank }}</option>
+                                    @endforeach
+                                </select>
+                                @error('rank_id')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="col-md-6 form-group">
@@ -76,9 +83,16 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <label class="form-label"><small>Post</small></label>
-                                <input type="text" wire:model.defer="post" class="form-control" placeholder="Post" required>
-                                @error('post') <small class="text-danger">{{ $message }}</small> @enderror
+                                <label class="form-label">Rank</label>
+                                <select class="form-select form-control form-control-lg" wire:model.defer="rank_id" required>
+                                    <option value="">Select Rank</option>
+                                    @foreach ($ranks as $rank)
+                                        <option value="{{ $rank->id }}">{{ $rank->rank }}</option>
+                                    @endforeach
+                                </select>
+                                @error('rank_id')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="col-md-6 form-group">

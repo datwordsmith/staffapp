@@ -13,7 +13,7 @@ class FirstAppointment extends Model
 
     protected $fillable = [
         'user_id',
-        'post',
+        'rank_id',
         'grade_step',
         'first_appointment',
         'confirmation'
@@ -22,5 +22,10 @@ class FirstAppointment extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function rank()
+    {
+        return $this->belongsTo(Ranks::class);
     }
 }

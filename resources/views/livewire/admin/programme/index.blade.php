@@ -65,8 +65,8 @@
                                     <td class="ps-3"> {{$programme->department}} </td>
                                     <td class="ps-3"> {{$programme->faculty}} </td>
                                     <td class="d-flex justify-content-end">
-                                        <a href="#" wire:click="editProgramme({{ $programme->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateProgrammeModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                        <a href="#" wire:click="deleteProgramme({{ $programme->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProgrammeModal"><i class="fa-solid fa-trash-can"></i></a>
+                                        <a href="#" wire:click="editProgramme({{ $programme->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateProgrammeModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                        <a href="#" wire:click="deleteProgramme({{ $programme->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProgrammeModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                     </td>
                                 </tr>
                             @empty

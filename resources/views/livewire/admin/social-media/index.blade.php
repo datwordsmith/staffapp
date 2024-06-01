@@ -68,8 +68,8 @@
                                     <td class="ps-3"> <i class="{{$platform->icon}} fa-xl"></i></td>
                                     <td class="ps-3"> {{$platform->name}} </td>
                                     <td class="d-flex justify-content-end">
-                                        <a href="#" wire:click="editPlatform({{ $platform->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updatePlatformModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                        <a href="#" wire:click="deletePlatform({{ $platform->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deletePlatformModal"><i class="fa-solid fa-trash-can"></i></a>
+                                        <a href="#" wire:click="editPlatform({{ $platform->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updatePlatformModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                        <a href="#" wire:click="deletePlatform({{ $platform->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deletePlatformModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                     </td>
                                 </tr>
                             @empty

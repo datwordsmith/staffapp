@@ -78,8 +78,8 @@
                                     <td class="ps-3"> {{$faculty->name}} </td>
                                     <td class="ps-3"> {{$faculty->description}} </td>
                                     <td class="d-flex justify-content-end">
-                                        <a href="#" wire:click="editFaculty({{ $faculty->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateFacultyModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                        <a href="#" wire:click="deleteFaculty({{ $faculty->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteFacultyModal"><i class="fa-solid fa-trash-can"></i></a>
+                                        <a href="#" wire:click="editFaculty({{ $faculty->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateFacultyModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                        <a href="#" wire:click="deleteFaculty({{ $faculty->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteFacultyModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                     </td>
                                 </tr>
                             @empty

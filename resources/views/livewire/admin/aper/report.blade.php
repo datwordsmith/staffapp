@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-8 mt-md-0 mt-4">
                     <h2>{{$user->profile->title->name}} {{$user->profile->firstname}} {{$user->profile->lastname}} {{$user->profile->othername}}</h2>
-                    <h4 class="text-muted mb-3">{{$user->profile->designation}}</h4>
+                    <h4 class="text-muted mb-3">{{$user->profile->rank->rank}}</h4>
 
                     <div class="row pt-3 border-top border-bottom mb-3">
                         <div class="col-md-6">

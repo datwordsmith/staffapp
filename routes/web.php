@@ -29,8 +29,10 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
     // Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
 
     Route::get('/titles', App\Livewire\Admin\Title\Index::class);
+    Route::get('/ranks', App\Livewire\Admin\Rank\Index::class);
     Route::get('/social_media', App\Livewire\Admin\SocialMedia\Index::class);
 
+    Route::get('/units', App\Livewire\Admin\Unit\Index::class);
     Route::get('/faculties', App\Livewire\Admin\Faculty\Index::class);
     Route::get('/departments', App\Livewire\Admin\Department\Index::class);
     //Route::get('/programmes', App\Livewire\Admin\Programme\Index::class);

@@ -66,7 +66,7 @@
                                 <tr>
                                     <td class="">
                                         @if ($this->hasProfile($user->id))
-                                            <a href="{{ url('admin/profile/'.$user->staffId) }}" class="btn btn-sm btn-primary me-2"><i class="fa-regular fa-folder-open"></i></a>
+                                            <a href="{{ url('admin/profile/'.$user->staffId) }}" class="btn btn-sm btn-primary me-2"><i class="fa-regular fa-folder-open"></i> View</a>
                                         @else
                                             <button class="btn btn-sm btn-secondary me-2 disabled"><i class="fa-regular fa-folder-open"></i></button>
                                         @endif
@@ -102,7 +102,7 @@
                                             @if ($this->hasProfile($user->id))
                                                 <button class="btn btn-sm btn-secondary disabled"><i class="fa-regular fa-trash-can"></i></button>
                                             @else
-                                                <a href="#" wire:click="deleteNonAcademicStaff({{ $user->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteStaffModal"><i class="fa-solid fa-trash-can"></i></a>
+                                                <a href="#" wire:click="deleteNonAcademicStaff({{ $user->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteStaffModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                             @endif
                                         @endcan
                                     </td>

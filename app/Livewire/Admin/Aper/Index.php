@@ -6,6 +6,7 @@ use App\Models\APER;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\AppraisalCategory;
 use Illuminate\Support\Facades\Auth;
 
 class Index extends Component
@@ -19,6 +20,7 @@ class Index extends Component
     public function mount()
     {
         $this->admin = Auth::user();
+        $this->categories = AppraisalCategory::orderBy('category')->get();
     }
 
 

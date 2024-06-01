@@ -74,8 +74,8 @@
                                         </td>
                                         <td class="align-top">
                                             <div class="d-flex justify-content-end">
-                                                <a href="#" wire:click="editService({{ $service->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateServiceModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                                <a href="#" wire:click="deleteService({{ $service->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteServiceModal"><i class="fa-solid fa-trash-can"></i></a>
+                                                <a href="#" wire:click="editService({{ $service->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateServiceModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                                <a href="#" wire:click="deleteService({{ $service->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteServiceModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                             </div>
                                         </td>
                                     </tr>

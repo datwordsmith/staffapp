@@ -48,9 +48,6 @@ class Profile extends Component
 
     public function render()
     {
-
-
-
         $pendingEvaluation = APER::where('user_id', $this->user->id)
             ->whereDoesntHave('evaluation')
             ->first();
@@ -66,9 +63,6 @@ class Profile extends Component
         $isApproved = APER::where('user_id', $this->user->id)
             ->whereHas('approval')
             ->first();
-
-        //dd($isApproved);
-
 
         $socials = socialMedia::where('user_id', $this->user->id)
                     ->leftjoin('social_platforms', 'social_media.socialPlatform_id', '=', 'social_platforms.id')

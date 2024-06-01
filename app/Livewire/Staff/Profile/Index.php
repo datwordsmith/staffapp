@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Staff\Profile;
 
+use App\Models\Ranks;
 use App\Models\Title;
 use App\Models\Awards;
 use App\Models\Honours;
@@ -16,7 +17,6 @@ use App\Models\CreativeWork;
 use App\Models\JournalPaper;
 use App\Models\Publications;
 use Livewire\WithPagination;
-use Livewire\WithoutUrlPagination;
 use Livewire\WithFileUploads;
 use App\Models\OngoingResearch;
 use App\Models\CommunityService;
@@ -24,6 +24,7 @@ use App\Models\FirstAppointment;
 use App\Models\StaffPublication;
 use App\Models\CompletedResearch;
 use App\Models\TeachingExperience;
+use Livewire\WithoutUrlPagination;
 use App\Models\InitialQualification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -40,7 +41,7 @@ class Index extends Component
     public $profile_id, $profile, $biography, $photo;
     public $maxBioCharacters = 1000;
     public $user, $staffId;
-    public $title_id, $lastname, $firstname, $othername, $dob, $designation;
+    public $title_id, $lastname, $firstname, $othername, $dob, $rank_id;
     public $search;
 
     public function mount()
@@ -55,9 +56,9 @@ class Index extends Component
             'title_id' => 'required|numeric|min:1|exists:titles,id',
             'lastname' => 'required|string',
             'firstname' => 'required|string',
-            'othername' => 'required|string',
+            'othername' => 'nullable|string',
             'dob' => 'required|date|before_or_equal:today',
-            'designation' => 'required|string',
+            'rank_id' => 'required|numeric',
             'biography' => 'required|string|max:1000',
         ];
     }
@@ -83,7 +84,6 @@ class Index extends Component
     {
         $this->resetErrorBag('biography'); // Reset the error bag for the 'biography' field
         $this->resetValidation(); // Reset the validation state
-        dd('here');
     }
 
     public function newProfile(int $my_id)
@@ -98,7 +98,7 @@ class Index extends Component
                 'firstname' => $validatedData['firstname'],
                 'othername' => $validatedData['othername'],
                 'dob' => $validatedData['dob'],
-                'designation' => $validatedData['designation'],
+                'rank_id' => $validatedData['rank_id'],
                 'biography' => $validatedData['biography'],
                 'slug' => $staffId,
             ]);
@@ -120,7 +120,7 @@ class Index extends Component
         $this->lastname = $profile->lastname;
         $this->othername = $profile->othername;
         $this->dob = $profile->dob;
-        $this->designation = $profile->designation;
+        $this->rank_id = $profile->rank_id;
         $this->biography = $profile->biography;
     }
 
@@ -132,7 +132,7 @@ class Index extends Component
             'firstname' => $validatedData['firstname'],
             'othername' => $validatedData['othername'],
             'dob' => $validatedData['dob'],
-            'designation' => $validatedData['designation'],
+            'rank_id' => $validatedData['rank_id'],
             'biography' => $validatedData['biography'],
         ]);
         session()->flash('message', 'Profile Updated Successfully.');
@@ -240,6 +240,8 @@ class Index extends Component
 
         $titles = Title::all();
 
+        $ranks = Ranks::where('category', $this->user->role_as)->get();
+
         $firstAppointment = FirstAppointment::where('user_id', $this->user->id)
             ->orderBy('created_at', 'desc')
             ->get();
@@ -331,6 +333,7 @@ class Index extends Component
             'interests' => $interests,
             'staff' => $staff,
             'titles' => $titles,
+            'ranks' => $ranks,
             'firstAppointment' => $firstAppointment,
             'experiences' => $experiences,
             'awards' => $awards,

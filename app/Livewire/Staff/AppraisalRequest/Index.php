@@ -3,6 +3,7 @@
 namespace App\Livewire\Staff\AppraisalRequest;
 
 use App\Models\APER;
+use App\Models\AppraisalCategory;
 use App\Models\Profile;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -17,7 +18,7 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $status;
-    public $user, $staffId, $deleteName;
+    public $categories, $user, $staffId, $category_id, $deleteName;
     public $search;
 
     public $aper_id;
@@ -25,11 +26,12 @@ class Index extends Component
     public function mount()
     {
         $this->user = Auth::user();
+        $this->categories = AppraisalCategory::orderBy('category')->get();
     }
 
     public function rules(){
         return [
-            'status_id' => 'required|numeric|min:1|exists:aper_status,id',
+            'category_id' => 'required|numeric|min:1|exists:appraisal_category,id',
         ];
     }
 
@@ -47,10 +49,14 @@ class Index extends Component
             $checks[] = "Initial qualification record does not exist.";
         }
 
-        $teachingExperience = TeachingExperience::where('user_id', $this->user->id)->first();
-        if (!$teachingExperience) {
-            $checks[] = "Teaching experience record does not exist.";
+        if ($this->user->role_as == 2) {
+            $teachingExperience = TeachingExperience::where('user_id', $this->user->id)->first();
+            if (!$teachingExperience) {
+                $checks[] = "Teaching experience record does not exist.";
+            }
         }
+
+
 
         $profile = Profile::where('user_id', $this->user->id)->first();
         if (empty($profile->dob)) {
@@ -61,7 +67,7 @@ class Index extends Component
     }
 
     public function resetInput(){
-
+        $this->category_id = null;
     }
 
     public function closeModal() {
@@ -72,7 +78,10 @@ class Index extends Component
     }
 
     public function storeAper(){
-        $this->user->appraisalRequests()->create();
+        $validatedData = $this->validate();
+        $this->user->appraisalRequests()->create([
+            'category_id' => $validatedData['category_id'],
+        ]);
         session()->flash('message', 'Appraisal Request Submitted Successfully.');
         $this->dispatch('close-modal');
         $this->resetInput();
@@ -118,28 +127,10 @@ class Index extends Component
         ->paginate(5);
 
 
-
-        /* $isPending = APER::where('user_id', $this->user->id)
-            ->leftJoin('aper_evaluation', 'aper_evaluation.aper_id', '=', 'aper.id')
-            ->leftJoin('aper_approval', 'aper_approval.aper_id', '=', 'aper.id')
-            ->whereNotNull('aper_evaluation.aper_id')
-            ->whereNotNull('aper_approval.aper_id')
-            ->exists(); */
-
         $isPending = APER::where('user_id', $this->user->id)
-            ->leftJoin('aper_evaluation', 'aper_evaluation.aper_id', '=', 'aper.id')
             ->leftJoin('aper_approval', 'aper_approval.aper_id', '=', 'aper.id')
-            ->where(function ($query) {
-                // Check if there's no evaluation record or if the evaluation status is not 2
-                $query->whereNull('aper_evaluation.aper_id')
-                      ->orWhere('aper_evaluation.status_id', '<>', 2);
-            })
-            ->orWhere(function ($query) {
-                // Check if there's no approval record
-                $query->whereNull('aper_approval.aper_id');
-            })
+            ->whereNull('aper_approval.aper_id')
             ->exists();
-
 
         $checks = $this->checkRecords();
 
@@ -147,6 +138,7 @@ class Index extends Component
             'apers' => $apers,
             'checks' => $checks,
             'isPending' => $isPending,
+            'categories' => $this->categories,
             ])->extends('layouts.staff')->section('content');
     }
 }

@@ -26,32 +26,47 @@
                 </div>
                 <div class="col-md-8 mt-md-0 mt-4">
                     <h2>{{$user->profile->title->name}} {{$user->profile->firstname}} {{$user->profile->lastname}} {{$user->profile->othername}}</h2>
-                    <h4 class="text-muted mb-3">{{$user->profile->designation}}</h4>
+                    <h4 class="text-muted mb-3">{{$user->profile->rank->rank}}</h4>
 
                     <div class="row pt-3 border-top border-bottom mb-3">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <strong class="purple-text">Staff ID</strong>
                             <p class="text-muted mt-1">{{$user->staffId}}</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <strong class="purple-text">Email</strong>
                             <p class="text-muted mt-1">{{$user->email}}</p>
                         </div>
-
-                        <div class="col-md-6">
-                            <strong class="purple-text">Faculty</strong>
+                        <div class="col-md-4">
+                            <strong class="purple-text">DOB</strong>
                             <p class="text-muted mt-1">
-                                @if ($user->department && $user->department->department && $user->department->department->faculty)
-                                    {{ $user->department->department->faculty->name }}
-                                @endif
+                                {{$user->profile->dob}}
                             </p>
                         </div>
-                        <div class="col-md-6">
-                            <strong class="purple-text">Department</strong>
-                            @if ($user->department && $user->department->department)
-                                <p class="text-muted mt-1">{{ $user->department->department->name }}</p>
-                            @endif
-                        </div>
+
+                        @if($user->role_as == 2)
+                            <div class="col-md-4">
+                                <strong class="purple-text">Faculty</strong>
+                                <p class="text-muted mt-1">
+                                    @if ($user->department && $user->department->department && $user->department->department->faculty)
+                                        {{ $user->department->department->faculty->name }}
+                                    @endif
+                                </p>
+                            </div>
+                            <div class="col-md-4">
+                                <strong class="purple-text">Department</strong>
+                                @if ($user->department && $user->department->department)
+                                    <p class="text-muted mt-1">{{ $user->department->department->name }}</p>
+                                @endif
+                            </div>
+                        @elseif($user->role_as == 3)
+                            <div class="col-md-4">
+                                <strong class="purple-text">Unit</strong>
+                                <p class="text-muted mt-1">
+                                    {{ $user->unit->unit->name }}
+                                </p>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

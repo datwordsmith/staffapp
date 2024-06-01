@@ -20,7 +20,11 @@
 
   <link href="{{asset('css/style.css')}}" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap5.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap5.css">
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.3/css/all.min.css">
+
   @livewireStyles
 </head>
 <body id="body">
@@ -52,6 +56,8 @@ Fixed Navigation
                     <a class="btn btn-success" href="{{url('admin/academicstaff')}}"><i class="bi bi-person"></i> Dashboard</a>
                     @elsecan('staff')
                         <a class="btn btn-info" href="{{ url('staff/profile') }}"><i class="bi bi-person"></i> My Profile</a>
+                    @elsecan('non_academic_staff')
+                        <a class="btn btn-info" href="{{ url('staff/profile') }}"><i class="bi bi-person"></i> My Profile</a>
                     @endcan
 
                     <button type="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-danger">
@@ -80,6 +86,8 @@ End Fixed Navigation
  <!--
 Welcome Slider
 ==================================== -->
+
+<!---->
 <section class="hero-area">
     <div class="container text-white">
         <div class="row">
@@ -114,15 +122,7 @@ Welcome Slider
 
 
 <footer id="footer" class="text-white">
-  <div class="top-footer">
-    <div class="container">
-      <div class="row justify-content-around">
-        <div class="col text-center text-white">
-            LOGO
-        </div>
-      </div>
-    </div> <!-- end container -->
-  </div>
+
   <div class="footer-bottom">
     <h6>&copy; Copyright 2024. All rights reserved.</h6>
     <p>Federal University, Lafia</p>
@@ -130,8 +130,27 @@ Welcome Slider
   </div>
 </footer> <!-- end footer -->
 
-@livewireScripts
-@yield('scripts')
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+
+    <script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
+
+    <script src="{{ asset('admin/assets/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/misc.js') }}"></script>
+
+    @livewireScripts
+    @yield('scripts')
 
 </body>
 </html>

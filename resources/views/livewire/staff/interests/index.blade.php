@@ -70,8 +70,8 @@
                                 <tr>
                                     <td class="ps-3"> {{$interest->interest}} </td>
                                     <td class="d-flex justify-content-end">
-                                        <a href="#" wire:click="editInterest({{ $interest->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateInterestModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                        <a href="#" wire:click="deleteInterest({{ $interest->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteInterestModal"><i class="fa-solid fa-trash-can"></i></a>
+                                        <a href="#" wire:click="editInterest({{ $interest->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateInterestModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                        <a href="#" wire:click="deleteInterest({{ $interest->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteInterestModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                     </td>
                                 </tr>
                             @empty

@@ -19,7 +19,7 @@ class Profile extends Model
         'othername',
         'dob',
         'biography',
-        'designation',
+        'rank_id',
         'first_appointment',
         'telephone',
         'photo',
@@ -29,6 +29,11 @@ class Profile extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function rank()
+    {
+        return $this->belongsTo(Ranks::class);
     }
 
     public function title()

@@ -65,6 +65,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Date Submitted</th>
+                                    <th scope="col">Category</th>
                                     <th scope="col" class="text-center">Evaluation Grade</th>
                                     <th scope="col" class="text-center">Evaluation Status</th>
                                     <th scope="col" class="text-center">Approval Status</th>
@@ -77,6 +78,7 @@
 
                                     <tr>
                                         <td>{{ $aper->created_at->format('d-m-Y') }}</td>
+                                        <td>{{ $aper->category->category}}</td>
                                         <td class="text-center">{{ $aper->evaluation ? $aper->evaluation->grade : '-' }}</td>
                                         <td class="text-center">
                                             {{ $aper->evaluation?->status->name ?? 'Pending' }}
