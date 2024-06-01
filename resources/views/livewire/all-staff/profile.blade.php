@@ -92,7 +92,7 @@
 
                         <div class="table-responsive">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="search" wire:model="search" placeholder="Search...">
+                                <input type="text" class="form-control" id="search" wire:model.live="search" placeholder="Search...">
                                 <label for="search">Search</label>
                             </div>
 

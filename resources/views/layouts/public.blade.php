@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Fulafia | Staff Portal</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin/assets/images/favicon.png') }}" />
@@ -13,17 +12,12 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="{{ asset('admin/assets/css/allstaff.css') }}">
 
   <link href="{{asset('css/style.css')}}" rel="stylesheet">
 
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap5.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap5.css">
-
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.3/css/all.min.css">
 
   @livewireStyles
 </head>
@@ -39,7 +33,7 @@ Fixed Navigation
     <nav class="navbar navbar-expand-lg navbar-light px-0">
       <!-- logo -->
       <a class="navbar-brand logo" href="{{route('home')}}">
-        <h2 class="my-primary">STAFF PORTAL</h2>
+        <h2 class="text-white">STAFF PORTAL</h2>
       </a>
       <!-- /logo -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +64,7 @@ Fixed Navigation
                 </li>
             @else
                 <li class="nav-item">
-                    <a class="btn btn-primary ms-auto" href="{{ url('/login') }}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+                    <a class="btn btn-secondary ms-auto" href="{{ url('/login') }}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
                 </li>
             @endauth
         </ul>
@@ -102,22 +96,9 @@ Welcome Slider
     </div>
 </section>
 
- <!--
- <section class="single-page-header">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h2>About Us</h2>
-			</div>
-		</div>
-	</div>
-</section>
--->
 
 
-<!-- Start Our Team
-		=========================================== -->
-        @yield('content')
+    @yield('content')
 
 
 
@@ -132,22 +113,6 @@ Welcome Slider
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
-
-    <script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
-
-    <script src="{{ asset('admin/assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/misc.js') }}"></script>
 
     @livewireScripts
     @yield('scripts')

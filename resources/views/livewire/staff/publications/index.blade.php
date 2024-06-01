@@ -40,7 +40,7 @@
                     @endif
                     <div class="table-responsive">
                         <div class="mb-3">
-                            <input type="text" class="form-control" wire:model="search" placeholder="Search publications...">
+                            <input type="text" class="form-control" wire:model.live="search" placeholder="Search publications...">
                         </div>
 
                         <table class="table table-striped table-hover">
