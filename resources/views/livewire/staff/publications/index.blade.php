@@ -61,8 +61,8 @@
                                             </p>
                                         </td>
                                         <td class="">
-                                            <a href="#" wire:click="editPublication({{ $publication->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updatePublicationModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                            <a href="#" wire:click="deletePublication({{ $publication->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deletePublicationModal"><i class="fa-solid fa-trash-can"></i></a>
+                                            <a href="#" wire:click="editPublication({{ $publication->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updatePublicationModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                            <a href="#" wire:click="deletePublication({{ $publication->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deletePublicationModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                         </td>
                                     </tr>
                                 @empty

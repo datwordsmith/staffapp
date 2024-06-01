@@ -86,7 +86,7 @@
                                                 @if ($publication->abstractFileName)
                                                 <button class="btn btn-sm btn-gradient-primary ms-2" wire:click="downloadAbstract('{{ $publication->abstract }}')"><i class="fas fa-cloud-download-alt"></i> Download Abstract</button>
                                                 @endif
-                                                <a href="#" wire:click="editPublication({{ $publication->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#changeAbstractModal"><i class="fa-solid fa-pen-nib"></i></a>
+                                                <a href="#" wire:click="editPublication({{ $publication->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#changeAbstractModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
                                             </p>
 
                                             <small class="purple-text">Evidence (Letter from the Editor)</small>
@@ -95,20 +95,20 @@
                                                 @if ($publication->evidenceFileName)
                                                 <button class="btn btn-sm btn-gradient-primary ms-2" wire:click="downloadEvidence('{{ $publication->evidence }}')"><i class="fas fa-cloud-download-alt"></i> Download Evidence</button>
                                                 @endif
-                                                <a href="#" wire:click="editPublication({{ $publication->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#changeEvidenceModal"><i class="fa-solid fa-pen-nib"></i></a>
+                                                <a href="#" wire:click="editPublication({{ $publication->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#changeEvidenceModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
                                             </p>
 
                                         </td>
                                         <td class="align-top">
                                             <div class="d-flex justify-content-end">
-                                                <a href="#" wire:click="editPublication({{ $publication->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updatePublicationModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                                <a href="#" wire:click="deletePublication({{ $publication->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deletePublicationModal"><i class="fa-solid fa-trash-can"></i></a>
+                                                <a href="#" wire:click="editPublication({{ $publication->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updatePublicationModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                                <a href="#" wire:click="deletePublication({{ $publication->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deletePublicationModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                             </div>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr class="">
-                                        <td colspan="6" class="text-center text-danger py-5">No Publication Listed.</td>
+                                        <td colspan="6" class="text-center text-danger py-5">No Monographs/Books Listed.</td>
                                     </tr>
                                 @endforelse
                             </tbody>

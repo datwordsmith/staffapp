@@ -29,7 +29,7 @@
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('academicstaff') }}">Academic Staff</a></li>
             {{-- <li class="nav-item"> <a class="nav-link" href="">Non-academic Staff</a></li> --}}
-            <li class="nav-item"> <a class="nav-link" href="#">Non-academic Staff</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('non-academic-staff') }}">Non-academic Staff</a></li>
           </ul>
         </div>
       </li>
@@ -37,6 +37,18 @@
         <a class="nav-link" href="{{ url('admin/titles')}}">
           <span class="menu-title">Titles</span>
           <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('admin/ranks')}}">
+          <span class="menu-title">Ranks</span>
+          <i class="mdi mdi-chevron-triple-up menu-icon"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('admin/units')}}">
+          <span class="menu-title">Units</span>
+          <i class="mdi mdi-file-tree up menu-icon"></i>
         </a>
       </li>
       <li class="nav-item">

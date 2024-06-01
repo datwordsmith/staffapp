@@ -30,13 +30,23 @@
 
                         <div class="form-group">
                             <label>Commending Officer</label>
-                            <input type="text" wire:model.defer="commending_officer" class="form-control" placeholder="Commending Officer">
-                            @error('commending_officer') <small class="text-danger">{{ $message }}</small> @enderror
+                            <select class="form-select form-control form-control-lg" wire:model.defer="commending_officer" required>
+                                <option value="">Select Commending Officer</option>
+                                <option value="HOD">HOD</option>
+                                <option value="Dean">Dean</option>
+                                <option value="Vice Chancellor">Vice Chancellor</option>
+                                <option value="Registrar">Registrar</option>
+                                <option value="Bursar">Bursar</option>
+                                <option value="Librarian">Librarian</option>
+                            </select>
+                            @error('commending_officer')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label class="form-label"><small>Date</small></label>
-                            <select wire:model.defer="date" class="form-select form-control" required>
+                            <select wire:model.defer="date" class="form-select form-control form-control-lg" required>
                                 <option value="">Select Year</option>
                                 @for ($y = date('Y'); $y >= 2010; $y--)
                                     <option value="{{ $y }}">{{ $y }}</option>
@@ -88,13 +98,23 @@
 
                         <div class="form-group">
                             <label>Commending Officer</label>
-                            <input type="text" wire:model.defer="commending_officer" class="form-control" placeholder="Commending Officer">
-                            @error('commending_officer') <small class="text-danger">{{ $message }}</small> @enderror
+                            <select class="form-select form-control form-control-lg" wire:model.defer="commending_officer" required>
+                                <option value="">Select Commending Officer</option>
+                                <option value="HOD">HOD</option>
+                                <option value="Dean">Dean</option>
+                                <option value="Vice Chancellor">Vice Chancellor</option>
+                                <option value="Registrar">Registrar</option>
+                                <option value="Bursar">Bursar</option>
+                                <option value="Librarian">Librarian</option>
+                            </select>
+                            @error('commending_officer')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label class="form-label"><small>Date</small></label>
-                            <select wire:model.defer="date" class="form-select form-control" required>
+                            <select wire:model.defer="date" class="form-select form-control form-control-lg" required>
                                 <option value="">Select Year</option>
                                 @for ($y = date('Y'); $y >= 2010; $y--)
                                     <option value="{{ $y }}">{{ $y }}</option>

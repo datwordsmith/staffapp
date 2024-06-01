@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5">Update Profile {{$user->id}}</h1>
+                <h1 class="modal-title fs-5">Update Profile</h1>
                 <button type="button" class="btn-close" wire:click ="closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form wire:submit="newProfile({{ $user->id }})">
@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-md-4 form-group">
                             <label for="title">Title</label>
-                            <select class="form-select" wire:model.defer="title_id" required>
+                            <select class="form-select form-control form-control-lg" wire:model.defer="title_id" required>
                                 <option value="">Select Title</option>
                                 @foreach ($titles as $title)
                                     <option value="{{ $title->id }}">{{ $title->name }}</option>
@@ -36,7 +36,7 @@
 
                         <div class="col-md-4 form-group">
                             <label for="othername">Othername</label>
-                            <input type="text" wire:model.defer="othername" class="form-control" required>
+                            <input type="text" wire:model.defer="othername" class="form-control">
                             @error('othername') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
@@ -47,9 +47,16 @@
                         </div>
 
                         <div class="col-md-4 form-group">
-                            <label for="designation">Designation</label>
-                            <input type="text" wire:model.defer="designation" class="form-control" required>
-                            @error('designation') <small class="text-danger">{{ $message }}</small> @enderror
+                            <label for="rank">Rank</label>
+                            <select class="form-select form-control form-control-lg" wire:model.defer="rank_id" required>
+                                <option value="">Select Rank</option>
+                                @foreach ($ranks as $rank)
+                                    <option value="{{ $rank->id }}">{{ $rank->rank }}</option>
+                                @endforeach
+                            </select>
+                            @error('rank_id')
+                                <small class="error text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                     </div>
@@ -85,7 +92,7 @@
                     <div class="row">
                         <div class="col-md-4 form-group">
                             <label for="title">Title</label>
-                            <select class="form-select" wire:model.defer="title_id" required>
+                            <select class="form-select form-control form-control-lg" wire:model.defer="title_id" required>
                                 <option value="">Select Title</option>
                                 @foreach ($titles as $title)
                                     <option value="{{ $title->id }}">{{ $title->name }}</option>
@@ -121,10 +128,18 @@
                         </div>
 
                         <div class="col-md-4 form-group">
-                            <label for="designation">Designation</label>
-                            <input type="text" wire:model.defer="designation" class="form-control">
-                            @error('designation') <small class="text-danger">{{ $message }}</small> @enderror
+                            <label for="rank">Rank</label>
+                            <select class="form-select form-control form-control-lg" wire:model.defer="rank_id" required>
+                                <option value="">Select Rank</option>
+                                @foreach ($ranks as $rank)
+                                    <option value="{{ $rank->id }}">{{ $rank->rank }}</option>
+                                @endforeach
+                            </select>
+                            @error('rank_id')
+                                <small class="error text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
+
 
                     </div>
 

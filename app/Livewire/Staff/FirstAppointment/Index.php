@@ -2,9 +2,10 @@
 
 namespace App\Livewire\Staff\FirstAppointment;
 
-use App\Models\FirstAppointment;
+use App\Models\Ranks;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\FirstAppointment;
 use Illuminate\Support\Facades\Auth;
 
 class Index extends Component
@@ -12,7 +13,7 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $post, $grade_step, $first_appointment, $confirmation;
+    public $rank_id, $grade_step, $first_appointment, $confirmation;
     public $user, $staffId, $deleteName;
     public $appointment_id;
     public $search;
@@ -24,7 +25,7 @@ class Index extends Component
 
     public function rules(){
         return [
-            'post' => 'required|string',
+            'rank_id' => 'required|numeric',
             'grade_step' => 'required|string',
             'first_appointment' => 'required|date|before_or_equal:today',
             'confirmation' => 'required|date|before_or_equal:today',
@@ -32,7 +33,7 @@ class Index extends Component
     }
 
     public function resetInput(){
-        $this->post = null;
+        $this->rank_id = null;
         $this->grade_step = null;
         $this->first_appointment = null;
         $this->confirmation = null;
@@ -48,7 +49,7 @@ class Index extends Component
     public function storeAppointment(){
         $validatedData = $this->validate();
         $this->user->firstAppointment()->create([
-            'post' => $validatedData['post'],
+            'rank_id' => $validatedData['rank_id'],
             'grade_step' => $validatedData['grade_step'],
             'first_appointment' => $validatedData['first_appointment'],
             'confirmation' => $validatedData['confirmation'],
@@ -61,7 +62,7 @@ class Index extends Component
     public function editAppointment(int $appointment_id){
         $this->appointment_id = $appointment_id;
         $appointment = FirstAppointment::findOrFail($appointment_id);
-        $this->post = $appointment->post;
+        $this->rank_id = $appointment->rank_id;
         $this->grade_step = $appointment->grade_step;
         $this->first_appointment = $appointment->first_appointment;
         $this->confirmation = $appointment->confirmation;
@@ -70,7 +71,7 @@ class Index extends Component
     public function updateAppointment(){
         $validatedData = $this->validate();
         FirstAppointment::findOrFail($this->appointment_id)->update([
-            'post' => $validatedData['post'],
+            'rank_id' => $validatedData['rank_id'],
             'grade_step' => $validatedData['grade_step'],
             'first_appointment' => $validatedData['first_appointment'],
             'confirmation' => $validatedData['confirmation'],
@@ -110,8 +111,11 @@ class Index extends Component
     {
         $appointment = FirstAppointment::where('user_id', $this->user->id)->first();
 
+        $ranks = Ranks::where('category', $this->user->role_as)->get();
+
         return view('livewire.staff.first-appointment.index', [
             'appointment' => $appointment,
+            'ranks' => $ranks,
             ])->extends('layouts.staff')->section('content');
     }
 }

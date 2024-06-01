@@ -71,19 +71,19 @@
                                             <small class="purple-text mb-2">Abstract</small>
                                             <p class="mt-2">
                                                 {{ $paper->abstractFileName }} <button class="btn btn-sm btn-gradient-primary ms-2" wire:click="downloadAbstract('{{ $paper->abstract }}')"><i class="fas fa-cloud-download-alt"></i> Download Abstract</button>
-                                                <a href="#" wire:click="editPaper({{ $paper->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#changeAbstractModal"><i class="fa-solid fa-pen-nib"></i></a>
+                                                <a href="#" wire:click="editPaper({{ $paper->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#changeAbstractModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
                                             </p>
 
                                             <small class="purple-text">Evidence (Letter from the Editor)</small>
                                             <p class="mt-2">
                                                 {{ $paper->evidenceFileName }} <button class="btn btn-sm btn-gradient-primary ms-2" wire:click="downloadEvidence('{{ $paper->evidence }}')"><i class="fas fa-cloud-download-alt"></i> Download Evidence</button>
-                                                <a href="#" wire:click="editPaper({{ $paper->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#changeEvidenceModal"><i class="fa-solid fa-pen-nib"></i></a>
+                                                <a href="#" wire:click="editPaper({{ $paper->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#changeEvidenceModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
                                             </p>
                                         </td>
                                         <td class="align-top">
                                             <div class="d-flex justify-content-end">
-                                                <a href="#" wire:click="editPaper({{ $paper->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updatePaperModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                                <a href="#" wire:click="deletePaper({{ $paper->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deletePaperModal"><i class="fa-solid fa-trash-can"></i></a>
+                                                <a href="#" wire:click="editPaper({{ $paper->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updatePaperModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                                <a href="#" wire:click="deletePaper({{ $paper->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deletePaperModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                             </div>
                                         </td>
                                     </tr>

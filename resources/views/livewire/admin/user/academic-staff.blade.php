@@ -66,7 +66,7 @@
                                 <tr>
                                     <td class="">
                                         @if ($this->hasProfile($user->id))
-                                            <a href="{{ url('admin/profile/'.$user->staffId) }}" class="btn btn-sm btn-primary me-2"><i class="fa-regular fa-folder-open"></i></a>
+                                            <a href="{{ url('admin/profile/'.$user->staffId) }}" class="btn btn-sm btn-primary me-2"><i class="fa-regular fa-folder-open"></i> View</a>
                                         @else
                                             <button class="btn btn-sm btn-secondary me-2 disabled"><i class="fa-regular fa-folder-open"></i></button>
                                         @endif
@@ -89,20 +89,20 @@
                                         @if ($user->isActive)
                                             <!-- Show ban button if the user is active -->
                                             <a href="#" wire:click="banAcademicStaff({{ $user->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#banStaffModal">
-                                                <i class="fa-solid fa-ban"></i>
+                                                <i class="fa-solid fa-ban"></i> Deactivate
                                             </a>
                                         @else
                                             <!-- Show activate button if the user is inactive -->
                                             <a href="#" wire:click="activateAcademicStaff({{ $user->id }})" class="btn btn-sm btn-success me-2">
-                                                <i class="fa-solid fa-lock-open"></i>
+                                                <i class="fa-solid fa-lock-open"></i> Activate
                                             </a>
                                         @endif
 
                                         @can('superadmin')
                                             @if ($this->hasProfile($user->id))
-                                                <button class="btn btn-sm btn-secondary disabled"><i class="fa-regular fa-trash-can"></i></button>
+                                                <button class="btn btn-sm btn-secondary disabled"><i class="fa-regular fa-trash-can"></i> Delete</button>
                                             @else
-                                                <a href="#" wire:click="deleteAcademicStaff({{ $user->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteStaffModal"><i class="fa-solid fa-trash-can"></i></a>
+                                                <a href="#" wire:click="deleteAcademicStaff({{ $user->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteStaffModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                             @endif
                                         @endcan
                                     </td>

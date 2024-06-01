@@ -44,24 +44,6 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#publication-menu" aria-expanded="false" aria-controls="ui-basic">
-          <span class="menu-title">Publications</span>
-          <i class="menu-arrow"></i>
-          <i class="fa-regular fa-newspaper menu-icon"></i>
-        </a>
-        <div class="collapse" id="publication-menu">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/creative_works')}}">Creative Works</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/accepted_papers')}}">Accepted Papers</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/submitted_papers')}}">Submitted Papers</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/monographs_books')}}">Monographs/Books</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/journal_articles')}}">Journal Articles</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/conference_proceedings')}}">Conference Proceedings</a></li>
-          </ul>
-        </div>
-      </li>
-
-      <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#qualification-menu" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Qualifications</span>
           <i class="menu-arrow"></i>
@@ -69,74 +51,94 @@
         </a>
         <div class="collapse" id="qualification-menu">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/initial_qualifications')}}">Initial Qualifications</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/initial_qualifications')}}">Before Appointment</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ url('staff/additional_qualifications')}}">Additional Qualifications</a></li>
           </ul>
         </div>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('staff/teachingexperience')}}">
-            <span class="menu-title">Teaching Experience</span>
-            <i class="fas fa-chalkboard-teacher menu-icon"></i>
-        </a>
-      </li>
+    @can('staff')
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#publication-menu" aria-expanded="false" aria-controls="ui-basic">
+            <span class="menu-title">Publications</span>
+            <i class="menu-arrow"></i>
+            <i class="fa-regular fa-newspaper menu-icon"></i>
+            </a>
+            <div class="collapse" id="publication-menu">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ url('staff/creative_works')}}">Creative Works</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('staff/accepted_papers')}}">Accepted Papers</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('staff/submitted_papers')}}">Submitted Papers</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('staff/monographs_books')}}">Monographs/Books</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('staff/journal_articles')}}">Journal Articles</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('staff/conference_proceedings')}}">Conference Proceedings</a></li>
+            </ul>
+            </div>
+        </li>
 
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#staff-menu" aria-expanded="false" aria-controls="ui-basic">
-          <span class="menu-title">Awards</span>
-          <i class="menu-arrow"></i>
-          <i class="fas fa-award menu-icon"></i>
-        </a>
-        <div class="collapse" id="staff-menu">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/scholarships_prizes')}}">Scholarships and Prizes</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/honours_distinctions')}}">Honours and Distinctions</a></li>
-          </ul>
-        </div>
-      </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('staff/teachingexperience')}}">
+                <span class="menu-title">Teaching Experience</span>
+                <i class="fas fa-chalkboard-teacher menu-icon"></i>
+            </a>
+        </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('staff/societymemberships')}}">
-            <span class="menu-title">Society Memberships</span>
-            <i class="fas fa-users menu-icon"></i>
-        </a>
-      </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#staff-menu" aria-expanded="false" aria-controls="ui-basic">
+            <span class="menu-title">Awards</span>
+            <i class="menu-arrow"></i>
+            <i class="fas fa-award menu-icon"></i>
+            </a>
+            <div class="collapse" id="staff-menu">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ url('staff/scholarships_prizes')}}">Scholarships and Prizes</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('staff/honours_distinctions')}}">Honours and Distinctions</a></li>
+            </ul>
+            </div>
+        </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('staff/conferences')}}">
-            <span class="menu-title">Conferences</span>
-            <i class="fa-solid fa-users-between-lines menu-icon"></i>
-        </a>
-      </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('staff/societymemberships')}}">
+                <span class="menu-title">Society Memberships</span>
+                <i class="fas fa-users menu-icon"></i>
+            </a>
+        </li>
 
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#research-menu" aria-expanded="false" aria-controls="ui-basic">
-          <span class="menu-title">Researches</span>
-          <i class="menu-arrow"></i>
-          <i class="fa-solid fa-book-open-reader menu-icon"></i>
-        </a>
-        <div class="collapse" id="research-menu">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/completed_researches')}}">Completed Researches</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ url('staff/ongoing_researches')}}">Ongoing Researches</a></li>
-          </ul>
-        </div>
-      </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('staff/conferences')}}">
+                <span class="menu-title">Conferences</span>
+                <i class="fa-solid fa-users-between-lines menu-icon"></i>
+            </a>
+        </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('staff/university_administration')}}">
-            <span class="menu-title">University Administration</span>
-            <i class="fa-solid fa-briefcase menu-icon"></i>
-        </a>
-      </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#research-menu" aria-expanded="false" aria-controls="ui-basic">
+            <span class="menu-title">Researches</span>
+            <i class="menu-arrow"></i>
+            <i class="fa-solid fa-book-open-reader menu-icon"></i>
+            </a>
+            <div class="collapse" id="research-menu">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ url('staff/completed_researches')}}">Completed Researches</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('staff/ongoing_researches')}}">Ongoing Researches</a></li>
+            </ul>
+            </div>
+        </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('staff/community_services')}}">
-            <span class="menu-title">Community Service</span>
-            <i class="fa-solid fa-handshake-angle menu-icon"></i>
-        </a>
-      </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('staff/university_administration')}}">
+                <span class="menu-title">University Administration</span>
+                <i class="fa-solid fa-briefcase menu-icon"></i>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('staff/community_services')}}">
+                <span class="menu-title">Community Service</span>
+                <i class="fa-solid fa-handshake-angle menu-icon"></i>
+            </a>
+        </li>
+    @endcan
 
       <li class="nav-item">
         <a class="nav-link" href="{{ url('staff/appraisal_request')}}">

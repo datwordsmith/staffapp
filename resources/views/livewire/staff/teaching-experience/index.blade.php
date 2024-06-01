@@ -65,8 +65,8 @@
                                         <td class="text-wrap">{{ $experience->lectures }}</td>
                                         <td class="text-wrap">{{ $experience->semester }}/{{ $experience->year }}</td>
                                         <td class="">
-                                            <a href="#" wire:click="editExperience({{ $experience->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateExperienceModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                            <a href="#" wire:click="deleteExperience({{ $experience->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteExperienceModal"><i class="fa-solid fa-trash-can"></i></a>
+                                            <a href="#" wire:click="editExperience({{ $experience->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateExperienceModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                            <a href="#" wire:click="deleteExperience({{ $experience->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteExperienceModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                         </td>
                                     </tr>
                                 @empty

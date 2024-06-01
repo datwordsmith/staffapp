@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Admin\User;
 
+use App\Models\staffUnit;
+use App\Models\Unit;
 use App\Models\User;
 use App\Models\Faculty;
 use Livewire\Component;
@@ -18,7 +20,7 @@ class NonAcademicStaff extends Component
 
     public $user_id, $staffId, $email, $role_as;
     public $banStaffId, $deleteStaffId;
-    public $faculty_id, $department_id;
+    public $unit_id;
     public $search;
     protected $listeners = ['faculty_id' => 'updatedFacultyId'];
 
@@ -27,21 +29,20 @@ class NonAcademicStaff extends Component
         return [
             'staffId' => 'required|string|unique:users,staffId',
             'email' => 'required|string|unique:users,email',
-            'department_id' => 'required|numeric|min:1|exists:departments,id',
+            'unit_id' => 'required|numeric|min:1|exists:units,id',
         ];
     }
 
     public function mount()
     {
         $this->admin = Auth::user();
-        $this->departments = [];
+        $this->units = [];
     }
 
     public function resetInput() {
         $this->staffId = NULL;
         $this->email = null;
-        $this->department_id = null;
-        $this->faculty_id = NULL;
+        $this->unit_id = null;
     }
 
     public function closeModal() {
@@ -72,9 +73,9 @@ class NonAcademicStaff extends Component
             'role_as' => $role_as,
         ]);
 
-        staffDepartment::create([
+        staffUnit::create([
             'user_id' => $user->id,
-            'department_id' => $validatedData['department_id'],
+            'unit_id' => $validatedData['unit_id'],
         ]);
 
         //$user->notify(new NewUserAlert($userPassword));
@@ -161,12 +162,12 @@ class NonAcademicStaff extends Component
         ->orderBy('profiles.lastname', 'ASC')
         ->paginate(5);
 
-        $this->faculties = Faculty::orderBy('name')->get();
+        $this->units = Unit::orderBy('name')->get();
 
         return view('livewire.admin.user.non-academic-staff', [
             'users' => $users,
             'deleteStaffId' => $this->deleteStaffId,
-            'faculties'=>$this->faculties,
+            'units'=>$this->units,
             ])->extends('layouts.admin')->section('content');
     }
 }

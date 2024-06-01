@@ -70,8 +70,8 @@
                                         </td>
                                         <td class="align-top me-auto">
                                             <div class="d-flex justify-content-end">
-                                                <a href="#" wire:click="editResearch({{ $research->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateResearchModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                                <a href="#" wire:click="deleteResearch({{ $research->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteResearchModal"><i class="fa-solid fa-trash-can"></i></a>
+                                                <a href="#" wire:click="editResearch({{ $research->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateResearchModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                                <a href="#" wire:click="deleteResearch({{ $research->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteResearchModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                             </div>
                                         </td>
                                     </tr>

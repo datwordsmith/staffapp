@@ -87,8 +87,8 @@
                                     <td class="ps-3"> {{$qualification->qualification}} </td>
                                     <td class="ps-3"> {{$qualification->date}} </td>
                                     <td class="d-flex justify-content-end">
-                                        <a href="#" wire:click="editQualification({{ $qualification->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateQualificationModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                        <a href="#" wire:click="deleteQualification({{ $qualification->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteQualificationModal"><i class="fa-solid fa-trash-can"></i></a>
+                                        <a href="#" wire:click="editQualification({{ $qualification->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateQualificationModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                        <a href="#" wire:click="deleteQualification({{ $qualification->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteQualificationModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                     </td>
                                 </tr>
                             @empty

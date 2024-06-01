@@ -76,7 +76,7 @@
                                             <a href="{{ $account->url }}" target="_blank">{{ $account->url }}</a>
                                         </td>
                                         <td class="">
-                                            <a href="#" wire:click="deleteSocialMedia({{ $account->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSocialMediaModal"><i class="fa-solid fa-trash-can"></i></a>
+                                            <a href="#" wire:click="deleteSocialMedia({{ $account->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSocialMediaModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                         </td>
                                     </tr>
                                 @empty

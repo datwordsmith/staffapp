@@ -36,5 +36,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('staff', function ($user) {
             return $user->role_as == 2;
         });
+
+        Gate::define('non_academic_staff', function ($user) {
+            return $user->role_as == 3;
+        });
     }
 }

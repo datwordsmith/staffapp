@@ -74,8 +74,8 @@
                                         </td>
                                         <td class="align-top">
                                             <div class="d-flex justify-content-end">
-                                                <a href="#" wire:click="editAdministration({{ $administration->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateAdministrationModal"><i class="fa-solid fa-pen-nib"></i></a>
-                                                <a href="#" wire:click="deleteAdministration({{ $administration->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAdministrationModal"><i class="fa-solid fa-trash-can"></i></a>
+                                                <a href="#" wire:click="editAdministration({{ $administration->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateAdministrationModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+                                                <a href="#" wire:click="deleteAdministration({{ $administration->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAdministrationModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                             </div>
                                         </td>
                                     </tr>

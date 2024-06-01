@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit="storeAcademicStaff()">
+                <form wire:submit="storeNonAcademicStaff()">
                     <div class="modal-body">
 
                         <div class="form-group">
@@ -28,29 +28,16 @@
                         </div>
 
                         <div class="form-group">
-                            <select class="form-select form-control form-control-lg" wire:model.defer="faculty_id" wire:change="$dispatch('faculty_id', $event.target.value)" required>
-                                <option value="">Select a Faculty</option>
-                                @foreach ($faculties as $faculty)
-                                    <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
+                            <select class="form-select form-control form-control-lg" wire:model.defer="unit_id" required>
+                                <option value="">Select a Unit</option>
+                                @foreach ($units as $unit)
+                                    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                 @endforeach
                             </select>
-                            @error('faculty_id')
+                            @error('unit_id')
                                 <small class="error text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-
-                        <div class="form-group">
-                            <select class="form-select form-control form-control-lg" wire:model.defer="department_id" required>
-                                <option value="">Select a Department</option>
-                                @foreach ($departments as $department)
-                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('department_id')
-                                <small class="error text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
 
                     </div>
                     <div class="modal-footer">
@@ -80,7 +67,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit="deactivateAcademicStaff()">
+                <form wire:submit="deactivateNonAcademicStaff()">
                     <div class="modal-body">
                         <h4>Are you sure you want to deactivate this user - "{{ $banStaffId }}"?</h4>
                     </div>

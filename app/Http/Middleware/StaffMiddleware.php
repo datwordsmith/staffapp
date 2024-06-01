@@ -17,8 +17,9 @@ class StaffMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        $allowedRoles = [2, 3];
          // Check if the user is authenticated and has the 'staff' role_as
-         if (Auth::check() && Auth::user()->role_as == 2) {
+         if (Auth::check() && in_array(Auth::user()->role_as, $allowedRoles)) {
             return $next($request);
         }
 
