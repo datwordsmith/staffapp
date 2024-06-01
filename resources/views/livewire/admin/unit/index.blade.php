@@ -64,7 +64,7 @@
                 @endif
                 <div class="table-responsive">
                     <div class="">
-                        <input type="text" class="form-control" wire:model="search" placeholder="Search...">
+                        <input type="text" class="form-control" wire:model.live="search" placeholder="Search...">
                     </div>
                     <table class="table table-striped table-hover">
                         <thead>

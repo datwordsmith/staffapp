@@ -34,7 +34,7 @@ Fixed Navigation
     <nav class="navbar navbar-expand-lg navbar-light px-0">
       <!-- logo -->
       <a class="navbar-brand logo" href="{{route('home')}}">
-        <h2 class="my-primary">STAFF PORTAL</h2>
+        <h2 class="text-white">STAFF PORTAL</h2>
       </a>
       <!-- /logo -->
       <button class="navbar-toggler btn-white" type="button" data-toggle="collapse" data-target="#navigation"
@@ -43,7 +43,7 @@ Fixed Navigation
       </button>
 
       <div class="collapse navbar-collapse ms-auto" id="navigation">
-        <a class="btn btn-primary ms-auto" href="{{ url('/login')}}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+        <a class="btn btn-secondary ms-auto" href="{{ url('/login')}}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
       </div>
     </nav>
     <!-- /main nav -->
