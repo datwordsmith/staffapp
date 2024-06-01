@@ -25,7 +25,7 @@
                                     <h3 class="text-secondary">{{$user->profile->firstname}} {{$user->profile->othername}}</h3>
                                     <span>- {{$user->profile->rank->rank}} -</span>
                                     <!--<p>{{ Str::limit($user->profile->biography, $limit = 50, $end = '...') }}</p>-->
-                                    <p><a href="{{ url('profile/'.$user->staffId) }}" class="btn btn-sm btn-primary me-2"><i class="fa-regular fa-folder-open"></i></a></p>
+                                    <p><a href="{{ url('profile/'.$user->staffId) }}" class="btn btn-sm btn-primary me-2"><i class="fa-regular fa-folder-open"></i> View Profile</a></p>
                                 </div>
                             </div>
                         </div>
@@ -45,6 +45,9 @@
         <div>
             {{ $allstaff->links() }}
         </div>
+
+
+
     </div> <!-- End container -->
 </section> <!-- End section -->
 
