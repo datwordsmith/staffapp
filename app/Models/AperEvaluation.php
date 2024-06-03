@@ -36,6 +36,7 @@ class AperEvaluation extends Model
         'query_commendations',
         'grade',
         'status_id',
+        'note',
     ];
 
     public function aper()

@@ -38,7 +38,7 @@ body {
 }
 
 .hero-area {
-  background-image: url("../images/slider-bg-1.jpg");
+  background-image: url("../images/header_image.png");
   background-size: cover;
   height: 100vh;
   position: relative;

@@ -61,9 +61,9 @@ class User extends Authenticatable
         return $this->hasOne(staffDepartment::class);
     }
 
-    public function unit()
+    public function subunit()
     {
-        return $this->hasOne(staffUnit::class);
+        return $this->hasOne(staffSubUnit::class);
     }
 
     public function socialMedia()

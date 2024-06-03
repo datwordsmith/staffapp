@@ -87,9 +87,9 @@ Welcome Slider
         <div class="row">
             <div class="col-12 col-lg-6">
                <h1>Welcome to the Staff Portal</h1>
-               <p class="pt-5">Lorem ipsum dolor sit amet. Est minima iusto qui quisquam suscipit aut doloremque eligendi sit velit reiciendis ab magni error et enim numquam qui voluptas beatae. Est autem iusto id Quis repellendus hic illo consequuntur nam consequatur consequatur.</p>
+               {{-- <p class="pt-5">Lorem ipsum dolor sit amet. Est minima iusto qui quisquam suscipit aut doloremque eligendi sit velit reiciendis ab magni error et enim numquam qui voluptas beatae. Est autem iusto id Quis repellendus hic illo consequuntur nam consequatur consequatur.</p> --}}
                <div class="pt-2">
-                   <a class="btn btn-primary" href="https://fulafia.edu.ng/" target="_blank"><i class="bi bi-browser-edge"></i> University Website</a>
+                   <a class="btn btn-info" href="https://fulafia.edu.ng/" target="_blank"><i class="bi bi-browser-edge"></i> University Website</a>
                </div>
             </div>
         </div>

@@ -15,6 +15,7 @@ class Department extends Model
         'name',
         'description',
         'faculty_id',
+        'hod_id',
     ];
 
     public function faculty()
@@ -25,5 +26,10 @@ class Department extends Model
     public function programmes()
     {
         return $this->hasMany(Programme::class);
+    }
+
+    public function hod()
+    {
+        return $this->belongsTo(User::class, 'hod_id', 'id');
     }
 }

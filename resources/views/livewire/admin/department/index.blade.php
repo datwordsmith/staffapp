@@ -29,15 +29,9 @@
                 <form wire:submit="storeDepartment" class="">
                     <div class="form-group">
                         <label for="department">Department</label>
-                        <input type="text" wire:model.defer="name" class="form-control" placeholder="Departrment">
+                        <input type="text" wire:model.defer="name" class="form-control" placeholder="Departrment" required>
                         @error('name') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
-
-                    {{-- <div class="form-group">
-                        <label for="faculty">Description</label>
-                        <textarea class="form-control" wire:model.defer="description"></textarea>
-                        @error('description') <small class="text-danger">{{ $message }}</small> @enderror
-                    </div> --}}
 
                     <div class="form-group">
                         <label>Faculty</label>
@@ -48,6 +42,19 @@
                             @endforeach
                         </select>
                         @error('faculty_id')
+                            <small class="error text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label>HOD</label>
+                        <select class="form-select form-control form-control-lg" wire:model.defer="hod_id">
+                            <option value="">Select HOD</option>
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->lastname }} {{ $user->firstname }} {{ $user->othername }} ({{ $user->title }})</option>
+                            @endforeach
+                        </select>
+                        @error('hod_id')
                             <small class="error text-danger">{{ $message }}</small>
                         @enderror
                     </div>
@@ -81,16 +88,26 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                            <th scope="col" class="ps-3">Department</th>
-                            <th scope="col" class="ps-3">Faculty</th>
+                            <th scope="col" class="ps-2">Department</th>
+                            <th scope="col" class="ps-2">Faculty</th>
+                            <th scope="col" class="ps-2">HOD</th>
                             <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($departments as $department)
                                 <tr>
-                                    <td class="ps-3"> {{$department->name}} </td>
-                                    <td class="ps-3"> {{$department->faculty}} </td>
+                                    <td class="ps-2"> {{$department->name}} </td>
+                                    <td class="ps-2"> {{$department->faculty}} </td>
+                                    <td class="ps-2">
+                                        @if($department->hod_id !== null)
+                                            <a href="{{ url('admin/profile/'.$department->hod->staffId) }}">
+                                                {{ $department->hod->profile->title->name }} {{ $department->hod->profile->lastname }} {{ $department->hod->profile->firstname }} {{ $department->hod->profile->othername }}
+                                            </a>
+                                        @else
+                                            Not assigned
+                                        @endif
+                                    </td>
                                     <td class="d-flex justify-content-end">
                                         <a href="#" wire:click="editDepartment({{ $department->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateDepartmentModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
                                         <a href="#" wire:click="deleteDepartment({{ $department->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteDepartmentModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
@@ -98,7 +115,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3" class="text-danger text-center">No Departments Found</td>
+                                    <td colspan="4" class="text-danger text-center">No Departments Found</td>
                                 </tr>
                             @endforelse
 

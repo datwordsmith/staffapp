@@ -22,12 +22,6 @@
                             @error('name') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
-                        {{-- <div class="form-group">
-                            <label>Description</label>
-                            <textarea class="form-control" wire:model.defer="description"></textarea>
-                            @error('description') <small class="text-danger">{{ $message }}</small> @enderror
-                        </div> --}}
-
                         <div class="form-group">
                             <label>Faculty</label>
                             <select class="form-select form-control form-control-lg" wire:model.defer="faculty_id" required>
@@ -37,6 +31,19 @@
                                 @endforeach
                             </select>
                             @error('faculty_id')
+                                <small class="error text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label>HOD</label>
+                            <select class="form-select form-control form-control-lg" wire:model.defer="hod_id">
+                                <option value="">Select HOD</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->lastname }} {{ $user->firstname }} {{ $user->othername }} ({{ $user->title }})</option>
+                                @endforeach
+                            </select>
+                            @error('hod_id')
                                 <small class="error text-danger">{{ $message }}</small>
                             @enderror
                         </div>

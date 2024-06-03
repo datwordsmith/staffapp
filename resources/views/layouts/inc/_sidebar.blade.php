@@ -45,12 +45,21 @@
           <i class="mdi mdi-chevron-triple-up menu-icon"></i>
         </a>
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('admin/units')}}">
+        <a class="nav-link" data-bs-toggle="collapse" href="#unit-menu" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Units</span>
-          <i class="mdi mdi-file-tree up menu-icon"></i>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-file-tree menu-icon"></i>
         </a>
+        <div class="collapse" id="unit-menu">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('units')}}">Units</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('admin/sub_units') }}">Sub Units</a></li>
+          </ul>
+        </div>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#faculty-menu" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Faculties</span>

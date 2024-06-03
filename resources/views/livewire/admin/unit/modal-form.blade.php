@@ -23,9 +23,22 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="rank">Unit</label>
-                            <input type="text" wire:model.defer="description" class="form-control" placeholder="Description">
-                            @error('description') <small class="text-danger">{{ $message }}</small> @enderror
+                            <label>Head</label>
+                            <select class="form-select form-control form-control-lg" wire:model.defer="head_id">
+                                <option value="">Select Head</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->lastname }} {{ $user->firstname }} {{ $user->othername }} ({{ $user->title }})</option>
+                                @endforeach
+                            </select>
+                            @error('head_id')
+                                <small class="error text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="head_title">Head Title</label>
+                            <input type="text" wire:model.defer="head_title" class="form-control" placeholder="Eg. Registrar, Bursar" required>
+                            @error('head_title') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
                     </div>
                     <div class="modal-footer">
