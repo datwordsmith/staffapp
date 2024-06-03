@@ -2,12 +2,14 @@
 
 namespace App\Livewire\Admin\User;
 
-use App\Models\staffUnit;
 use App\Models\Unit;
 use App\Models\User;
 use App\Models\Faculty;
+use App\Models\SubUnit;
 use Livewire\Component;
+use App\Models\staffUnit;
 use App\Models\Department;
+use App\Models\staffSubUnit;
 use Livewire\WithPagination;
 use App\Models\staffDepartment;
 use Illuminate\Support\Facades\Auth;
@@ -20,28 +22,28 @@ class NonAcademicStaff extends Component
 
     public $user_id, $staffId, $email, $role_as;
     public $banStaffId, $deleteStaffId;
-    public $unit_id;
+    public $unit_id, $subunits, $subunit_id;
     public $search;
-    protected $listeners = ['faculty_id' => 'updatedFacultyId'];
 
     public function rules()
     {
         return [
             'staffId' => 'required|string|unique:users,staffId',
             'email' => 'required|string|unique:users,email',
-            'unit_id' => 'required|numeric|min:1|exists:units,id',
+            'subunit_id' => 'required|numeric|min:1|exists:sub_units,id',
         ];
     }
 
     public function mount()
     {
         $this->admin = Auth::user();
-        $this->units = [];
+        $this->subunits = [];
     }
 
     public function resetInput() {
         $this->staffId = NULL;
         $this->email = null;
+        $this->subunit_id = null;
         $this->unit_id = null;
     }
 
@@ -53,9 +55,9 @@ class NonAcademicStaff extends Component
         $this->resetInput();
     }
 
-    public function updatedFacultyId($value)
+    public function updated($unit_id)
     {
-        $this->departments = Department::where('faculty_id', $value)->orderBy('name')->get();
+        $this->subunits = SubUnit::where('unit_id', $this->unit_id)->orderBy('name')->get();
     }
 
     public function storeNonAcademicStaff()
@@ -73,9 +75,9 @@ class NonAcademicStaff extends Component
             'role_as' => $role_as,
         ]);
 
-        staffUnit::create([
+        staffSubUnit::create([
             'user_id' => $user->id,
-            'unit_id' => $validatedData['unit_id'],
+            'subunit_id' => $validatedData['subunit_id'],
         ]);
 
         //$user->notify(new NewUserAlert($userPassword));
@@ -123,7 +125,23 @@ class NonAcademicStaff extends Component
     {
         try {
             $user = User::FindOrFail($this->user_id);
+            // Check if the user has a profile
+            if ($user->profile()->exists()) {
+                session()->flash('error', 'Cannot delete because the user has a profile.');
+                return;
+            }
+
+            // If the user doesn't have a profile, proceed with deletion
+            $user->load('subunit'); // Load the subunit relationship
+
+            // Delete the subunit record if it exists
+            if ($user->subunit) {
+                $user->subunit->delete();
+            }
+
+            // Delete the user
             $user->delete();
+
             session()->flash('message', 'Non-Academic Staff deleted successfully.');
         } catch (\Illuminate\Database\QueryException $e) {
             if ($e->errorInfo[1] == 1451) { // check if error is foreign key constraint violation

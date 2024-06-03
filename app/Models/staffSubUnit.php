@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class staffUnit extends Model
+class staffSubUnit extends Model
 {
     use HasFactory;
 
-    protected $table = 'staff_units';
+    protected $table = 'staff_sub_units';
 
     protected $fillable = [
         'user_id',
-        'unit_id',
+        'subunit_id',
     ];
 
 
@@ -22,8 +22,8 @@ class staffUnit extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function unit()
+    public function subunit()
     {
-        return $this->belongsTo(Unit::class);
+        return $this->belongsTo(SubUnit::class);
     }
 }

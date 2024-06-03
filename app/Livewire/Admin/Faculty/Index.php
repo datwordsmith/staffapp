@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Faculty;
 
+use App\Models\User;
 use App\Models\Faculty;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -11,7 +12,7 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $faculty_id, $name, $description, $deleteName;
+    public $faculty_id, $name, $dean_id, $description, $deleteName;
 
     public $search;
 
@@ -24,6 +25,7 @@ class Index extends Component
         return [
             'name' => 'required|string|unique:faculties,name',
             'description' => 'nullable|text',
+            'dean_id' => 'nullable|numeric|min:1|exists:users,id',
 
         ];
     }
@@ -31,6 +33,7 @@ class Index extends Component
     public function resetInput(){
         $this->name = null;
         $this->description = null;
+        $this->dean_id = null;
     }
 
     public function closeModal() {
@@ -45,6 +48,7 @@ class Index extends Component
         Faculty::create([
             'name' => $validatedData['name'],
             'description' => $validatedData['description'],
+            'dean_id' => $validatedData['dean_id'],
         ]);
         session()->flash('message', 'Faculty Added Successfully.');
         $this->dispatch('close-modal');
@@ -55,13 +59,16 @@ class Index extends Component
         $this->faculty_id = $faculty_id;
         $faculty = Faculty::findOrFail($faculty_id);
         $this->name = $faculty->name;
+        $this->dean_id = $faculty->dean_id;
     }
 
     public function updateFaculty(){
-        $validatedData = $this->validate();
+        $validatedData = $this->validate([
+            'dean_id' => 'nullable|numeric|min:1|exists:users,id',
+        ]);
         Faculty::findOrFail($this->faculty_id)->update([
-            'name' => $validatedData['name'],
-            'description' => $validatedData['description'],
+            'name' => $this->name,
+            'dean_id' => $validatedData['dean_id'],
         ]);
         session()->flash('message', 'Faculty Updated Successfully.');
         $this->dispatch('close-modal');
@@ -100,11 +107,18 @@ class Index extends Component
 
         $faculties = Faculty::where('name', 'like', '%'.$this->search.'%')
             ->orderBy('name', 'ASC')
-            ->paginate(5);
+            ->paginate(10);
+
+        $users = User::join('profiles', 'profiles.user_id', '=', 'users.id')
+                ->leftJoin('titles', 'profiles.title_id', '=', 'titles.id')
+                ->select('users.*', 'profiles.lastname as lastname', 'profiles.firstname as firstname', 'titles.name as title')
+                ->orderBy('profiles.lastname', 'ASC')
+                ->get();
 
         return view('livewire.admin.faculty.index', [
             'faculties' => $faculties,
             'deleteName' => $this->deleteName,
+            'users' => $users,
             ])->extends('layouts.admin')->section('content');
     }
 }

@@ -28,13 +28,25 @@
                         </div>
 
                         <div class="form-group">
-                            <select class="form-select form-control form-control-lg" wire:model.defer="unit_id" required>
+                            <select class="form-select form-control form-control-lg" wire:model.live="unit_id" required>
                                 <option value="">Select a Unit</option>
                                 @foreach ($units as $unit)
                                     <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                 @endforeach
                             </select>
                             @error('unit_id')
+                                <small class="error text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-select form-control form-control-lg" wire:model.defer="subunit_id" required>
+                                <option value="">Select a Sub-Unit</option>
+                                @foreach ($subunits as $subunit)
+                                    <option value="{{ $subunit->id }}">{{ $subunit->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('subunit_id')
                                 <small class="error text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -99,7 +111,7 @@
                 </div>
             </div>
             <div wire:loading.remove>
-                <form wire:submit="destroyAcademicStaff()">
+                <form wire:submit="destroyNonAcademicStaff()">
                     <div class="modal-body">
                         <h4>Are you sure you want to delete this user - "{{ $deleteStaffId }}"?</h4>
                     </div>

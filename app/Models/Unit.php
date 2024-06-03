@@ -14,6 +14,17 @@ class Unit extends Model
     protected $fillable = [
         'name',
         'description',
+        'head_title',
+        'head_id',
     ];
 
+    public function subunits()
+    {
+        return $this->hasMany(SubUnit::class);
+    }
+
+    public function head()
+    {
+        return $this->belongsTo(User::class, 'head_id', 'id');
+    }
 }

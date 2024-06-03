@@ -34,11 +34,23 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="description">Description</label>
-                        <input type="text" wire:model.defer="description" class="form-control" placeholder="Description">
-                        @error('description') <small class="text-danger">{{ $message }}</small> @enderror
+                        <label>Head</label>
+                        <select class="form-select form-control form-control-lg" wire:model.defer="head_id">
+                            <option value="">Select Head</option>
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->lastname }} {{ $user->firstname }} {{ $user->othername }} ({{ $user->title }})</option>
+                            @endforeach
+                        </select>
+                        @error('head_id')
+                            <small class="error text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
 
+                    <div class="form-group">
+                        <label for="head_title">Head Title</label>
+                        <input type="text" wire:model.defer="head_title" class="form-control" placeholder="Eg. Registrar, Bursar" required>
+                        @error('head_title') <small class="text-danger">{{ $message }}</small> @enderror
+                    </div>
 
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-lg btn-gradient-primary">Submit</button>
@@ -70,7 +82,8 @@
                         <thead>
                             <tr>
                             <th scope="col" class="ps-3">Unit</th>
-                            <th scope="col" class="ps-3">Description</th>
+                            <th scope="col" class="ps-3">Head</th>
+                            <th scope="col" class="ps-3">Head Title</th>
                             <th scope="col"></th>
                             </tr>
                         </thead>
@@ -78,7 +91,16 @@
                             @forelse ($units as $unit)
                                 <tr>
                                     <td class="ps-3"> {{ $unit->name }} </td>
-                                    <td class="ps-3"> {{$unit->description}} </td>
+                                    <td class="ps-3">
+                                        @if($unit->head_id !== null)
+                                            <a href="{{ url('admin/profile/'.$unit->head->staffId) }}">
+                                                {{ $unit->head->profile->title->name }} {{ $unit->head->profile->lastname }} {{ $unit->head->profile->firstname }} {{ $unit->head->profile->othername }}
+                                            </a>
+                                        @else
+                                            Not assigned
+                                        @endif
+                                    </td>
+                                    <td class="ps-3"> {{$unit->head_title}} </td>
                                     <td class="d-flex justify-content-end">
                                         <a href="#" wire:click="editUnit({{ $unit->id }})" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateUnitModal"><i class="fa-solid fa-pen-nib"></i> Edit</a>
                                         <a href="#" wire:click="deleteUnit({{ $unit->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUnitModal"><i class="fa-solid fa-trash-can"></i> Delete</a>
@@ -86,7 +108,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3" class="text-danger text-center">No Units Found</td>
+                                    <td colspan="4" class="text-danger text-center">No Units Found</td>
                                 </tr>
                             @endforelse
 

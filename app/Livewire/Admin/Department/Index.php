@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Department;
 
+use App\Models\User;
 use App\Models\Faculty;
 use Livewire\Component;
 use App\Models\Department;
@@ -13,7 +14,7 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $faculties, $department_id, $name, $description, $faculty_id, $deleteName;
+    public $faculties, $department_id, $name, $description, $faculty_id, $hod_id, $deleteName;
     public $search;
 
     public function rules()
@@ -22,6 +23,7 @@ class Index extends Component
             'name' => 'required|string',
             'description' => 'nullable|string',
             'faculty_id' => 'required|numeric|min:1|exists:faculties,id',
+            'hod_id' => 'nullable|numeric|min:1|exists:users,id',
         ];
     }
 
@@ -35,6 +37,7 @@ class Index extends Component
         $this->name = NULL;
         $this->description = null;
         $this->faculty_id = NULL;
+        $this->hod_id = NULL;
     }
 
     public function closeModal() {
@@ -52,6 +55,7 @@ class Index extends Component
             'name' => $validatedData['name'],
             'description' => $validatedData['description'],
             'faculty_id' => $validatedData['faculty_id'],
+            'hod_id' => $validatedData['hod_id'],
         ]);
         session()->flash('message', 'Department Added Successfully.');
         $this->dispatch('close-modal');
@@ -64,6 +68,7 @@ class Index extends Component
         $this->name = $department->name;
         $this->description = $department->description;
         $this->faculty_id = $department->faculty_id;
+        $this->hod_id = $department->hod_id;
     }
 
     public function updateDepartment(){
@@ -72,6 +77,7 @@ class Index extends Component
             'name' => $validatedData['name'],
             'description' => $validatedData['description'],
             'faculty_id' => $validatedData['faculty_id'],
+            'hod_id' => $validatedData['hod_id'],
         ]);
         session()->flash('message', 'Department Updated Successfully.');
         $this->dispatch('close-modal');
@@ -110,15 +116,26 @@ class Index extends Component
 
             $departments = Department::where(function ($query) {
                         $query->where('departments.name', 'like', '%'.$this->search.'%')
-                            ->orWhere('faculties.name', 'like', '%'.$this->search.'%');
+                            ->orWhere('faculties.name', 'like', '%'.$this->search.'%')
+                            ->orWhere('profiles.lastname', 'like', '%'.$this->search.'%')
+                            ->orWhere('profiles.firstname', 'like', '%'.$this->search.'%')
+                            ->orWhere('profiles.othername', 'like', '%'.$this->search.'%');
                     })
                     ->join('faculties', 'departments.faculty_id', '=', 'faculties.id')
+                    ->leftJoin('profiles', 'departments.hod_id', '=', 'profiles.user_id')
                     ->select('departments.*', 'faculties.name as faculty')
                     ->orderBy('departments.name', 'ASC')
-                    ->paginate(5);
+                    ->paginate(10);
+
+            $users = User::join('profiles', 'profiles.user_id', '=', 'users.id')
+                    ->leftJoin('titles', 'profiles.title_id', '=', 'titles.id')
+                    ->select('users.*', 'profiles.lastname as lastname', 'profiles.firstname as firstname', 'titles.name as title')
+                    ->orderBy('profiles.lastname', 'ASC')
+                    ->get();
 
             return view('livewire.admin.department.index', [
                 'departments' => $departments,
+                'users' => $users,
                 'deleteName' => $this->deleteName,
                 ])->extends('layouts.admin')->section('content');
     }
