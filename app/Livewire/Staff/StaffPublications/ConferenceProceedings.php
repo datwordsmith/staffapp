@@ -97,7 +97,7 @@ class ConferenceProceedings extends Component
         ]);
 
 
-        session()->flash('message', 'Publication Added Successfully.');
+        session()->flash('message', 'Conference Proceeding Added Successfully.');
 
         $this->dispatch('close-modal');
         $this->resetInput();
@@ -139,7 +139,7 @@ class ConferenceProceedings extends Component
 
         $publication->save();
 
-        session()->flash('message', 'Publication Updated Successfully.');
+        session()->flash('message', 'Conference Proceeding Updated Successfully.');
         $this->dispatch('close-modal');
         $this->resetInput();
     }
@@ -238,15 +238,15 @@ class ConferenceProceedings extends Component
                 unlink('uploads/documnets/' . $existingEvidence);
             }
 
-            session()->flash('message', 'Publication deleted successfully.');
+            session()->flash('message', 'Conference Proceeding deleted successfully.');
         } catch (\Illuminate\Database\QueryException $e) {
             if ($e->errorInfo[1] == 1451) { // check if error is foreign key constraint violation
-                session()->flash('error', 'Cannot delete publication because it is referenced in user profile.');
+                session()->flash('error', 'Cannot delete item because it is referenced in user profile.');
             } else {
-                session()->flash('error', 'An error occurred while deleting the publication.');
+                session()->flash('error', 'An error occurred while deleting the item.');
             }
         } catch (\Exception $e) {
-            session()->flash('error', 'An error occurred while deleting the publication.');
+            session()->flash('error', 'An error occurred while deleting the item.');
         }
 
         $this->dispatch('close-modal');

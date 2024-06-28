@@ -97,7 +97,7 @@ class Index extends Component
         ]);
 
 
-        session()->flash('message', 'Publication Added Successfully.');
+        session()->flash('message', 'Monogrpah/Book Added Successfully.');
 
         $this->dispatch('close-modal');
         $this->resetInput();
@@ -139,7 +139,7 @@ class Index extends Component
 
         $publication->save();
 
-        session()->flash('message', 'Publication Updated Successfully.');
+        session()->flash('message', 'Monogrpah/Book Updated Successfully.');
         $this->dispatch('close-modal');
         $this->resetInput();
     }
@@ -238,15 +238,15 @@ class Index extends Component
                 unlink('uploads/documnets/' . $existingEvidence);
             }
 
-            session()->flash('message', 'Publication deleted successfully.');
+            session()->flash('message', 'Monogrpah/Book deleted successfully.');
         } catch (\Illuminate\Database\QueryException $e) {
             if ($e->errorInfo[1] == 1451) { // check if error is foreign key constraint violation
-                session()->flash('error', 'Cannot delete publication because it is referenced in user profile.');
+                session()->flash('error', 'Cannot delete Monogrpah/Book because it is referenced in user profile.');
             } else {
-                session()->flash('error', 'An error occurred while deleting the publication.');
+                session()->flash('error', 'An error occurred while deleting the Monogrpah/Book.');
             }
         } catch (\Exception $e) {
-            session()->flash('error', 'An error occurred while deleting the publication.');
+            session()->flash('error', 'An error occurred while deleting the Monogrpah/Book.');
         }
 
         $this->dispatch('close-modal');

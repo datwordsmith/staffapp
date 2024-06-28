@@ -1,5 +1,5 @@
 <div>
-    @include('livewire.staff.staff-publications.modal-form')
+    @include('livewire.staff.staff-publications.monograph-modal-form')
 
     @section('pagename')
         <h3 class="page-title">
@@ -68,7 +68,7 @@
                                             <small class="purple-text">Authors</small>
                                             <p>{{ $publication->authors }}</p>
 
-                                            <small class="purple-text">Journal (Volume)</small>
+                                            <small class="purple-text">Publisher (Volume)</small>
                                             <p>{{ $publication->journal }} {{ $publication->journal_volume }}</p>
 
                                             <small class="purple-text">DOI</small>
@@ -76,9 +76,6 @@
 
                                             <small class="purple-text">Details</small>
                                             <p>{{ $publication->details }}</p>
-
-                                            <small class="purple-text">Journal (Volume)</small>
-                                            <p>{{ $publication->journal }} {{ $publication->journal_volume }}</p>
 
                                             <small class="purple-text mb-2">Abstract</small>
                                             <p class="mt-2">
