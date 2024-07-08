@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin\Aper;
+namespace App\Livewire\Staff\Aper;
 
 use App\Models\APER;
 use App\Models\User;
@@ -32,7 +32,7 @@ class Report extends Component
 
     public $aper, $admin;
     public $questions;
-    public $details;
+    public $details, $isRequired;
     public $aperId, $user, $staffId, $status, $note;
 
     public function mount($aperId)
@@ -49,8 +49,48 @@ class Report extends Component
 
     }
 
+    public function rules()
+    {
+        return [
+            'status' => 'required',
+            'note' => $this->status == 3 ? 'required|string' : 'nullable|string',
+        ];
+    }
+
+    public function resetInput(){
+        $this->status_id = null;
+        $this->note = null;
+    }
+
+    public function closeModal() {
+        $this->resetInput();
+    }
+    public function openModal() {
+        $this->resetInput();
+    }
+
+    public function updatedStatus($value)
+    {
+        $this->isRequired = $value == 3 ? "required" : "";
+    }
+
+    public function storeApproval()
+    {
+        $validatedData = $this->validate();
+        AperApproval::create([
+            'aper_id' => $this->aper->id,
+            'approver_id' => $this->admin->id,
+            'status_id' => $validatedData['status'],
+            'note' => $validatedData['note'],
+        ]);
+
+        $this->dispatch('close-modal');
+        $this->resetInput();
+    }
+
     public function render()
     {
+
         $approvalDetail = AperApproval::where('aper_id', $this->aper->id)->first();
 
         $staffAction = AperAcceptance::where('aper_id', $this->aper->id)->first();
@@ -146,8 +186,7 @@ class Report extends Component
             ->orderBy('date', 'desc')
             ->get();
 
-
-        return view('livewire.admin.aper.report', [
+        return view('livewire.staff.aper.report', [
             'approvalDetail' => $approvalDetail,
             'staffAction' => $staffAction,
             'firstAppointment' => $firstAppointment,
@@ -169,6 +208,6 @@ class Report extends Component
             'submittedPapers' => $submittedPapers,
             'administrations' => $administrations,
             'services' => $services,
-        ])->extends('layouts.admin')->section('content');
+        ])->extends('layouts.staff')->section('content');
     }
 }

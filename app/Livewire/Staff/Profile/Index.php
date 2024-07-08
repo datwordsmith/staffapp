@@ -11,6 +11,7 @@ use Livewire\Component;
 use App\Models\Interests;
 use App\Models\Conference;
 use App\Models\Membership;
+use App\Models\Appointment;
 use App\Models\socialMedia;
 use Illuminate\Support\Str;
 use App\Models\CreativeWork;
@@ -246,6 +247,10 @@ class Index extends Component
             ->orderBy('created_at', 'desc')
             ->get();
 
+        $AppointmentHistory = Appointment::where('user_id', $this->user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         $experiences = TeachingExperience::where('user_id', $this->user->id)
             ->orderBy('year')
             ->get();
@@ -335,6 +340,7 @@ class Index extends Component
             'titles' => $titles,
             'ranks' => $ranks,
             'firstAppointment' => $firstAppointment,
+            'AppointmentHistory' => $AppointmentHistory,
             'experiences' => $experiences,
             'awards' => $awards,
             'honours' => $honours,

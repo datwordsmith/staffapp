@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin\Aper;
+namespace App\Livewire\Staff\Aper;
 
 use App\Models\APER;
 use App\Models\AperEvaluation;
@@ -111,11 +111,11 @@ class Evaluation extends Component
 
         $questions = AperEvaluationQuestions::orderBy('id', 'asc')->get();
 
-        return view('livewire.admin.aper.evaluation', [
+        return view('livewire.staff.aper.evaluation', [
             'pendingEvaluation' => $pendingEvaluation,
             'pendingApproval' => $pendingApproval,
             'questions' => $questions,
             'sumOfValues' => $this->sumOfValues,
-        ])->extends('layouts.admin')->section('content');
+        ])->extends('layouts.staff')->section('content');
     }
 }

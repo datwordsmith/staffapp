@@ -45,6 +45,7 @@ class Index extends Component
             ->orderBy('aper.created_at', 'DESC')
             ->get();
 
+
         return view('livewire.admin.aper.index', [
             'apers' => $apers,
             ])->extends('layouts.admin')->section('content');

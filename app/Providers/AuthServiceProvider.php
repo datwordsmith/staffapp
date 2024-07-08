@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Models\SubUnit;
+use App\Models\Unit;
+use App\Models\Faculty;
+use App\Models\Department;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -39,6 +43,22 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('non_academic_staff', function ($user) {
             return $user->role_as == 3;
+        });
+
+        Gate::define('is_dean', function ($user) {
+            return Faculty::where('dean_id', $user->id)->exists();
+        });
+
+        Gate::define('is_hod', function ($user) {
+            return Department::where('hod_id', $user->id)->exists();
+        });
+
+        Gate::define('is_unitHead', function ($user) {
+            return Unit::where('head_id', $user->id)->exists();
+        });
+
+        Gate::define('is_hou', function ($user) {
+            return SubUnit::where('hou_id', $user->id)->exists();
         });
     }
 }

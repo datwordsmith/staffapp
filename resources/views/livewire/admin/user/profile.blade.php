@@ -186,10 +186,43 @@
                             <tbody>
                                 @foreach($firstAppointment as $appointment)
                                     <tr>
-                                        <td class="text-wrap">{{ $appointment->post }}</td>
+                                        <td class="text-wrap">{{ $appointment->rank->rank }}</td>
                                         <td class="text-wrap">{{ $appointment->grade_step }}</td>
                                         <td class="text-wrap">{{ $appointment->first_appointment }}</td>
                                         <td class="text-wrap">{{ $appointment->confirmation }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Appointments-->
+        <div class="col-md-12 mb-3">
+            <div class="card">
+                <div class="card-header text-white bg-gradient-primary pt-3"><h4>Appointment History</h4></div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="appointments">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Post</th>
+                                    <th scope="col">Salary Grade/Step</th>
+                                    <th scope="col">Appointment Date</th>
+                                    <th scope="col">Confirmation Date</th>
+                                    <th scope="col">Last Promotion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($AppointmentHistory as $appointment)
+                                    <tr>
+                                        <td class="text-wrap">{{ $appointment->post }}</td>
+                                        <td class="text-wrap">{{ $appointment->grade_step }}</td>
+                                        <td class="text-wrap">{{ $appointment->appointment_date }}</td>
+                                        <td class="text-wrap">{{ $appointment->confirmation_date }}</td>
+                                        <td class="text-wrap">{{ $appointment->last_promotion }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -910,6 +943,7 @@
 
 
         const tables = [
+            '#appointments',
             '#experiences',
             '#awards',
             '#honours',

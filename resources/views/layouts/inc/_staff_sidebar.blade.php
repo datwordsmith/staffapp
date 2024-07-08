@@ -44,6 +44,13 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link" href="{{ url('staff/appointments')}}">
+            <span class="menu-title">Appointments</span>
+            <i class="fa-solid fa-user-tie menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#qualification-menu" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Qualifications</span>
           <i class="menu-arrow"></i>
@@ -142,9 +149,30 @@
 
       <li class="nav-item">
         <a class="nav-link" href="{{ url('staff/appraisal_request')}}">
-            <span class="menu-title">Performance Appraisal</span>
+            <span class="menu-title">My APER</span>
             <i class="fa-solid fa-chart-line menu-icon"></i>
         </a>
       </li>
+
+
+      @canany(['is_hod', 'is_hou'])
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('evaluationlist') }}">
+                <span class="menu-title">Evaluate APER Requests</span>
+                <i class="fa-solid fa-edit menu-icon"></i>
+            </a>
+        </li>
+      @endcanany
+
+
+      @canany(['is_dean', 'is_unitHead'])
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('approvallist')}}">
+                <span class="menu-title">Approve APER Requests</span>
+                <i class="fa-solid fa-check-circle menu-icon"></i>
+            </a>
+        </li>
+      @endcan
+
     </ul>
   </nav>

@@ -63,12 +63,9 @@ class Index extends Component
     }
 
     public function updateFaculty(){
-        $validatedData = $this->validate([
-            'dean_id' => 'nullable|numeric|min:1|exists:users,id',
-        ]);
         Faculty::findOrFail($this->faculty_id)->update([
             'name' => $this->name,
-            'dean_id' => $validatedData['dean_id'],
+            'dean_id' => $this->dean_id ?: null,
         ]);
         session()->flash('message', 'Faculty Updated Successfully.');
         $this->dispatch('close-modal');
