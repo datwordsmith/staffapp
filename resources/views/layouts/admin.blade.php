@@ -68,6 +68,8 @@
         <script src="{{ asset('admin/assets/js/hoverable-collapse.js') }}"></script>
         <script src="{{ asset('admin/assets/js/misc.js') }}"></script>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
         @livewireScripts
         @yield('scripts')
       </body>

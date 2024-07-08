@@ -11,6 +11,7 @@ use Livewire\Component;
 use App\Models\Interests;
 use App\Models\Conference;
 use App\Models\Membership;
+use App\Models\Appointment;
 use App\Models\socialMedia;
 use App\Models\CreativeWork;
 use App\Models\JournalPaper;
@@ -74,9 +75,14 @@ class Profile extends Component
                     ->orderBy('interest', 'asc')
                     ->get();
 
+        $AppointmentHistory = Appointment::where('user_id', $this->user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         $firstAppointment = FirstAppointment::where('user_id', $this->user->id)
             ->orderBy('created_at', 'desc')
             ->get();
+
 
         $experiences = TeachingExperience::where('user_id', $this->user->id)
             ->orderBy('year')
@@ -164,6 +170,7 @@ class Profile extends Component
             'socials' => $socials,
             'interests' => $interests,
             'firstAppointment' => $firstAppointment,
+            'AppointmentHistory' => $AppointmentHistory,
             'experiences' => $experiences,
             'awards' => $awards,
             'honours' => $honours,

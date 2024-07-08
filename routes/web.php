@@ -69,10 +69,17 @@ Route::prefix('staff')->middleware(['isStaff'])->group(function (){
     Route::get('/accepted_papers', App\Livewire\Staff\JournalPapers\Accepted::class);
     Route::get('/submitted_papers', App\Livewire\Staff\JournalPapers\Submitted::class);
     Route::get('/first_appointment', App\Livewire\Staff\FirstAppointment\Index::class);
+    Route::get('/appointments', App\Livewire\Staff\Appointment\Index::class);
     Route::get('/monographs_books', App\Livewire\Staff\StaffPublications\Index::class)->name('monographs_books');
     Route::get('/journal_articles', App\Livewire\Staff\StaffPublications\JournalArticles::class)->name('journal_articles');
     Route::get('/conference_proceedings', App\Livewire\Staff\StaffPublications\ConferenceProceedings::class)->name('conference_proceedings');
     Route::get('/appraisal_request', App\Livewire\Staff\AppraisalRequest\Index::class);
     Route::get('/appraisal_request/{aperId}/view', App\Livewire\Staff\AppraisalRequest\View::class)->name('aperview');
+
+    Route::get('/aper/evaluation_requests', App\Livewire\Staff\Aper\EvaluationList::class)->middleware('can:is_hod, is_hou')->name('evaluationlist');
+    Route::get('/aper/approval_requests', App\Livewire\Staff\Aper\ApprovalList::class)->middleware('can:is_dean, is_unitHead')->name('approvallist');
+    Route::get('/aper/{aperId}/evaluation', App\Livewire\Staff\Aper\Evaluation::class)->name('evaluate_aper');
+    Route::get('/aper/{aperId}/approval', App\Livewire\Staff\Aper\Approval::class)->name('approve_aper');
+    Route::get('/aper/{aperId}/report', App\Livewire\Staff\Aper\Report::class)->name('staffaperreport');
 });
 

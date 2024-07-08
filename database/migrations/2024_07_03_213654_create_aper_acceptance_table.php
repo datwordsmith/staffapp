@@ -8,15 +8,13 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('aper_approval', function (Blueprint $table) {
+        Schema::create('aper_acceptance', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('aper_id');
-            $table->unsignedBigInteger('approver_id');
+            $table->unsignedBigInteger('staff_id');
             $table->unsignedBigInteger('status_id');
             $table->longText('note')->nullable();
 
@@ -24,7 +22,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
-            $table->foreign('approver_id')->references('id')->on('users')
+            $table->foreign('staff_id')->references('id')->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
@@ -37,11 +35,9 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('aper_approval');
+        Schema::dropIfExists('aper_acceptance');
     }
 };

@@ -46,11 +46,11 @@ class AperEvaluation extends Model
 
     public function appraiser()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'appraiser_id');
     }
 
     public function status()
     {
-        return $this->belongsTo(AperStatus::class);
+        return $this->belongsTo(AperStatus::class, 'status_id');
     }
 }

@@ -18,12 +18,12 @@ class APER extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function category()
     {
-        return $this->belongsTo(AppraisalCategory::class);
+        return $this->belongsTo(AppraisalCategory::class, 'category_id');
     }
 
     public function evaluation()
@@ -34,5 +34,10 @@ class APER extends Model
     public function approval()
     {
         return $this->hasOne(AperApproval::class, 'aper_id');
+    }
+
+    public function acceptance()
+    {
+        return $this->hasOne(AperAcceptance::class, 'aper_id');
     }
 }

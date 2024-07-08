@@ -1,5 +1,5 @@
 <div>
-    @include('livewire.admin.aper.modal-form')
+    @include('livewire.staff.aper.modal-form')
 
     @section('pagename')
         <h3 class="page-title">
@@ -64,16 +64,8 @@
                             <div class="col-md-4">
                                 <strong class="purple-text">Unit</strong>
                                 <p class="text-muted mt-1">
-                                    @if ($user->subunit && $user->subunit->subunit && $user->subunit->subunit->unit)
-                                        {{ $user->subunit->subunit->unit->name }}
-                                    @endif
+                                    {{ $user->unit->unit->name }}
                                 </p>
-                            </div>
-                            <div class="col-md-4">
-                                <strong class="purple-text">Sub-Unit</strong>
-                                @if ($user->subunit && $user->subunit->subunit)
-                                    <p class="text-muted mt-1">{{ $user->subunit->subunit->name }}</p>
-                                @endif
                             </div>
                         @endif
                     </div>
@@ -81,8 +73,6 @@
             </div>
         </div>
     </div>
-
-    @if (isset($details))
 
     <div class="row">
         <div class="col-md-12">
@@ -121,18 +111,16 @@
 
         <div class="row">
             <div class="col-md-4">
-                @if (isset($details))
-                    <div class="col-12 my-3 small">
-                        <strong>Evaluation Score: </strong>{{ $details->grade }}
-                    </div>
-                    <div class="col-12 mb-3 small">
-                        <strong>Feedback: </strong>
-                        {{ $details?->note ?? 'N/A' }}
-                    </div>
-                    <div class="col-12 mb-3 small">
-                        <strong>Evaluated By: </strong>{{ $details->appraiser->profile->title->name }} {{ $details->appraiser->profile->firstname }} {{ $details->appraiser->profile->lastname }} {{ $details->appraiser->profile->othername }}
-                    </div>
-                @endif
+                <div class="col-12 my-3 small">
+                    <strong>Evaluation Score: </strong>{{ $details->grade }}
+                </div>
+                <div class="col-12 mb-3 small">
+                    <strong>Feedback: </strong>
+                    {{ $details?->note ?? 'N/A' }}
+                </div>
+                <div class="col-12 mb-3 small">
+                    <strong>Evaluated By: </strong>{{ $details->appraiser->profile->title->name }} {{ $details->appraiser->profile->firstname }} {{ $details->appraiser->profile->lastname }} {{ $details->appraiser->profile->othername }}
+                </div>
             </div>
 
             <div class="col-md-4">
@@ -173,7 +161,7 @@
             </div>
         </div>
 
-        <div class="table-responsive">
+        <div class="table-responsive mb-3">
             <table class="table table-striped" id="evaluationRecord" style="width: 100%;">
                 <thead>
                     <tr>
@@ -1019,8 +1007,8 @@
                 </div>
             @endif
         </div>
+
     </div>
-    @endif
 </div>
 
 @section('scripts')
@@ -1067,6 +1055,7 @@
                 hiddenElements.forEach(element => element.classList.add('d-none'));
             });
         });
+
 
     </script>
 @endsection

@@ -1,5 +1,4 @@
 <div>
-    @include('livewire.staff.appraisal-request.modal-form')
 
     @section('pagename')
         <h3 class="page-title">
@@ -24,31 +23,10 @@
         <small class="purple-text"></small>
     @endsection
 
-    @if(count($checks) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach($checks as $check)
-                    <li>{{ $check }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @else
-        @if(!$isPending)
-            <div class="d-flex justify-content-end mb-3 me-auto">
-                <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addAperModal">
-                    <i class="fa-solid fa-plus"></i> New Request
-                </button>
-            </div>
-        @endif
-    @endif
-
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    @if($isPending)
-                        <p><small class="text-danger fw-bold"><i class="fas fa-exclamation-triangle"></i> You can only have one open request at a time.</small></p>
-                    @endif
                     @if (session('message'))
                         <div class="alert alert-success" role="alert">
                             {{ session('message') }}
@@ -60,25 +38,24 @@
                         </div>
                     @endif
                     <div class="table-responsive">
-
-                        <table class="table table-striped table-hover" id="aperTable" style="width: 100%;">
+                        <table class="table table-striped table-hover" id="aperTable" style="width: 100%">
                             <thead>
                                 <tr>
-                                    <th scope="col">Date Submitted</th>
-                                    <th scope="col">Category</th>
+
+                                    <th scope="col" class="">Staff</th>
+                                    <th scope="col" class="">Category</th>
                                     <th scope="col" class="text-center">Evaluation Grade</th>
                                     <th scope="col" class="text-center">Staff Decision</th>
                                     <th scope="col" class="text-center">Approval Status</th>
-                                    <th scope="col">Date Updated</th>
+                                    <th scope="col">Date Submitted</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($apers as $aper)
-
                                     <tr>
-                                        <td>{{ $aper->created_at->format('d-m-Y') }}</td>
-                                        <td>{{ $aper->category->category}}</td>
+                                        <td>{{ $aper->staffId }} - {{ $aper->title }}  {{ $aper->lastname }} {{$aper->firstname}}</td>
+                                        <td>{{ $aper->category->category }}</td>
                                         <td class="text-center">{{ $aper->evaluation ? $aper->evaluation->grade : '-' }}</td>
                                         <td class="text-center">
                                             {{ $aper->acceptance?->status->name ?? '-' }}
@@ -86,16 +63,16 @@
                                         <td class="text-center">
                                             {{ $aper->approval?->status->name ?? '-' }}
                                         </td>
-                                        <td>{{ $aper->updated_at }}</td>
+                                        <td>{{ $aper->created_at->format('d-m-Y') }}</td>
                                         <td>
                                             <div class="d-flex justify-content-end">
-                                                @if(!$aper->evaluation)
-                                                    <a href="#" wire:click="deleteAper({{ $aper->id }})" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAperModal">
-                                                        <i class="fa-solid fa-trash-can"></i>
+                                                @if($aper->evaluation)
+                                                    <a href="{{ route('staffaperreport', ['aperId' => $aper->id]) }}" class="btn btn-sm btn-primary">
+                                                        <i class="fa-solid fa-folder-open"></i> View
                                                     </a>
                                                 @else
-                                                    <a href="{{ route('aperview', ['aperId' => $aper->id]) }}" class="btn btn-sm btn-primary">
-                                                        <i class="fa-solid fa-folder-open"></i> View
+                                                    <a href="{{ route('evaluate_aper', ['aperId' => $aper->id]) }}" class="btn btn-sm btn-primary">
+                                                        <i class="fa-solid fa-folder-open"></i> Evaluate
                                                     </a>
                                                 @endif
                                             </div>
@@ -113,25 +90,7 @@
 
 @section('scripts')
     <script>
-        window.addEventListener('close-modal', event => {
-            $('#addAperModal').modal('hide');
-            $('#deleteAperModal').modal('hide');
-        });
         new DataTable('#aperTable');
-
-        var modals = ['#addAperModal', '#deleteAperModal'];
-        modals.forEach(function(modalId) {
-            $(modalId).on('hidden.bs.modal', function () {
-                $('body').removeClass('modal-open');
-                $('.modal-backdrop').remove();
-            });
-        });
-
-        $(document).ready(function() {
-            $('#aperTable').DataTable({
-                "paging": true, // Enable pagination
-                "searching": true, // Enable search
-            });
-        });
     </script>
+
 @endsection

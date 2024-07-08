@@ -77,7 +77,7 @@ class Index extends Component
             'name' => $validatedData['name'],
             'description' => $validatedData['description'],
             'faculty_id' => $validatedData['faculty_id'],
-            'hod_id' => $validatedData['hod_id'],
+            'hod_id' => $this->hod_id ?: null,
         ]);
         session()->flash('message', 'Department Updated Successfully.');
         $this->dispatch('close-modal');

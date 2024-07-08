@@ -40,7 +40,7 @@
         </div>
     </div>
 </div>
-<!-- END DELETE MODAL -->
+<!-- END ADD MODAL -->
 
 
 <!-- DELETE MODAL -->
@@ -73,3 +73,38 @@
     </div>
 </div>
 <!-- END DELETE MODAL -->
+
+<!-- Acceptance Modal -->
+<div wire:ignore.self class="modal fade" id="acceptanceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Accept/Reject Evaluation</h1>
+                <button type="button" class="btn-close" wire:click ="closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div>
+                <form wire:submit.prevent="storeAcceptance()">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <select class="form-select form-control py-3" wire:model.live="status" required>
+                                <option selected>Select Action</option>
+                                <option value="5">Accept</option>
+                                <option value="6">Reject</option>
+                            </select>
+                            @error('status') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Feedback/Reason</label>
+                            <textarea class="form-control" wire:model="note" style="height: 120px" {{ $isRequired }}></textarea>
+                            @error('note') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" wire:click ="closeModal" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-gradient-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

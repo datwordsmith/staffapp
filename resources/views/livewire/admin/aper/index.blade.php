@@ -45,7 +45,7 @@
                                     <th scope="col" class="">Staff</th>
                                     <th scope="col" class="">Category</th>
                                     <th scope="col" class="text-center">Evaluation Grade</th>
-                                    <th scope="col" class="text-center">Evaluation Status</th>
+                                    <th scope="col" class="text-center">Staff Decision</th>
                                     <th scope="col" class="text-center">Approval Status</th>
                                     <th scope="col">Date Submitted</th>
                                     <th scope="col"></th>
@@ -58,23 +58,17 @@
                                         <td>{{ $aper->category->category }}</td>
                                         <td class="text-center">{{ $aper->evaluation ? $aper->evaluation->grade : '-' }}</td>
                                         <td class="text-center">
-                                            {{ $aper->evaluation?->status->name ?? 'Pending' }}
+                                            {{ $aper->acceptance?->status->name ?? '-' }}
                                         </td>
                                         <td class="text-center">
-                                            {{ $aper->approval?->status->name ?? 'Pending' }}
+                                            {{ $aper->approval?->status->name ?? '-' }}
                                         </td>
                                         <td>{{ $aper->created_at->format('d-m-Y') }}</td>
                                         <td>
                                             <div class="d-flex justify-content-end">
-                                                @if($aper->approval)
                                                     <a href="{{ route('aperreport', ['aperId' => $aper->id]) }}" class="btn btn-sm btn-primary">
                                                         <i class="fa-solid fa-folder-open"></i> View
                                                     </a>
-                                                @else
-                                                    <a wire:click="viewAper({{ $aper->id }})" class="btn btn-sm btn-primary">
-                                                        <i class="fa-solid fa-folder-open"></i> View
-                                                    </a>
-                                                @endif
                                             </div>
                                         </td>
                                     </tr>

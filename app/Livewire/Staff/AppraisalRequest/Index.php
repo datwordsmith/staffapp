@@ -17,7 +17,7 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $status;
+    public $status, $isRequired;
     public $categories, $user, $staffId, $category_id, $deleteName;
     public $search;
 
