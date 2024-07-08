@@ -19,6 +19,7 @@
     @endsection
 
     <div class="row">
+        {{--
         <div class="col-md-12">
             @if($pendingEvaluation)
                 <div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert">
@@ -45,20 +46,10 @@
                     </div>
                 </div>
             @elseif($isApproved)
-                {{--<div class="alert alert-info d-flex justify-content-between align-items-center" role="alert">
-                    <div>
-                        <strong class="alert-heading">View Request</strong>
-                        for Annual Performance Evaluation Report (APER)
-                    </div>
-                    <div>
-                        <a href="{{ route('aperreport', ['aperId' => $isApproved->id]) }}" class="btn btn-sm btn-info">
-                            View
-                        </a>
-                    </div>
-                </div> --}}
+
             @else
             @endif
-        </div>
+        </div> --}}
 
         <div class="col-md-12 mb-3">
             <div class="row ">
