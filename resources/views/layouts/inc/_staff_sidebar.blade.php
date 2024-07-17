@@ -37,11 +37,20 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link" href="{{ url('staff/current_appointment')}}">
+            <span class="menu-title">Current Appointment</span>
+            <i class="fa-solid fa-user-tie menu-icon"></i>
+        </a>
+      </li>
+
+      <!--
+      <li class="nav-item">
         <a class="nav-link" href="{{ url('staff/first_appointment')}}">
             <span class="menu-title">First Appointment</span>
             <i class="fa-solid fa-user-tie menu-icon"></i>
         </a>
       </li>
+      -->
 
       <li class="nav-item">
         <a class="nav-link" href="{{ url('staff/appointments')}}">

@@ -7,7 +7,7 @@ use App\Models\AppraisalCategory;
 use App\Models\Profile;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\FirstAppointment;
+use App\Models\CurrentAppointment;
 use App\Models\TeachingExperience;
 use App\Models\InitialQualification;
 use Illuminate\Support\Facades\Auth;
@@ -39,9 +39,9 @@ class Index extends Component
 
         $checks = [];
 
-        $firstAppointment = FirstAppointment::where('user_id', $this->user->id)->first();
-        if (!$firstAppointment) {
-            $checks[] = "First appointment record does not exist.";
+        $currentAppointment = CurrentAppointment::where('user_id', $this->user->id)->first();
+        if (!$currentAppointment) {
+            $checks[] = "Current appointment record does not exist.";
         }
 
         $initialQualification = InitialQualification::where('user_id', $this->user->id)->first();

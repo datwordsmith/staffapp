@@ -18,7 +18,7 @@ class Evaluation extends Component
     public $questions;
 
     public $foresight, $penetration, $judgement, $written_expression, $oral_expression, $numeracy, $staff_relationship, $student_relationship, $accepts_responsibility, $pressure_reliabilty, $drive, $knowledge_application, $staff_management, $work_output, $work_quality, $punctuality, $time_management, $comportment, $ict_literacy, $query_commendations;
-
+    public $note;
     public $selectedValues = [];
     public $previousValues, $sumOfValues = 0, $zeros;
 
@@ -41,6 +41,12 @@ class Evaluation extends Component
 
     }
 
+    public function rules()
+    {
+        return [
+            'note' => 'required|string',
+        ];
+    }
 
     public function updated($propertyName)
     {
@@ -67,6 +73,7 @@ class Evaluation extends Component
 
     public function storeEvaluation()
     {
+        $validatedData = $this->validate();
         AperEvaluation::create([
             'aper_id' => $this->aper->id,
             'appraiser_id' => $this->admin->id,
@@ -92,6 +99,7 @@ class Evaluation extends Component
             'query_commendations' => $this->query_commendations,
             'grade' => $this->sumOfValues,
             'status_id' => 2,
+            'note' => $validatedData['note'],
         ]);
 
         session()->flash('message', 'Evaluation Complete.');
