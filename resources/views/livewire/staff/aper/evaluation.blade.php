@@ -88,6 +88,7 @@
                 </div>
                 @if(!$pendingEvaluation)
                     <form wire:submit="storeEvaluation">
+
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -129,15 +130,19 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        <div class="form-group mt-4">
+                            <label class="fw-bold">Feedback/Recommendations</label>
+                            <textarea class="form-control" wire:model="note" style="height: 100px" required></textarea>
+                            @error('note') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
                         <div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
                             <div>
                                 <strong class="alert-heading">Key:</strong>
                                 <p>5=Excellent,  4=Very Good,  3=Good,  2=Fair,  1=Poor</p>
                             </div>
                             <div>
-
-                                <h1 class="display-4">Total Score: {{ $sumOfValues }}</h1>
-
+                                <h4 class="">Total Score: {{ $sumOfValues }}</h4>
                             </div>
                         </div>
 

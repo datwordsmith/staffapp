@@ -149,6 +149,11 @@ class User extends Authenticatable
         return $this->hasMany(StaffPublication::class);
     }
 
+    public function currentAppointment()
+    {
+        return $this->hasOne(CurrentAppointment::class);
+    }
+
     public function firstAppointment()
     {
         return $this->hasOne(FirstAppointment::class);

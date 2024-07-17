@@ -24,7 +24,7 @@
                     @endif
                     <!-- Button to trigger file input -->
                     <button type="button" class="btn btn-sm btn-success mt-2" data-bs-toggle="modal" data-bs-target="#uploadPhotoModal">
-                        <i class="fa-solid fa-camera"></i> Uplaod Photo
+                        <i class="fa-solid fa-camera"></i> Upload Photo
                     </button>
 
                 </div>
