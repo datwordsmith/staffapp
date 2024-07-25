@@ -9,7 +9,7 @@
             <form wire:submit="newProfile({{ $user->id }})">
                 <div class="modal-body px-5">
                     <div class="row">
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-3 form-group">
                             <label for="title">Title</label>
                             <select class="form-select form-control form-control-lg" wire:model.defer="title_id" required>
                                 <option value="">Select Title</option>
@@ -22,19 +22,19 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-3 form-group">
                             <label for="lastname">Lastname</label>
                             <input type="text" wire:model.defer="lastname" class="form-control" required>
                             @error('lastname') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-3 form-group">
                             <label for="firstname">Firstname</label>
                             <input type="text" wire:model.defer="firstname" class="form-control" required>
                             @error('firstname') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-3 form-group">
                             <label for="othername">Othername</label>
                             <input type="text" wire:model.defer="othername" class="form-control">
                             @error('othername') <small class="text-danger">{{ $message }}</small> @enderror
@@ -44,6 +44,18 @@
                             <label for="date">Date of Birth</label>
                             <input type="date" wire:model.defer="dob" class="form-control" required>
                             @error('dob') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+
+                        <div class="col-md-4 form-group">
+                            <label for="sex">Sex</label>
+                            <select class="form-select form-control form-control" wire:model.defer="sex" required>
+                                <option value="">Select Sex</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                            </select>
+                            @error('sex')
+                                <small class="error text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="col-md-4 form-group">
@@ -90,7 +102,7 @@
             <form wire:submit="updateBio()">
                 <div class="modal-body px-5">
                     <div class="row">
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-3 form-group">
                             <label for="title">Title</label>
                             <select class="form-select form-control form-control-lg" wire:model.defer="title_id" required>
                                 <option value="">Select Title</option>
@@ -103,19 +115,19 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-3 form-group">
                             <label for="lastname">Lastname</label>
                             <input type="text" wire:model.defer="lastname" class="form-control">
                             @error('lastname') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-3 form-group">
                             <label for="firstname">Firstname</label>
                             <input type="text" wire:model.defer="firstname" class="form-control">
                             @error('firstname') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-3 form-group">
                             <label for="othername">Othername</label>
                             <input type="text" wire:model.defer="othername" class="form-control">
                             @error('othername') <small class="text-danger">{{ $message }}</small> @enderror
@@ -125,6 +137,18 @@
                             <label for="date">Date of Birth</label>
                             <input type="date" wire:model.defer="dob" class="form-control" required>
                             @error('dob') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+
+                        <div class="col-md-4 form-group">
+                            <label for="sex">Sex</label>
+                            <select class="form-select form-control form-control-lg" wire:model.defer="sex" required>
+                                <option value="">Select Sex</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                            </select>
+                            @error('sex')
+                                <small class="error text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="col-md-4 form-group">

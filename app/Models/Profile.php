@@ -18,6 +18,7 @@ class Profile extends Model
         'firstname',
         'othername',
         'dob',
+        'sex',
         'biography',
         'rank_id',
         'first_appointment',

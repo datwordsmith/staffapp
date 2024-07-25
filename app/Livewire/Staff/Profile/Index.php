@@ -24,6 +24,7 @@ use App\Models\CommunityService;
 use App\Models\FirstAppointment;
 use App\Models\StaffPublication;
 use App\Models\CompletedResearch;
+use App\Models\CurrentAppointment;
 use App\Models\TeachingExperience;
 use Livewire\WithoutUrlPagination;
 use App\Models\InitialQualification;
@@ -42,7 +43,7 @@ class Index extends Component
     public $profile_id, $profile, $biography, $photo;
     public $maxBioCharacters = 1000;
     public $user, $staffId;
-    public $title_id, $lastname, $firstname, $othername, $dob, $rank_id;
+    public $title_id, $lastname, $firstname, $othername, $dob, $sex, $rank_id;
     public $search;
 
     public function mount()
@@ -59,6 +60,7 @@ class Index extends Component
             'firstname' => 'required|string',
             'othername' => 'nullable|string',
             'dob' => 'required|date|before_or_equal:today',
+            'sex' => 'required|string',
             'rank_id' => 'required|numeric',
             'biography' => 'required|string|max:1000',
         ];
@@ -99,6 +101,7 @@ class Index extends Component
                 'firstname' => $validatedData['firstname'],
                 'othername' => $validatedData['othername'],
                 'dob' => $validatedData['dob'],
+                'sex' => $validatedData['sex'],
                 'rank_id' => $validatedData['rank_id'],
                 'biography' => $validatedData['biography'],
                 'slug' => $staffId,
@@ -121,6 +124,7 @@ class Index extends Component
         $this->lastname = $profile->lastname;
         $this->othername = $profile->othername;
         $this->dob = $profile->dob;
+        $this->sex = $profile->sex;
         $this->rank_id = $profile->rank_id;
         $this->biography = $profile->biography;
     }
@@ -133,6 +137,7 @@ class Index extends Component
             'firstname' => $validatedData['firstname'],
             'othername' => $validatedData['othername'],
             'dob' => $validatedData['dob'],
+            'sex' => $validatedData['sex'],
             'rank_id' => $validatedData['rank_id'],
             'biography' => $validatedData['biography'],
         ]);
@@ -247,6 +252,10 @@ class Index extends Component
             ->orderBy('created_at', 'desc')
             ->get();
 
+        $currentAppointment = CurrentAppointment::where('user_id', $this->user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         $AppointmentHistory = Appointment::where('user_id', $this->user->id)
             ->orderBy('created_at', 'desc')
             ->get();
@@ -340,6 +349,7 @@ class Index extends Component
             'titles' => $titles,
             'ranks' => $ranks,
             'firstAppointment' => $firstAppointment,
+            'currentAppointment' => $currentAppointment,
             'AppointmentHistory' => $AppointmentHistory,
             'experiences' => $experiences,
             'awards' => $awards,

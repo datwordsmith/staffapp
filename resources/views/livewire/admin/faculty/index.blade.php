@@ -83,7 +83,11 @@
                         <tbody>
                             @forelse ($faculties as $faculty)
                                 <tr>
-                                    <td class="ps-2"> {{$faculty->name}} </td>
+                                    <td class="ps-2">
+                                        <a href="{{ route('faculty', ['facultyId' => $faculty->id]) }}">
+                                            {{$faculty->name}}
+                                        </a>
+                                    </td>
                                     <td>
                                         @if($faculty->dean_id !== null)
                                             <a href="{{ url('admin/profile/'.$faculty->dean->staffId) }}">

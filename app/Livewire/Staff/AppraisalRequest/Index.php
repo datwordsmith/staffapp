@@ -20,6 +20,7 @@ class Index extends Component
     public $status, $isRequired;
     public $categories, $user, $staffId, $category_id, $deleteName;
     public $search;
+    public $currentYear;
 
     public $aper_id;
 
@@ -27,6 +28,7 @@ class Index extends Component
     {
         $this->user = Auth::user();
         $this->categories = AppraisalCategory::orderBy('category')->get();
+        $this->currentYear = date('Y');
     }
 
     public function rules(){
@@ -56,11 +58,14 @@ class Index extends Component
             }
         }
 
-
-
         $profile = Profile::where('user_id', $this->user->id)->first();
         if (empty($profile->dob)) {
             $checks[] = "Your Date of Birth record does not exist.";
+        }
+
+        if ($this->userHasAper())
+        {
+            //$checks[] = "You have an Appraisal Request for this year";
         }
 
         return $checks;
@@ -78,13 +83,18 @@ class Index extends Component
     }
 
     public function storeAper(){
-        $validatedData = $this->validate();
-        $this->user->appraisalRequests()->create([
-            'category_id' => $validatedData['category_id'],
-        ]);
-        session()->flash('message', 'Appraisal Request Submitted Successfully.');
-        $this->dispatch('close-modal');
-        $this->resetInput();
+        if(!$this->userHasAper()) {
+            $validatedData = $this->validate();
+            $this->user->appraisalRequests()->create([
+                'category_id' => $validatedData['category_id'],
+            ]);
+            session()->flash('message', 'Appraisal Request Submitted Successfully.');
+            $this->dispatch('close-modal');
+            $this->resetInput();
+        }
+        else {
+            session()->flash('error', 'Failed to add Appraisal Reques.');
+        }
     }
 
     public function deleteAper($aper_id)
@@ -119,26 +129,36 @@ class Index extends Component
         return redirect()->to('staff/profile');
     }
 
+    public function userHasAper()
+    {
+        return APER::where('user_id', $this->user->id)
+            ->whereYear('created_at', $this->currentYear)
+            ->exists();
+    }
+
     public function render()
     {
 
         $apers = APER::where('user_id', $this->user->id)
-        ->orderBy('created_at', 'DESC')
-        ->paginate(5);
+            ->orderBy('created_at', 'DESC')
+            ->paginate(5);
 
 
         $isPending = APER::where('user_id', $this->user->id)
+            ->whereYear('aper.created_at', $this->currentYear)
             ->leftJoin('aper_approval', 'aper_approval.aper_id', '=', 'aper.id')
             ->whereNull('aper_approval.aper_id')
             ->exists();
 
         $checks = $this->checkRecords();
+        $hasAperRecord = $this->userHasAper();
 
         return view('livewire.staff.appraisal-request.index', [
             'apers' => $apers,
             'checks' => $checks,
             'isPending' => $isPending,
             'categories' => $this->categories,
+            'hasAperRecord' => $hasAperRecord,
             ])->extends('layouts.staff')->section('content');
     }
 }

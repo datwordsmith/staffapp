@@ -39,7 +39,7 @@
 
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <label for="date">Date of Current Appointment</label>
+                                <label for="date">Date Assumed Duty</label>
                                 <input type="date" wire:model.defer="current_appointment" class="form-control" required>
                                 @error('current_appointment') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
@@ -104,7 +104,7 @@
 
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <label for="date">Date of Current Appointment</label>
+                                <label for="date">Date Assumed Duty</label>
                                 <input type="date" wire:model.defer="current_appointment" class="form-control" required>
                                 @error('current_appointment') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>

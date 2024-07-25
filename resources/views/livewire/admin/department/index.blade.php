@@ -97,7 +97,7 @@
                         <tbody>
                             @forelse ($departments as $department)
                                 <tr>
-                                    <td class="ps-2"> {{$department->name}} </td>
+                                    <td class="ps-2"> <a href="{{ route('department', ['departmentId' => $department->id]) }}">{{$department->name}}</a></td>
                                     <td class="ps-2"> {{$department->faculty}} </td>
                                     <td class="ps-2">
                                         @if($department->hod_id !== null)

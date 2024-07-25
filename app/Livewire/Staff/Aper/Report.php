@@ -20,6 +20,7 @@ use App\Models\CommunityService;
 use App\Models\FirstAppointment;
 use App\Models\StaffPublication;
 use App\Models\CompletedResearch;
+use App\Models\CurrentAppointment;
 use App\Models\TeachingExperience;
 use App\Models\InitialQualification;
 use Illuminate\Support\Facades\Auth;
@@ -103,6 +104,9 @@ class Report extends Component
             ->orderBy('created_at', 'desc')
             ->get();
 
+        $currentAppointment = CurrentAppointment::where('user_id', $this->user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         $experiences = TeachingExperience::where('user_id', $this->user->id)
             ->orderBy('year')
@@ -190,6 +194,7 @@ class Report extends Component
             'approvalDetail' => $approvalDetail,
             'staffAction' => $staffAction,
             'firstAppointment' => $firstAppointment,
+            'currentAppointment' => $currentAppointment,
             'AppointmentHistory' => $AppointmentHistory,
             'experiences' => $experiences,
             'awards' => $awards,

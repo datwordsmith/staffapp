@@ -38,6 +38,10 @@
                         </div>
                     @endif
                     <div class="table-responsive">
+                        <div class="d-flex justify-content-end">
+                            <button id="getReport" class="btn btn-primary btn-sm mb-2"><i class="fa-solid fa-save"></i> Download Report</button>
+                        </div>
+
                         <table class="table table-striped table-hover" id="aperTable" style="width: 100%">
                             <thead>
                                 <tr>
@@ -86,11 +90,97 @@
             </div>
         </div>
     </div>
+
+    <div class="row d-none" id="aperReport">
+        <div class="col-md-12 grid-margin ">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex mb-2">
+                    <div class="d-flex">
+                        <h4 class="card-title mb-3">APER REPORT</h4>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered" id="reportTable">
+                        <thead>
+                            <tr>
+                                @foreach(['Staff ID', 'Fullname', 'Email', 'Sex', 'Date of Birth', 'Current Rank', 'Current Salary Grade', 'First Appointment', 'Date Assumed Duty', 'Duty Confirmation Date', 'Academic Qualifications', 'No. of Publications', 'Date of Last Promotion', 'Evaluation/Appraisal Score', 'Department Appraisal', 'Faculty Appraisal', 'CAC Recommendation', 'A & PC Decision', 'Remarks'] as $header)
+                                    <th scope="col" class="fixed-width">{{ $header }}</th>
+                                @endforeach
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($staffdetails as $details)
+                                @php
+                                    $fullname = "{$details->profile->lastname} {$details->profile->firstname} {$details->profile->othername}";
+                                @endphp
+                                <tr>
+                                    <td>{{ $details->staffId }}</td>
+                                    <td>{{ $fullname }}</td>
+                                    <td>{{ $details->email }}</td>
+                                    <td>{{ $details->profile->sex ?? '' }}</td>
+                                    <td>{{ $details->profile->dob }}</td>
+                                    <td>{{ $details->currentAppointment->rank->rank ?? 'Nil' }}</td>
+                                    <td>{{ $details->currentAppointment->grade_step ?? 'Nil' }}</td>
+                                    <td>{{ $details->firstAppointment->rank->rank ?? 'Nil' }}</td>
+                                    <td>{{ $details->firstAppointment->first_appointment ?? 'Nil' }}</td>
+                                    <td>{{ $details->firstAppointment->confirmation ?? 'Nil' }}</td>
+                                    <td>
+                                        @foreach ($details->initialQualifications as $iquals)
+                                            <p class="inside-list"><small>{{ $iquals->qualification }} - {{ $iquals->date }}</small></p>
+                                        @endforeach
+                                        @foreach ($details->additionalQualifications as $aquals)
+                                            <p class="inside-list"><small>{{ $aquals->qualification }} - {{ $aquals->date }}</small></p>
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        <p class="inside-list"><small>Creative Works - {{ $details->creativeWorks->count() }}</small></p>
+                                        <p class="inside-list"><small>Accepted Papers - {{ $details->journalPapers->where('isSubmitted', 0)->count() }}</small></p>
+                                        <p class="inside-list"><small>Monographs/Books - {{ $details->staffPublications->where('category_id', 1)->count() }}</small></p>
+                                        <p class="inside-list"><small>Journals - {{ $details->staffPublications->where('category_id', 2)->count() }}</small></p>
+                                        <p class="inside-list"><small>Conferences - {{ $details->staffPublications->where('category_id', 3)->count() }}</small></p>
+                                    </td>
+                                    <td>{{ $details->Appointment->sortByDesc('appointment_date')->first()->last_promotion ?? 'Nil' }}</td>
+                                    <td>
+                                        <p class="inside-list"><small>Date - {{ $details->appraisalRequests->sortByDesc('created_at')->first()->created_at->format('d M, Y') ?? 'Nil' }}</small></p>
+                                        <p class="inside-list"><small>Score - {{ $details->appraisalRequests->sortByDesc('created_at')->first()->evaluation->grade ?? 'Pending' }}</small></p>
+                                    </td>
+                                    <td>{{ $details->appraisalRequests->sortByDesc('created_at')->first()->evaluation->note ?? 'Nil' }}</td>
+                                    <td>{{ $details->appraisalRequests->sortByDesc('created_at')->first()->approval->note ?? 'Nil' }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
 </div>
 
 @section('scripts')
     <script>
-        new DataTable('#aperTable');
+
+        $(document).ready(function() {
+            const aperTable = new DataTable('#aperTable');
+            const reportTable = new DataTable('#reportTable', {
+                layout: {
+                    topStart: {
+                        buttons: ['excel', 'print']
+                    }
+                }
+            });
+
+            $('#getReport').on('click', function() {
+                // Trigger the Excel button click
+                reportTable.button('.buttons-excel').trigger();
+            });
+        });
+
     </script>
 
 @endsection

@@ -46,9 +46,10 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    @if($isPending)
-                        <p><small class="text-danger fw-bold"><i class="fas fa-exclamation-triangle"></i> You can only have one open request at a time.</small></p>
+                    @if($hasAperRecord)
+                        <p><small class="text-danger fw-bold"><i class="fas fa-exclamation-triangle"></i> You can only have one request per year.</small></p>
                     @endif
+
                     @if (session('message'))
                         <div class="alert alert-success" role="alert">
                             {{ session('message') }}

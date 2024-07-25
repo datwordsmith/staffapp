@@ -53,7 +53,7 @@
                                 <th scope="col" class="ps-3">Rank</th>
                                 <th scope="col" class="ps-3">Salary Grade/Step</th>
                                 <th scope="col" class="ps-3">Appointment Date</th>
-                                <th scope="col" class="ps-3">Confirmation Date</th>
+                                <th scope="col" class="ps-3">Transfer of Service Date</th>
                                 <th scope="col" class="ps-3">Last Promotion</th>
                                 <th scope="col"></th>
                                 </tr>

@@ -24,7 +24,6 @@ Route::get('', App\Livewire\AllStaff\Index::class);
 Route::get('/home', App\Livewire\AllStaff\Index::class)->name('home');
 Route::get('/profile/{staffId}', App\Livewire\AllStaff\Profile::class);
 
-
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
     // Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
 
@@ -35,7 +34,9 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
     Route::get('/units', App\Livewire\Admin\Unit\Index::class)->name('units');
     Route::get('/sub_units', App\Livewire\Admin\SubUnit\Index::class)->name('subunits');
     Route::get('/faculties', App\Livewire\Admin\Faculty\Index::class);
+    Route::get('/faculty/{facultyId}', App\Livewire\Admin\Faculty\Details::class)->name('faculty');
     Route::get('/departments', App\Livewire\Admin\Department\Index::class);
+    Route::get('/department/{departmentId}', App\Livewire\Admin\Department\Details::class)->name('department');
     //Route::get('/programmes', App\Livewire\Admin\Programme\Index::class);
 
     Route::get('/academicstaff', App\Livewire\Admin\User\AcademicStaff::class)->name('academicstaff');
