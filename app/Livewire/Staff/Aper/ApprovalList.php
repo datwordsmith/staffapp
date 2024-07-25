@@ -82,6 +82,7 @@ class ApprovalList extends Component
             ->orderBy('aper.created_at', 'ASC')
             ->get();
 
+
         return view('livewire.staff.aper.approvallist', [
             'apers' => $apers,
             ])->extends('layouts.staff')->section('content');

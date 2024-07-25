@@ -50,9 +50,9 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                <th scope="col" class="ps-3">Rank</th>
+                                <th scope="col" class="ps-3">Post</th>
                                 <th scope="col" class="ps-3">Salary Grade/Step</th>
-                                <th scope="col" class="ps-3">Date of Current Appointment</th>
+                                <th scope="col" class="ps-3">Date Assumed Duty</th>
                                 <th scope="col" class="ps-3">Confirmation Date</th>
                                 <th scope="col"></th>
                                 </tr>

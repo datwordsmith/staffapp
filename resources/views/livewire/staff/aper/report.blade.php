@@ -193,10 +193,10 @@
         </div>
 
         <div class="d-none d-print-block">
-            <!--First Appointment-->
+            <!--Current Appointment-->
             <div class="col-md-12 mb-3">
                 <div class="card">
-                    <div class="card-header text-white bg-gradient-primary pt-3"><h4>First Appointment</h4></div>
+                    <div class="card-header text-white bg-gradient-primary pt-3"><h4>Current Appointment</h4></div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
@@ -204,21 +204,21 @@
                                     <tr>
                                         <th scope="col">Post</th>
                                         <th scope="col">Salary Grade/Step</th>
-                                        <th scope="col">Appointment Date</th>
+                                        <th scope="col">Date Assumed Duty</th>
                                         <th scope="col">Confirmation Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if($firstAppointment->isEmpty())
+                                    @if($currentAppointment->isEmpty())
                                         <tr>
                                             <td colspan="4" class="text-center">No Record found</td>
                                         </tr>
                                     @else
-                                        @foreach($firstAppointment as $appointment)
+                                        @foreach($currentAppointment as $appointment)
                                             <tr>
                                                 <td class="text-wrap">{{ $appointment->rank->rank }}</td>
                                                 <td class="text-wrap">{{ $appointment->grade_step }}</td>
-                                                <td class="text-wrap">{{ $appointment->first_appointment }}</td>
+                                                <td class="text-wrap">{{ $appointment->current_appointment }}</td>
                                                 <td class="text-wrap">{{ $appointment->confirmation }}</td>
                                             </tr>
                                         @endforeach
@@ -242,7 +242,7 @@
                                         <th scope="col">Post</th>
                                         <th scope="col">Salary Grade/Step</th>
                                         <th scope="col">Appointment Date</th>
-                                        <th scope="col">Confirmation Date</th>
+                                        <th scope="col">Transfer of Service Date</th>
                                         <th scope="col">Last Promotion</th>
                                     </tr>
                                 </thead>

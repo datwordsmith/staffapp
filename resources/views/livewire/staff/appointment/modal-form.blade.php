@@ -45,7 +45,7 @@
                             </div>
 
                             <div class="col-md-4 form-group">
-                                <label for="date">Date of Confirmation of Appointment</label>
+                                <label for="date">Transfer of Service Date</label>
                                 <input type="date" wire:model.defer="confirmation_date" class="form-control" required>
                                 @error('confirmation_date') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
@@ -116,7 +116,7 @@
                             </div>
 
                             <div class="col-md-4 form-group">
-                                <label for="date">Date of Confirmation of Appointment</label>
+                                <label for="date">Transfer of Service Date</label>
                                 <input type="date" wire:model.defer="confirmation_date" class="form-control" required>
                                 @error('confirmation_date') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
