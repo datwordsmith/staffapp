@@ -31,8 +31,10 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
     Route::get('/ranks', App\Livewire\Admin\Rank\Index::class);
     Route::get('/social_media', App\Livewire\Admin\SocialMedia\Index::class);
 
-    Route::get('/units', App\Livewire\Admin\Unit\Index::class)->name('units');
-    Route::get('/sub_units', App\Livewire\Admin\SubUnit\Index::class)->name('subunits');
+    Route::get('/allunits', App\Livewire\Admin\Unit\Index::class)->name('allunits');
+    Route::get('/single_unit/{unitId}/view', App\Livewire\Admin\Unit\Details::class)->name('single_unit');
+    Route::get('/sub_units', App\Livewire\Admin\SubUnit\Index::class)->name('sub_units');
+    Route::get('/single_subunit/{subunitId}/view', App\Livewire\Admin\SubUnit\Details::class)->name('single_subunit');
     Route::get('/faculties', App\Livewire\Admin\Faculty\Index::class);
     Route::get('/faculty/{facultyId}', App\Livewire\Admin\Faculty\Details::class)->name('faculty');
     Route::get('/departments', App\Livewire\Admin\Department\Index::class);
@@ -78,8 +80,8 @@ Route::prefix('staff')->middleware(['isStaff'])->group(function (){
     Route::get('/appraisal_request', App\Livewire\Staff\AppraisalRequest\Index::class);
     Route::get('/appraisal_request/{aperId}/view', App\Livewire\Staff\AppraisalRequest\View::class)->name('aperview');
 
-    Route::get('/aper/evaluation_requests', App\Livewire\Staff\Aper\EvaluationList::class)->middleware('can:is_hod, is_hou')->name('evaluationlist');
-    Route::get('/aper/approval_requests', App\Livewire\Staff\Aper\ApprovalList::class)->middleware('can:is_dean, is_unitHead')->name('approvallist');
+    Route::get('/aper/evaluation_requests', App\Livewire\Staff\Aper\EvaluationList::class)->middleware('can:is_hod_or_hou')->name('evaluationlist');
+    Route::get('/aper/approval_requests', App\Livewire\Staff\Aper\ApprovalList::class)->middleware('can:is_dean_or_unitHeads')->name('approvallist');
     Route::get('/aper/{aperId}/evaluation', App\Livewire\Staff\Aper\Evaluation::class)->name('evaluate_aper');
     Route::get('/aper/{aperId}/approval', App\Livewire\Staff\Aper\Approval::class)->name('approve_aper');
     Route::get('/aper/{aperId}/report', App\Livewire\Staff\Aper\Report::class)->name('staffaperreport');

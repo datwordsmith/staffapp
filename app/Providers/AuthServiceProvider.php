@@ -60,5 +60,14 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('is_hou', function ($user) {
             return SubUnit::where('hou_id', $user->id)->exists();
         });
+
+        Gate::define('is_hod_or_hou', function ($user) {
+            return Gate::allows('is_hod', $user) || Gate::allows('is_hou', $user);
+        });
+
+        Gate::define('is_dean_or_unitHead', function ($user) {
+            return Gate::allows('is_dean', $user) || Gate::allows('is_unitHead', $user);
+        });
+
     }
 }

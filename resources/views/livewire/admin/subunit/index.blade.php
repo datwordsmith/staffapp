@@ -7,12 +7,12 @@
                 <i class="mdi mdi-shape-plus menu-icon"></i>
             </span> Sub Units
         </h3>
-        @endsection
+    @endsection
 
     @section('breadcrumbs')
         <nav aria-label="breadcrumb">
         <ul class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">
+            <li class="breadcrumb-item" aria-current="page">
             <span></span>Sub-Units</i>
             </li>
         </ul>

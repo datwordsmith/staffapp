@@ -4,7 +4,7 @@
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-sitemap menu-icon"></i>
-            </span> Faculty: {{ $faculty->name }}
+            </span> Unit: {{ $unit->name }}
         </h3>
     @endsection
 
@@ -12,7 +12,7 @@
         <nav aria-label="breadcrumb">
         <ul class="breadcrumb">
             <li class="breadcrumb-item active" aria-current="page">
-                Faculties
+                Units
             </li>
         </ul>
         </nav>
@@ -23,17 +23,17 @@
         <div class="col-md-4 grid-margin">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title mb-3">Dean</h3>
+                    <h3 class="card-title mb-3">{{$unit->head_title}}</h3>
 
-                    @if ($faculty->dean != null)
-                        <h4> {{ $faculty->dean->profile->title->name }} {{ $faculty->dean->profile->lastname }} {{ $faculty->dean->profile->firstname }} {{ $faculty->dean->profile->othername }}</h4>
-                        <h5 class="text-muted mb-3">{{$faculty->dean->profile->rank->rank}}</h5>
+                    @if ($unit->head != null)
+                        <h4> {{ $unit->head->profile->title->name }} {{ $unit->head->profile->lastname }} {{ $unit->head->profile->firstname }} {{ $unit->head->profile->othername }}</h4>
+                        <h5 class="text-muted mb-3">{{$unit->head->profile->rank->rank}}</h5>
 
-                        <a href="{{ url('admin/profile/'.$faculty->dean->staffId) }}" class="btn btn-primary btn-sm">
+                        <a href="{{ url('admin/profile/'.$unit->head->staffId) }}" class="btn btn-primary btn-sm">
                             View Profile
                         </a>
                     @else
-                        <p>No Dean Assigned.</p>
+                        <p>Not Assigned.</p>
                     @endif
                 </div>
             </div>
@@ -42,7 +42,7 @@
         <div class="col-md-8 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-3">Departments</h4>
+                    <h4 class="card-title mb-3">Sub-units</h4>
                     @if (session('message'))
                         <div class="alert alert-success" role="alert">
                             {{ session('message') }}
@@ -55,31 +55,31 @@
                     @endif
                     <div class="table-responsive">
 
-                        <table class="table table-striped table-hover" id="facultyDepartments">
+                        <table class="table table-striped table-hover" id="subunits">
                             <thead>
                                 <tr>
-                                <th scope="col" class="ps-2">Department</th>
-                                <th scope="col" class="ps-2">HOD</th>
+                                <th scope="col" class="ps-2">Sub-unit</th>
+                                <th scope="col" class="ps-2">HoU</th>
                                 <th scope="col" class="ps-2"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($departments as $department)
+                                @foreach ($subunits as $subunit)
                                     <tr>
                                         <td class="ps-2">
-                                            {{$department->name}}
+                                            {{$subunit->name}}
                                         </td>
                                         <td>
-                                            @if($department->hod_id !== null)
-                                                <a href="{{ url('admin/profile/'.$department->hod->staffId) }}">
-                                                    {{ $department->hod->profile->title->name }} {{ $department->hod->profile->lastname }} {{ $department->hod->profile->firstname }} {{ $department->hod->profile->othername }}
+                                            @if($subunit->hou_id !== null)
+                                                <a href="{{ url('admin/profile/'.$subunit->hou->staffId) }}">
+                                                    {{ $subunit->hou->profile->title->name }} {{ $subunit->hou->profile->lastname }} {{ $subunit->hou->profile->firstname }} {{ $subunit->hou->profile->othername }}
                                                 </a>
                                             @else
                                                 Not assigned
                                             @endif
                                         </td>
                                         <td class="d-flex justify-content-end">
-                                            <a href="{{ route('department', ['departmentId' => $department->id]) }}" class="btn btn-sm btn-primary me-2">View</a>
+                                            <a href="{{ route('single_subunit', ['subunitId' => $subunit->id]) }}" class="btn btn-sm btn-primary me-2">View</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -97,7 +97,7 @@
 
 @section('scripts')
     <script>
-        new DataTable('#facultyDepartments', {
+        new DataTable('#subunits', {
 
         });
     </script>
