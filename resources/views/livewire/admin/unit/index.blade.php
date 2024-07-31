@@ -90,7 +90,11 @@
                         <tbody>
                             @forelse ($units as $unit)
                                 <tr>
-                                    <td class="ps-3"> {{ $unit->name }} </td>
+                                    <td class="ps-3">
+                                        <a href="{{ route('single_unit', ['unitId' => $unit->id]) }}">
+                                            {{ $unit->name }}
+                                        </a>
+                                    </td>
                                     <td class="ps-3">
                                         @if($unit->head_id !== null)
                                             <a href="{{ url('admin/profile/'.$unit->head->staffId) }}">

@@ -47,15 +47,15 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#unit-menu" aria-expanded="false" aria-controls="ui-basic">
+        <a class="nav-link" data-bs-toggle="collapse" href="#units-menu" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Units</span>
           <i class="menu-arrow"></i>
-          <i class="mdi mdi-file-tree menu-icon"></i>
+          <i class="mdi mdi-sitemap menu-icon"></i>
         </a>
-        <div class="collapse" id="unit-menu">
+        <div class="collapse" id="units-menu">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ route('units')}}">Units</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ url('admin/sub_units') }}">Sub Units</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('allunits')}}">Units</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('sub_units') }}">Sub Units</a></li>
           </ul>
         </div>
       </li>

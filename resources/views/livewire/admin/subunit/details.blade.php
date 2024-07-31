@@ -3,7 +3,7 @@
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-shape-plus menu-icon"></i>
-            </span> Department: {{$department->name}}
+            </span> Sub=unit: {{$subunit->name}}
         </h3>
         @endsection
 
@@ -11,7 +11,7 @@
         <nav aria-label="breadcrumb">
         <ul class="breadcrumb">
             <li class="breadcrumb-item active" aria-current="page">
-            <span></span>Departments</i>
+            <span></span>Sub-units</i>
             </li>
         </ul>
         </nav>
@@ -24,7 +24,7 @@
             <div class="card-body">
                 <div class="d-flex mb-2">
                     <div class="d-flex">
-                        <h4 class="card-title mb-3">Academic Staff</h4>
+                        <h4 class="card-title mb-3">Non-Academic Staff</h4>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                                     <td class="ps-3"> {{$staff->user->email}} </td>
                                     <td class="ps-3"> {{$staff->user->profile->lastname}} </td>
                                     <td class="ps-3"> {{$staff->user->profile->firstname}} </td>
-                                    <td class="ps-3"> {{$staff->user->profile->title->name}}  </td>
+                                    <td class="ps-3"> {{$staff->user->profile->title->name}} </td>
                                     <td class="ps-3 text-center">
                                         @if ($staff->user->isActive)
                                             <span class="badge bg-primary">Active</span>
