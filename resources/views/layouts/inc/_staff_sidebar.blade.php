@@ -162,7 +162,7 @@
       </li>
 
 
-      @canany(['is_hod', 'is_hou'])
+      @canany(['is_hod_or_hou'])
         <li class="nav-item">
             <a class="nav-link" href="{{ route('evaluationlist') }}">
                 <span class="menu-title">Evaluate APER Requests</span>
@@ -172,7 +172,7 @@
       @endcanany
 
 
-      @canany(['is_dean', 'is_unitHead'])
+      @canany(['is_dean_or_unitHeads'])
         <li class="nav-item">
             <a class="nav-link" href="{{ route('approvallist')}}">
                 <span class="menu-title">Approve APER Requests</span>
