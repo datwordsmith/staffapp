@@ -62,9 +62,11 @@
                         @elseif($user->role_as == 3)
                             <div class="col-md-4">
                                 <strong class="purple-text">Unit</strong>
-                                <p class="text-muted mt-1">
-                                    {{ $user->unit->unit->name }}
-                                </p>
+                                @if ($user->subunit && $user->subunit->subunit)
+                                    <p class="text-muted mt-1">
+                                        {{ $user->subunit->subunit->name }}
+                                    </p>
+                                @endif
                             </div>
                         @endif
                     </div>
