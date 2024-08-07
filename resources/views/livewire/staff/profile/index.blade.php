@@ -84,7 +84,7 @@
                                 @endif
                             </div>
                         @elsecan('non_academic_staff')
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <strong class="purple-text">Unit</strong>
                                 <p class="text-muted mt-1">
                                     @if ($user->subunit && $user->subunit->subunit && $user->subunit->subunit->unit)

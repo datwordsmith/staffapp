@@ -91,10 +91,6 @@
         </div>
     </div>
 
-    List
-
-    {{ $admin->department->department->name}}
-
     <div class="row d-none" id="aperReport">
         <div class="col-md-12 grid-margin ">
         <div class="card">
@@ -115,10 +111,21 @@
                                 <th colspan="19" class="text-center">{{$currentYear}} Appraisal Summary Sheet</th>
                             </tr>
                             <tr>
-                                <th colspan="19" class="text-center"> <strong>Department:</strong> {{ $admin->department->department->name}}</th>
+                                <th colspan="19" class="text-center">
+                                    @can('staff')
+                                        <strong>Department:</strong> {{ $admin->department->department->name}}
+                                    @elsecan('non_academic_staff')
+                                        <strong>Sub-unit:</strong> {{ $admin->subunit->subunit->name}}
+                                    @endcan
+                                </th>
                             </tr>
                             <tr>
-                                <th colspan="19" class="text-center"> <strong>Faculty:</strong> {{ $admin->department->department->faculty->name}}</th>
+                                <th colspan="19" class="text-center">
+                                    @can('staff')
+                                        <strong>Faculty:</strong> {{ $admin->department->department->faculty->name}}</th>
+                                    @elsecan('non_academic_staff')
+                                        <strong>Unit:</strong> {{ $admin->subunit->subunit->unit->name}}
+                                    @endcan
                             </tr>
 
                             <tr>
