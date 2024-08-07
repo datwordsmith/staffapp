@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Staff\Aper;
 
+use Carbon\Carbon;
 use App\Models\APER;
 use App\Models\User;
 use App\Models\SubUnit;
@@ -25,6 +26,7 @@ class EvaluationList extends Component
     public $departmentIds = [];
     public $subunitIds = [];
     public $admin;
+    public $currentYear;
     public $search;
 
     public function mount()
@@ -34,6 +36,7 @@ class EvaluationList extends Component
         $this->subunitIds = SubUnit::where('hou_id', $this->admin->id)->pluck('id');
 
         $this->categories = AppraisalCategory::orderBy('category')->get();
+        $this->currentYear = Carbon::now()->year;
     }
 
 
@@ -58,7 +61,7 @@ class EvaluationList extends Component
                 $join->on('staff_sub_units.user_id', '=', 'users.id')
                     ->whereIn('staff_sub_units.subunit_id', $this->subunitIds);
             })
-            ->where('aper.user_id', '<>', $this->admin->id)
+            //->where('aper.user_id', '<>', $this->admin->id)
             ->where(function($query) {
                 $query->whereNotNull('staff_departments.department_id')
                     ->orWhereNotNull('staff_sub_units.subunit_id');
@@ -97,6 +100,7 @@ class EvaluationList extends Component
     {
 
         $apers = APER::join('users', 'aper.user_id', '=', 'users.id')
+            ->whereYear('aper.created_at', $this->currentYear)
             ->leftJoin('staff_departments', function($join) {
                 $join->on('staff_departments.user_id', '=', 'users.id')
                     ->whereIn('staff_departments.department_id', $this->departmentIds);

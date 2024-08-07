@@ -91,6 +91,10 @@
         </div>
     </div>
 
+    List
+
+    {{ $admin->department->department->name}}
+
     <div class="row d-none" id="aperReport">
         <div class="col-md-12 grid-margin ">
         <div class="card">
@@ -104,6 +108,19 @@
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered" id="reportTable">
                         <thead>
+                            <tr>
+                                <th colspan="19" class="text-center">Federal University of Lafia</th>
+                            </tr>
+                            <tr>
+                                <th colspan="19" class="text-center">{{$currentYear}} Appraisal Summary Sheet</th>
+                            </tr>
+                            <tr>
+                                <th colspan="19" class="text-center"> <strong>Department:</strong> {{ $admin->department->department->name}}</th>
+                            </tr>
+                            <tr>
+                                <th colspan="19" class="text-center"> <strong>Faculty:</strong> {{ $admin->department->department->faculty->name}}</th>
+                            </tr>
+
                             <tr>
                                 @foreach(['Staff ID', 'Fullname', 'Email', 'Sex', 'Date of Birth', 'Current Rank', 'Current Salary Grade', 'First Appointment', 'Date Assumed Duty', 'Duty Confirmation Date', 'Academic Qualifications', 'No. of Publications', 'Date of Last Promotion', 'Evaluation/Appraisal Score', 'Department Appraisal', 'Faculty Appraisal', 'CAC Recommendation', 'A & PC Decision', 'Remarks'] as $header)
                                     <th scope="col" class="fixed-width">{{ $header }}</th>

@@ -69,7 +69,7 @@
                         </div>
 
                         @can('staff')
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <strong class="purple-text">Faculty</strong>
                                 <p class="text-muted mt-1">
                                     @if ($user->department && $user->department->department && $user->department->department->faculty)

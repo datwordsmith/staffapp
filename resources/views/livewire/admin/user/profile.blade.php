@@ -122,10 +122,10 @@
             <div class="card">
                 <div class="card-header text-white bg-gradient-primary pt-3"><h4>Interests</h4></div>
                 <div class="card-body">
-                    @if ($interests->count() > 0)
+                    @if ($user->interests->count() > 0)
                         <table class="table">
                             <tbody>
-                                @foreach($interests as $interest)
+                                @foreach($user->interests as $interest)
                                 <tr>
                                     <td><i class="fa-solid fa-star me-4"></i> {{ $interest->interest }}</td>
                                 </tr>

@@ -61,7 +61,7 @@
                                     </td>
                                     <td class="d-flex justify-content-end">
                                         @if ($this->hasProfile($staff->user_id))
-                                            <a href="{{ url('admin/profile/'.$staff->user_id) }}" class="btn btn-sm btn-primary me-2"><i class="fa-regular fa-folder-open"></i> View</a>
+                                            <a href="{{ url('admin/profile/'.$staff->user->staffId) }}" class="btn btn-sm btn-primary me-2"><i class="fa-regular fa-folder-open"></i> View</a>
                                         @else
                                             <button class="btn btn-sm btn-secondary me-2 disabled"><i class="fa-regular fa-folder-open"></i> View</button>
                                         @endif

@@ -41,14 +41,11 @@ class Profile extends Component
         // Fetch user details based on $userId
         $this->user = User::where('staffId', $staffId)->first();
         $this->admin = Auth::user();
-
-        $this->user->load(['interests' => function ($query) {
-            $query->orderBy('interest', 'asc');
-        }]);
     }
 
     public function render()
     {
+
         $pendingEvaluation = APER::where('user_id', $this->user->id)
             ->whereDoesntHave('evaluation')
             ->first();
