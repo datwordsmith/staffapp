@@ -97,9 +97,13 @@
                                     </td>
                                     <td class="ps-3">
                                         @if($unit->head_id !== null)
-                                            <a href="{{ url('admin/profile/'.$unit->head->staffId) }}">
-                                                {{ $unit->head->profile->title->name }} {{ $unit->head->profile->lastname }} {{ $unit->head->profile->firstname }} {{ $unit->head->profile->othername }}
-                                            </a>
+                                            @if($unit->head->profile)
+                                                <a href="{{ url('admin/profile/'.$unit->head->staffId) }}">
+                                                    {{ $unit->head->profile->title->name }} {{ $unit->head->profile->lastname }} {{ $unit->head->profile->firstname }} {{ $unit->head->profile->othername }}
+                                                </a>
+                                            @else
+                                                No Profile
+                                            @endif
                                         @else
                                             Not assigned
                                         @endif
