@@ -22,7 +22,7 @@ class Index extends Component
     {
         return [
             'name' => 'required|string',
-            'unit_id' => 'required|numeric|min:1|exists:faculties,id',
+            'unit_id' => 'required|numeric|min:1|exists:units,id',
             'hou_id' => 'nullable|numeric|min:1|exists:users,id',
         ];
     }
