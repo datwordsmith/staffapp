@@ -5,20 +5,20 @@
             <div class="col-md-12 mb-3">
                 <div class="row ">
                     <div class="col-md-4">
-                        <img src="{{ asset('uploads/photos/' . ($user->profile->photo ?: 'default.jpg')) }}" class="img-fluid p-3 shadow" alt="Profile Photo">
+                        <img src="{{ asset('uploads/photos/' . (optional($user->profile)->photo ?? 'default.jpg')) }}" class="img-fluid p-3 shadow" alt="Profile Photo">
                     </div>
                     <div class="col-md-8 mt-md-0 mt-4">
-                        <h2>{{$user->profile->title->name}} {{$user->profile->firstname}} {{$user->profile->lastname}} {{$user->profile->othername}}</h2>
-                        <h4 class="text-muted mb-3">{{$user->profile->rank->rank}}</h4>
+                        <h2>{{ optional(optional($user->profile)->title)->name ?? '' }} {{ optional($user->profile)->firstname ?? '' }} {{ optional($user->profile)->lastname ?? '' }} {{ optional($user->profile)->othername ?? '' }}</h2>
+                        <h4 class="text-muted mb-3">{{ optional(optional($user->profile)->rank)->rank ?? '' }}</h4>
 
                         <div class="row pt-3 border-top border-bottom mb-3">
                             <div class="col-md-6">
                                 <strong class="purple-text">Staff ID</strong>
-                                <p class="text-muted mt-1">{{$user->staffId}}</p>
+                                <p class="text-muted mt-1">{{ $user->staffId ?? '' }}</p>
                             </div>
                             <div class="col-md-6">
                                 <strong class="purple-text">Email</strong>
-                                <p class="text-muted mt-1">{{$user->email}}</p>
+                                <p class="text-muted mt-1">{{ $user->email ?? '' }}</p>
                             </div>
 
                             @if($user->role_as == 2)
@@ -56,11 +56,11 @@
 
                         <p><strong class="purple-text">Biography:</strong></p>
                         <p class="text-secondary">
-                            {{$user->profile->biography}}
+                            {{ optional($user->profile)->biography ?? '' }}
                         </p>
 
                         <div>
-                            @if ($socials->count() > 0)
+                            @if (isset($socials) && $socials->count() > 0)
                                 @foreach($socials as $social)
                                     <a href="{{ $social->url }}" target="_blank"><i class="fa-brands {{ $social->icon }} fa-xl me-2"></i></a>
                                 @endforeach
@@ -76,7 +76,7 @@
                 <div class="card borderless shadow">
                     <div class="card-header text-white bkg-primary pt-3"><h4>Interests</h4></div>
                     <div class="card-body">
-                        @if ($user->interests->isNotEmpty())
+                        @if (isset($user->interests) && $user->interests->isNotEmpty())
                             <table class="table">
                                 <tbody>
                                     @foreach($user->interests as $interest)
@@ -131,7 +131,7 @@
                             </table>
                         </div>
                         <div>
-                            {{ $publications->links() }}
+                            {{ isset($publications) ? $publications->links() : '' }}
                         </div>
                     </div>
                 </div>

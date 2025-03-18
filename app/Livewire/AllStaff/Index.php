@@ -30,7 +30,7 @@ class Index extends Component
                     ->orWhere('titles.name', 'like', '%'.$this->search.'%');
             })
             ->whereIn('users.role_as', [2, 3])
-            ->leftJoin('profiles', 'profiles.user_id', '=', 'users.id')
+            ->join('profiles', 'profiles.user_id', '=', 'users.id')
             ->leftJoin('titles', 'profiles.title_id', '=', 'titles.id')
             ->leftJoin('ranks', 'profiles.rank_id', '=', 'ranks.id')
             ->select('users.*', 'profiles.lastname as lastname', 'profiles.firstname as firstname', 'profiles.slug as slug', 'titles.name as title', 'ranks.rank as rank')

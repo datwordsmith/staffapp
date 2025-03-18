@@ -16,7 +16,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="team-member text-center shadow">
                                 <div class="member-photo pt-4">
-                                    <img class="img-fluid" src="{{ asset('uploads/photos/' . ($user->profile->photo ?: 'default.jpg')) }}" alt="{{ $user->staffId }}" style="width: 200px; height: 200px;">
+                                    <img class="img-fluid" src="{{ asset('uploads/photos/' . ($user->profile->photo ?? 'default.jpg')) }}" alt="{{ $user->staffId }}" style="width: 200px; height: 200px;">
                                 </div>
                                 <div class="member-content">
                                     <h3 class="my-primary"><strong>{{ $user->profile->title->name }} {{ $user->profile->lastname }}</strong></h3>
@@ -37,8 +37,8 @@
             </div>
         </div>
 
-        <div>
-            {{ $allstaff->links() }}
+        <div class="">
+            {{ $allstaff->links('vendor.livewire.pagination') }}
         </div>
     </div>
 </section>
